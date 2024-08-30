@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{url_for('static', filename='IMAGE/logo.jpg')}}">
+</head>
+<body style="background-color: white;">
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;
+            color: gray;
+            font-size: 0.6rem;
+            
+        }
+        
+    </style>
+
+
+
+
+    <div class="jjhejhre" style="width: 100%;
+    background-color: transparent;
+    margin: 0 auto;
+    border: 1px solid gray;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 40px;max-width: 600px;">
+        <div class="logo" style="height: 100px;
+        width: 100%;
+      
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid gray;">
+            <img src="cid:myimage" width="250px" style="margin: 0 auto;"  alt="">
+        </div>
+        <div class="kiahi" style="width: 95%;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 20px;margin: 0 auto;">
+            
+            <p style="padding-bottom: 10px;font-size: 0.6rem;padding-right: 10px;color: black;">Bonjour / Bonsoir {{nom}} {{prenom}}</p>
+            
+            <p style="padding-bottom: 10px;font-size: 0.6rem;padding-right: 10px;color: black;">Votre commande {{commen}} a été annulée aujourd'hui {{datez}} </p>
+
+            <p style="padding-bottom: 20px;font-size: 0.6rem;padding-right: 10px;color: black;">Nous vous remercions pour votre confiance et votre avis est précieux pour nous. Aidez-nous à améliorer nos services en partageant votre expérience en évaluant les produits que vous avez commandés.</p>
+
+            
+            <!-- <p style="padding-bottom: 10px;">Bonjour / Bonsoir EMMANUEL DEDY</p> -->
+            
+            <div class="shyeyss" style="width: 100%;
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;">
+                <div class="shyeys1" style="width: 70px;
+                height: 70px;
+                max-width: 70px;
+                min-width: 70px;
+                max-height: 70px;
+                max-height: 70px;
+                background-color: yellow;">
+                    <img src="{{'cid:' + adm.image}}" width="100%" height="100%"  alt="">
+                </div>
+                <div class="shyeyss2" style=" width: 100%;">
+                    <p style="font-size: 0.6rem;padding-right: 20px;padding-left: 10px;color: black;font-weight: bolder;">{{adm.produitname}}</p>
+
+                    {% if adm.categorie == "VetementFemme" %}
+                        <p style="padding-top: 5px;font-size: 0.6rem;padding-right: 20px;padding-left: 10px;color: black;">Qte {{adm.quantite}} | Prix {{adm.prixtotal}} FCFA | Taille {{adm.taille}}</p>
+                    {% endif %}
+
+                    {% if adm.categorie == "chaussure" %}
+                    <p style="padding-top: 5px;font-size: 0.6rem;padding-right: 20px;padding-left: 10px;color: black;">Qte {{adm.quantite}} | Prix {{adm.prixtotal}} FCFA | Pointure {{adm.taille}} </p>
+                    {% endif %}
+
+                    {% if adm.categorie == "Montre" %}
+                    <p style="padding-top: 5px;font-size: 0.6rem;padding-right: 20px;padding-left: 10px;color: black;">Qte {{adm.quantite}} | Prix {{adm.prixtotal}} FCFA </p>
+                    {% endif %}
+                            
+                </div>
+
+            </div>
+            
+
+            <div style="width: 100%;height: 200px;display: flex; border: 1px solid black;">
+                <div style="border-right: 1px solid black;width: 50%;height: 90%;min-width: 250px;">
+                    <p style="font-size: 0.6rem;padding-right: 10px;padding-left: 10px;color: black;font-weight: bolder;">Lieu de livraison</p>
+                    <p style="padding-bottom: 5px;font-size: 0.6rem;color: black;padding-right: 10px;padding-left: 10px;">{{livraison}}</p>
+                    <p style="font-size: 0.6rem;padding-right: 20px;padding-left: 10px;color: black;font-weight: bolder;">Date d'emballage</p>
+                    <p style="padding-bottom: 5px;font-size: 0.6rem;color: black;padding-right: 10px;padding-left: 10px;">{{emballage}}</p>
+                    <p style="font-size: 0.6rem;padding-right: 20px;padding-left: 10px;color: black;font-weight: bolder;">Date d'arrivée</p>
+                    <p style="padding-bottom: 5px;font-size: 0.6rem;color: black;padding-right: 10px;padding-left: 10px;">Annulé</p>
+                </div>
+                <div style="width: 50%;height: 90%;">
+                    <p style="font-size: 0.6rem;padding-right: 20px;padding-left: 10px;color: black;font-weight: bolder;">Quantité </p>
+                    <p style="padding-bottom: 5px;font-size: 0.6rem;color: black;padding-right: 10px;padding-left: 10px;">{{quantitezr}}</p>
+                    <p style="font-size: 0.6rem;padding-right: 20px;padding-left: 10px;color: black;font-weight: bolder;">Prix total</p>
+                    <p style="padding-bottom: 5px;font-size: 0.6rem;color: black;padding-right: 10px;padding-left: 10px;">{{total}} FCFA</p>
+                    <p style="font-size: 0.6rem;padding-right: 20px;padding-left: 10px;color: black;font-weight: bolder;">Status</p>
+                    <p style="padding-bottom: 5px;font-size: 0.6rem;color: black;padding-right: 10px;padding-left: 10px;">Annulé</p>
+                </div>
+
+            </div>
+            <p style="padding-bottom: 10px;font-size: 0.6rem;padding-right: 10px;color: black;">Si vous avez des questions ou si vous souhaitez suivre l'état de votre commande, n'hésitez pas à nous contacter à hington-shop@gmail.com , +225 0101678809.Vous avez la possibilité de retourner un article dans les 10 jours suivant la livraison s'il ne correspond pas à votre attente (mauvais/défectueux/endommagé), ou également si vous changez d'avis. Vous pouvez demander un retour à partir de la page Vos commandes ou en nous contactant. <br>Bonne journée à vous .</p>
+            
+            <p style="padding-bottom: 10px;font-size: 0.6rem;color: black;">Suivez - nous sur :</p>
+            <div class="refsgd" style="height: 40px;
+            width: 100%;">
+                <a href="">
+                    <img src="cid:whats" width="25px" height="25px"  alt="">
+                </a>
+                
+                <a href="">
+                    <img src="cid:facebook" width="20px" height="20px"  alt="">
+                </a>
+                <a href="">
+                    <img src="cid:titko" width="25px" height="25px"  alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

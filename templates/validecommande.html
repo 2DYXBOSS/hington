@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon panier</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename='IMAGE/logo.jpg')}}">
+
+    <link rel="stylesheet" href="/static/CSS/valide.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    
+</head>
+
+
+<body> 
+    <a href="/monpanier">
+        <div class="marcher">
+            <img src="{{url_for('static', filename='IMAGE/panier.png')}}" style="filter: invert();" width="20px" alt="">
+            <div class="rondquant">
+                <p style="font-size: 1rem;">{{conueww}}</p>
+            </div>
+        </div>
+    </a> 
+    <!-- le menu telephone -->
+    <div class="menuddg">
+        <div class="menuddg2">
+            <div class="menuddg3">
+                
+
+                <a href="/sac" class="etdjff">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/chas3.png')}}"  width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif">Chaussure Homme & Femme</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+                </a>
+                <a href="/vente" class="etdjff">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/robeee.png')}}"  width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif">Vetement Femme</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+                </a>
+                <a href="/montre" class="etdjff">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/hansb2.png')}}"  width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif">Montre H & F</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+                </a>
+                <h1 id="sumpek" style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-bottom: 15px;padding-top: 20px;"><a href="/vente" style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;text-decoration: none;">Utilitaires</a> </h1>
+                <a href="/" class="etdjff" id="sumpek">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/homedd.png')}}"  width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif;">Acceuil</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+                </a>
+                <a href="/monpanier" class="etdjff" id="sumpek">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/panier.png')}}"  width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif;">Mon panier</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+                </a>
+                <a href="/monprofil" class="etdjff" id="sumpek">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/pppp.png')}}"  width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif;">Mon profil</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+                </a>
+              
+                <div class="boases">
+                    <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding-bottom: 10px;">Contactez - Nous</p>
+                    <p style="font-size: 0.7rem;padding-bottom: 10px;">Nous sommes heureux de vous assister si vous avez des questions.</p>
+                    <a href="tel:0778587708" class="zghghz">
+                        <img src="{{url_for('static', filename='IMAGE/tle.png')}}"  width="15px" alt="">
+                        <p style="font-size: 1rem;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color: black;">+225 0778587708</p>
+                    </a>
+                    <a href="mailto:hington-shop@gmail.com" class="zghghz">
+                        <img src="{{url_for('static', filename='IMAGE/emmqs.png')}}"  width="15px" alt="">
+                        <p style="font-size: 1rem;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color: black;">hington-shop@gmail.com</p>
+                    </a>
+                    <a href="https://web.whatsapp.com/send?phone=+22578587708&text='Bonjour à vous , j'ai une préoccupations !'" class="zghghz">
+                        <img src="{{url_for('static', filename='IMAGE/wha.png')}}"  width="15px" alt="">
+                        <p style="font-size: 0.8rem;color: black;">Posez vos questions sur <span style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">WhatsApp</span></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- le menu telephone -->
+    <!-- navbar ordinateur -->
+    <header>
+        <div class="hedaf">
+            <div class="logo">
+                <a href="/" class="tete" style="padding-top: 10px;">
+                    
+                    <img src="{{url_for('static',filename='IMAGE/hinglogo.png')}}" width="150px"  alt="">
+                 
+                    
+                   
+                   
+                </a>
+            </div>
+            <div class="recherche">
+                <form action="/mesrecherches" method="post" id="hjdsd">
+                  
+                    <input type="text" name="recher" id="" placeholder="Cherchez un produit">
+                    <button type="submit"><div class="imsdghde">
+                        <img src="{{url_for('static', filename='IMAGE/recdgdg.png')}}"  width="20px" alt="">
+                    </div></button>
+                </form>
+            </div>
+            
+            
+            <div class="menu">
+                <a href="/monprofil" class="menuaze" >
+                    <img src="{{url_for('static', filename='IMAGE/pppp.png')}}"  width="20px" alt="" >
+                </a>
+                
+                <div class="imsdghde1">
+                    <img src="{{url_for('static', filename='IMAGE/recdgdg.png')}}"  width="20px" alt="">
+                </div>
+                <div class="imsdghde12">
+                    <img src="{{url_for('static', filename='IMAGE/recdgdg.png')}}"  width="20px" alt="">
+                </div>
+                <img src="{{url_for('static', filename='IMAGE/menu.png')}}"  width="20px" alt="" id="hdhdj">
+                <img src="{{url_for('static', filename='IMAGE/menu.png')}}"  width="20px" alt="" id="hdhdj2">
+            </div>
+        </div>
+       
+    </header>
+    <!-- navbar ordinateur -->
+    <div class="hdueu">
+        
+    </div>
+    <div class="monpsjf">
+        <div class="monpsjf1">
+            <div class="meselele">
+                <div class="jjhfsdf">
+                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 10px;color: black;padding-left: 10px;">Informations supplementaires { {{conueww}} }</p>
+                </div>
+                <div class="hjdshjhdz">
+                    <div class="jjhfsdfehd">
+                        <img src="{{url_for('static', filename='IMAGE/chets.png')}}" style="filter: invert(17%) sepia(95%) saturate(5541%) hue-rotate(127deg) brightness(97%) contrast(101%);"  width="20px" alt="" >
+                        <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-left: 10px;">1 ° INFORMATION CLIENT</p>
+                    </div>
+                    <p  style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgba(0, 0, 0, 0.59);font-size: 0.8rem;padding-left: 10px;padding-top: 10px;">{{clientr.first_name}} {{clientr.prenom}}</p>
+           
+                    <p  style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgba(0, 0, 0, 0.59);font-size: 0.8rem;padding-left: 10px;padding-top: 10px;">Côte d'Ivoire | Abidjan - {{clientr.residence}} | {{numero}}</p>
+                
+                </div>
+                <div class="hjdshjhdz09">
+                    <div class="jjhfsdfehd">
+                        <img src="{{url_for('static', filename='IMAGE/chets.png')}}" style="filter: invert(17%) sepia(95%) saturate(5541%) hue-rotate(127deg) brightness(97%) contrast(101%);"  width="20px" alt="" >
+                        <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-left: 10px;">2 ° DÉTAILS DE LIVRAISON</p>
+                    </div>
+                    <p  style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgba(0, 0, 0, 0.59);font-size: 0.8rem;padding-left: 10px;padding-top: 10px;">{{livraison}}</p>
+           
+                    <p  style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgba(0, 0, 0, 0.59);font-size: 0.8rem;padding-left: 10px;padding-top: 10px;">Côte d'Ivoire | Abidjan  - {{livraison}} - {{description}} | {{numero}}</p>
+
+                    <div class="jhkzlaza">
+                        {% for i in gdhsuud %}
+                        <div class="lesvrai">
+                            <div class="geujdjd32">
+                                
+                                <div class="imahdjd232">
+                                    <p class="gradfs" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;font-size: 1rem;">{{i.nom}}</p>
+                                    
+                                   
+                                    <p style="font-size: 0.7rem;padding-top: 5px;color: blackgreen;">Votre colis " {{i.nom}} "  sera livré avec succès. Vous pouvez évaluer votre produit. Insatisfait? Vous pouvez le retourner dans 10 jours à partir de maintenant! Nous vous remercions pour vos achats sur Hington Shop !</p>
+                                    
+                                    
+                                </div>
+                                <div class="imahdjd332">
+                                    
+                                    
+                                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;background-color: rgb(255, 153, 0);padding: 5px;font-size: 0.7rem;color: white;">Livraison </p>
+                                    <p style="font-size: 0.6rem;color: black;">le {{apres_demain}}</p>
+                                    
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="hjshjjkklez">
+                                <div class="hjshjjkklez1">
+                                    <div class="imahdjd132">
+                                        <a href="#">
+                                            <img id="image" src="{{url_for('static', filename='uploads/' + i.image)}}" width="100%"
+                                            height="90%" alt="Image principale"
+                                            onerror="this.onerror=null;this.src='static/IMAGE/nnssd.jpg';">
+            
+                                        <script>
+                                            document.getElementById('image').onerror = function () {
+                                                this.src = 'static/IMAGE/nnssd.jpg';
+                                            };
+                                        </script>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="hjshjjkklez1">
+                                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-left: 20px;padding-top: 15px;font-size: 0.9rem;">Caracteristique</p>
+                                    {% if i["categorie" ] == "VetementFemme" %}
+                                        <p style="font-size: 0.7rem;color: black;padding-left: 20px;padding-top: 5px;">Taille {{i.taille}} </p> 
+                                    {% endif %}
+                                    {% if i["categorie"]== "chaussure" %}
+                                        <p style="font-size: 0.7rem;color: black;padding-left: 20px;padding-top: 5px;">Ponture {{i.taille}} </p>
+                                    {% endif %}
+                                    {% if i["categorie" ] == "Montre" %}
+                                        <p style="font-size: 0.7rem;color: black;padding-left: 20px;padding-top: 5px;">Tous le monde</p>
+                                    {% endif %}
+                                    
+                                    
+                                    
+                                </div>
+                                <div class="hjshjjkklez1">
+                                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-left: 20px;padding-top: 15px;font-size: 0.9rem;">Prix unitaire </p>
+                                    <p style="font-size: 0.7rem;color: black;padding-left: 20px;padding-top: 5px;">{{i.pource}}  FCFA</p>
+                                </div>
+                                    
+                                <div class="hjshjjkklez1">
+                                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-left: 20px;padding-top: 15px;font-size: 0.9rem;">Nombre d'articles  </p>
+                                    <p style="font-size: 0.7rem;color: black;padding-left: 20px;padding-top: 5px;">{{i.quantite}} </p>
+                                </div>
+                                <div class="hjshjjkklez1">
+                                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-left: 20px;padding-top: 15px;font-size: 0.9rem;">Prix total</p>
+                                    <p style="font-size: 0.7rem;color: black;padding-left: 20px;padding-top: 5px;">{{i.quantite * i.pource}}  FCFA</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                  
+                
+                </div>
+                <div class="hjdshjhdzmp">
+                    <div class="jjhfsdfehd">
+                        <img src="{{url_for('static', filename='IMAGE/chets.png')}}" style="filter: invert(54%) sepia(0%) saturate(0%) hue-rotate(120deg) brightness(93%) contrast(87%);"   width="20px" alt="" >
+                        <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-left: 10px;">3 ° INFORMATION PAIEMENT</p>
+                    </div>
+                    <p  style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgba(0, 0, 0, 0.59);font-size: 0.8rem;padding-left: 10px;padding-top: 10px;">Payer le montant de votre commande à la livraison </p>
+           
+                    <p  style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgba(0, 0, 0, 0.59);font-size: 0.8rem;padding-left: 10px;padding-top: 10px;">Vous avez le choix entre CASH ou MOBILE MONEY , une fois votre commande est livré .</p>
+                    <p  style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgba(0, 0, 0, 0.59);font-size: 0.8rem;padding-left: 10px;padding-top: 10px;">NB : Cliquez sur valider ma commande pour soumettre votre commande .</p>
+                
+                </div>
+                
+            </div>
+            <div class="meselele1">
+                <div class="jdidsedf">
+                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;">Montant total à payé</p>
+                </div>
+                <div class="jdidsed2" style="display: flex;align-items: end;gap: 10px;">
+                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgba(0, 0, 0, 0.59);font-size: 0.8rem;" >Prix des articles { {{conueww}} }</p>
+                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;font-size: 0.8rem;" >{{somme}} FCFA</p>
+                    
+                </div>
+                <div class="jdidsed2" style="display: flex;align-items: end;gap: 10px;">
+                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgba(0, 0, 0, 0.59);font-size: 0.8rem;" >Frais de livraison </p>
+                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;font-size: 0.8rem;" > 1500 FCFA</p>
+                    
+                </div>
+              
+                <div class="jdidsed2">
+                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgba(0, 0, 0, 0.59);font-size: 0.8rem;" >Montant total </p>
+                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 10px;color: black;font-weight: bolder;font-size: 1.3rem;" ><span id="somiu" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-weight: bolder;font-size: 1.3rem;">{{somme + 1500}}</span> FCFA</p>
+                    
+                </div>
+              
+               
+                
+                <div class="jdidsed2">
+                    
+                    <form action="finishcommand" method="post" class="uufw" style="width: 100%;margin-top: 10px;">
+                        <input type="text" name="nom" id="livraison" placeholder="numero" value="{{clientr.first_name}}" style="visibility: hidden;height: 0;width: 0;">
+                        <input type="text" name="prenom" id="livraison" placeholder="numero" value="{{clientr.prenom}}" style="visibility: hidden;height: 0;width: 0;">
+                        <input type="text" name="mail" id="livraison" placeholder="numero" value="{{clientr.last_name}}" style="visibility: hidden;height: 0;width: 0;">
+                        
+                       
+                        <input type="text" name="numero" id="livraison" placeholder="numero" value="{{clientr.numero}}" style="visibility: hidden;height: 0;width: 0;">
+                        
+                        <input type="text" name="aller" id="prixtotal" placeholder="numero" value="{{dataer}}" style="visibility: hidden;height: 0;width: 0;">
+                        <input type="text" name="livrer" id="prixtotal" placeholder="numero" value="{{apres_demain}}" style="visibility: hidden;height: 0;width: 0;">
+                        <input type="text" name="residence" id="livraison" placeholder="numero" value="{{clientr.residence}}" style="visibility: hidden;height: 0;width: 0;">
+                        <input type="text" name="lieulivraison" id="livraison" placeholder="numero" value="{{livraison}}" style="visibility: hidden;height: 0;width: 0;">
+                        <input type="text" name="deslieulivraison" id="prixtotal" placeholder="numero" value="{{description}}" style="visibility: hidden;height: 0;width: 0;">
+
+                        <button type="submit" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;color: black;display: flex;align-items: center;justify-content: center;background-color: white;border: 1px solid black;"><img src="{{url_for('static', filename='IMAGE/payerdd.png')}}" id="ppmpm" width="20px" alt="" >VALIDER MA COMMANDE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+        
+   
+    <div class="insedfole">
+        <footer id="foot" >
+            <a href="/" id="head " style="padding-top: 20px;">
+                <img src="{{url_for('static',filename='IMAGE/hinglogo.png')}}" style="filter: invert();" width="170px"  alt="">
+            </a>
+            <div class="recherche111" style="background-color: black;">
+                <form action="/mesrecherches" method="post" id="hjdsd123">
+                    <!-- <div class="imsdghde">
+                        <img src="{{url_for('static', filename='IMAGE/recdgdg.png')}}"  width="20px" alt="">
+                    </div> -->
+                    <input type="text" name="recher" id="" placeholder="Ecrivez - nous pour vos preoccupations et suggestions ">
+                    <button type="submit"><div class="imsdghde">
+                        <img src="{{url_for('static', filename='IMAGE/emmqs.png')}}"  width="20px" alt="">
+                    </div></button>
+                </form>
+            </div>
+            <div id="head " style="padding-top: 20px;padding-left: 20px;">
+                <h1 style="color: white;font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif">RETROUVEZ-NOUS SUR</h1>
+                <div class="zghdes">
+                    <a href="" class="hdsj">
+                        <img src="{{url_for('static', filename='IMAGE/fza.png')}}"  width="25px" alt="">
+                    </a>
+                    <a href="" class="hdsj">
+                        <img src="{{url_for('static', filename='IMAGE/wha.png')}}"  width="30px" alt="">
+                    </a>
+                    <a href="" class="hdsj">
+                        <img src="{{url_for('static', filename='IMAGE/tikti.png')}}"  width="35px" alt="">
+                    </a>
+                    
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="/static/CSS/panied.js"></script>
+</body>
+</html>

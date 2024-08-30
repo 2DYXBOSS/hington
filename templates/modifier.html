@@ -1,0 +1,2100 @@
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter article</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename='IMAGE/logo.jpg')}}">  
+    <link rel="stylesheet" href="/static/CSS/admcss.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    
+
+
+    
+    <form action="/mofie/{{id}}" method="POST" class="formulaire" id="section">
+        <div class="formu">
+            <h1 style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1.5rem;color: rgba(255, 102, 0, 0.865);
+                text-align: center;padding-top: 10px;">CHAUSSURES</h1>
+        <div class="lesimpur">
+            <input type="text" name="image" id="" value="{{filename}}">
+            <input type="text" name="twoimage" id="" value="{{filename1}}">
+            <input type="text" name="threeimage" id="" value="{{filename2}}">
+            <input type="text" name="forimage" id="" value="{{filename3}}">
+        </div>
+         <p style="text-align: center;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;">- Les images selctionnées de l'article !</p>
+        </div>
+         <div class="lesimadewe">
+            <div class="lesimahes">
+                {% if 'p' in filename %}
+                <img src="{{url_for('static', filename='uploads/' + filename)}}" width=" 100%" height="100%" alt="">
+                {% endif %}
+            </div>
+            
+            
+            <div class="lesimahes">
+                {% if 'p' in filename1 %}
+                <img src="{{url_for('static', filename='uploads/' + filename1)}}"  width=" 100%" height="100%" alt="">
+                {% endif %}
+            </div>
+            
+            
+            <div class="lesimahes">
+                {% if 'p' in filename2 %}
+                <img src="{{url_for('static', filename='uploads/' + filename2)}}"  width=" 100%" height="100%" alt="">
+                {% endif %}
+            </div>
+            
+            
+            <div class="lesimahes">
+                {% if 'p' in filename3 %}
+                <img src="{{url_for('static', filename='uploads/' + filename3)}}"  width=" 100%" height="100%" alt="">
+                {% endif %}
+            </div>
+            
+        </div>
+        </div>
+        <p style="text-align: center;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;">- Quelles sont les couleurs des articles ?</p>
+        <div class="inputcouleu">
+            <input type="checkbox" name="rouge" id="rouge" value="rouge">
+            <input type="checkbox" name="jaune" id="jaune" value="jaune">
+            <input type="checkbox" name="vert" id="vert" value="vert">
+            <input type="checkbox" name="orange" id="orange" value="orange">
+            <input type="checkbox" name="marron" id="marron" value="marron">
+            <input type="checkbox" name="gris" id="gris" value="gris">
+            <input type="checkbox" name="noir" id="noir" value="noir">
+            <input type="checkbox" name="violet" id="violet" value="violet">
+            <input type="checkbox" name="rose" id="rose" value="rose">
+            <input type="checkbox" name="bleu" id="bleu" value="bleu">
+            <input type="checkbox" name="blanc" id="blanc" value="blanc">
+            
+        </div>
+        
+        <div class="rangerpre">
+            
+            <label for="rouge">
+                <div class="coloope" style="background-color: #ff0000;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(11%) sepia(95%) saturate(7479%) hue-rotate(7deg) brightness(108%) contrast(120%);">
+            
+                    
+                </div>
+            </label>
+
+            <label for="vert">
+                <div class="coloope" style="background-color: #008000;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(29%) sepia(69%) saturate(1418%) hue-rotate(89deg) brightness(100%) contrast(105%);">
+            
+                    
+                </div>
+            </label>
+            <label for="jaune">
+                <div class="coloope" style="background-color: #a5a515;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(60%) sepia(19%) saturate(1860%) hue-rotate(21deg) brightness(100%) contrast(84%);">
+            
+                    
+                </div>
+            </label>
+
+            <label for="orange">
+                <div class="coloope" style="background-color: #ff7300;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(52%) sepia(36%) saturate(5712%) hue-rotate(1deg) brightness(105%) contrast(103%);">
+            
+                    
+                </div>
+            </label>
+            <label for="marron">
+                <div class="coloope" style="background-color: #573214;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(17%) sepia(82%) saturate(472%) hue-rotate(346deg) brightness(95%) contrast(93%);">
+            
+                    
+                </div>
+            </label>
+            <label for="gris">
+                <div class="coloope" style="background-color: #808080;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(49%) sepia(6%) saturate(3%) hue-rotate(89deg) brightness(100%) contrast(89%);">
+            
+                    
+                </div>
+            </label>
+
+            <label for="noir">
+                <div class="coloope" style="background-color: #000000;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" >
+            
+                    
+                </div>
+            </label>
+            <label for="violet">
+                <div class="coloope" style="background-color: #800080;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(13%) sepia(76%) saturate(3903%) hue-rotate(290deg) brightness(85%) contrast(117%);">
+            
+                    
+                </div>
+                
+            </label>
+
+            
+            <label for="rose">
+                <div class="coloope" style="background-color: #d87093;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(84%) sepia(22%) saturate(6639%) hue-rotate(294deg) brightness(86%) contrast(97%);">
+            
+                    
+                </div>
+            </label>
+            <label for="bleu">
+                <div class="coloope" style="background-color: #0000ff;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(8%) sepia(96%) saturate(6156%) hue-rotate(245deg) brightness(122%) contrast(139%);">
+            
+                    
+                </div>
+            </label>
+            <label for="blanc">
+                <div class="coloope" style="background-color: #bebdbd">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(63%) sepia(88%) saturate(0%) hue-rotate(188deg) brightness(100%) contrast(95%);
+
+                    ">
+            
+                    
+                </div>
+            </label>
+        </div>
+        
+        <p style="text-align: center;color: white;font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;">- Quelles sont les tailles des articles ?</p>
+        <div class="inputcouleu">
+            <input type="checkbox" name="tranwite" id="tranwite" value="38">
+            <input type="checkbox" name="tranneuf" id="tranneuf" value="39">
+            <input type="checkbox" name="karente" id="karente" value="40">
+            <input type="checkbox" name="tranwiteun" id="tranwiteun" value="41">
+            <input type="checkbox" name="tranwitedeux" id="tranwitedeux" value="42">
+            <input type="checkbox" name="tranwitrois" id="tranwitrois" value="43">
+            <input type="checkbox" name="tranwitekate" id="tranwitekate" value="44">
+            
+        </div>
+        <div class="rangerpre">
+            
+            
+            <label for="tranwite">
+                <div class="coloope" id="retyeye">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">38</p>
+                </div>
+            </label>
+            <label for="tranneuf">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">39</p>
+                </div>
+            </label>
+            <label for="karente">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">40</p>
+                </div>
+            </label>
+            <label for="tranwiteun">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">41</p>
+                </div>
+            </label>
+            <label for="tranwitedeux">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">42</p>
+                </div>
+            </label>
+            <label for="tranwitrois">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">43</p>
+                </div>
+            </label>
+            <label for="tranwitekate">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">44</p>
+                </div>
+            </label>
+        </div>
+        <p style="text-align: center;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;">- Quel est la categorie des articles ?</p>
+
+        <select name="categorie" id="" >
+           
+            <option value="VetementFemme">Vetement Femme</option>
+            <option value="chaussure">Chaussure</option>
+           
+            <option value="Montre">Montre</option>
+        </select>
+        <p style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 50px;">Nom du produit !</p>
+        <div class="formuwpiie">
+            <input type="text" name="nom" id="" placeholder="Nom du produit">
+        </div>
+        <p style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 50px;">Description complete du produit !</p>
+        <div class="formuwpiie">
+            <input type="text" name="description" id="" placeholder="Description du produit">
+        </div>
+        <p style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 50px;">Prix du produit !</p>
+        <div class="formuwpiie">
+            <input type="text" name="prix" id="" placeholder="Prix du produit">
+        </div>
+        <p style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 50px;">Reduction du prix du produit en % !</p>
+        <div class="formuwpiie">
+            <input type="text" name="porce" id="" placeholder="Prix du produit">
+        </div>
+        <div class="boutin">
+            <button> <h1 style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;color: white;
+                text-align: center;">AJOUTER MAINTENANT</h1></button>
+        </div>
+        
+    </form>
+ 
+
+    <script src="/static/CSS/ajout.js"></script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+    <script type="text/javascript">
+        window.tailwind.config = {
+            darkMode: ['class'],
+            theme: {
+                extend: {
+                    colors: {
+                        border: 'hsl(var(--border))',
+                        input: 'hsl(var(--input))',
+                        ring: 'hsl(var(--ring))',
+                        background: 'hsl(var(--background))',
+                        foreground: 'hsl(var(--foreground))',
+                        primary: {
+                            DEFAULT: 'hsl(var(--primary))',
+                            foreground: 'hsl(var(--primary-foreground))'
+                        },
+                        secondary: {
+                            DEFAULT: 'hsl(var(--secondary))',
+                            foreground: 'hsl(var(--secondary-foreground))'
+                        },
+                        destructive: {
+                            DEFAULT: 'hsl(var(--destructive))',
+                            foreground: 'hsl(var(--destructive-foreground))'
+                        },
+                        muted: {
+                            DEFAULT: 'hsl(var(--muted))',
+                            foreground: 'hsl(var(--muted-foreground))'
+                        },
+                        accent: {
+                            DEFAULT: 'hsl(var(--accent))',
+                            foreground: 'hsl(var(--accent-foreground))'
+                        },
+                        popover: {
+                            DEFAULT: 'hsl(var(--popover))',
+                            foreground: 'hsl(var(--popover-foreground))'
+                        },
+                        card: {
+                            DEFAULT: 'hsl(var(--card))',
+                            foreground: 'hsl(var(--card-foreground))'
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            :root {
+                --background: 0 0% 100%;
+                --foreground: 240 10% 3.9%;
+                --card: 0 0% 100%;
+                --card-foreground: 240 10% 3.9%;
+                --popover: 0 0% 100%;
+                --popover-foreground: 240 10% 3.9%;
+                --primary: 240 5.9% 10%;
+                --primary-foreground: 0 0% 98%;
+                --secondary: 240 4.8% 95.9%;
+                --secondary-foreground: 240 5.9% 10%;
+                --muted: 240 4.8% 95.9%;
+                --muted-foreground: 240 3.8% 46.1%;
+                --accent: 240 4.8% 95.9%;
+                --accent-foreground: 240 5.9% 10%;
+                --destructive: 0 84.2% 60.2%;
+                --destructive-foreground: 0 0% 98%;
+                --border: 240 5.9% 90%;
+                --input: 240 5.9% 90%;
+                --ring: 240 5.9% 10%;
+                --radius: 0.5rem;
+                                }
+                                .dark {
+                                    --background: 240 10% 3.9%;
+                --foreground: 0 0% 98%;
+                --card: 240 10% 3.9%;
+                --card-foreground: 0 0% 98%;
+                --popover: 240 10% 3.9%;
+                --popover-foreground: 0 0% 98%;
+                --primary: 0 0% 98%;
+                --primary-foreground: 240 5.9% 10%;
+                --secondary: 240 3.7% 15.9%;
+                --secondary-foreground: 0 0% 98%;
+                --muted: 240 3.7% 15.9%;
+                --muted-foreground: 240 5% 64.9%;
+                --accent: 240 3.7% 15.9%;
+                --accent-foreground: 0 0% 98%;
+                --destructive: 0 62.8% 30.6%;
+                --destructive-foreground: 0 0% 98%;
+                --border: 240 3.7% 15.9%;
+                --input: 240 3.7% 15.9%;
+                --ring: 240 4.9% 83.9%;
+                                }
+                            }
+    </style>
+
+    <link rel="stylesheet" href="/static/CSS/modij.css">
+
+</head>
+
+<body>
+
+
+    {% if categorie == "chaussure" %}
+    <div class="dashordinaa">
+        <div class="menuddg211">
+            <div class="menuddg311">
+                <div class="losjfs">
+                    <img src="{{url_for('static',filename='IMAGE/hinglogo.png')}}" width="200px"
+                        style="filter: invert();" alt="">
+                </div>
+                <h1
+                    style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-bottom: 20px;">
+
+                    <h3 class="flex flex-col items-start justify-center m-2 ml-0 font-medium text-xl/tight text-dark">
+                        <span class="mr-3 pl-4 pb-3 font-semibold text-dark"
+                            style="color: white;font-size: 0.9rem;">Paramètre</span>
+
+                    </h3>
+                </h1>
+
+
+                <a href="/administa" class="etdjff11" style=" background-color: rgba(128, 128, 128, 0.14);">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/dashlo.png')}}" style="filter: invert();"
+                            width="20px" alt="">
+                        <p class="text-[.925rem]" style="font-family: sans-serif;color: white;font-size: 0.7rem;">
+                            Dashboard </p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/commadeadmin" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/panier.png')}}" width="20px" alt="">
+                        <p class="text-[.925rem]" style="font-family: sans-serif;font-size: 0.7rem;">Mes commandes</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/userasmin" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/pppp.png')}}" width="20px" alt="">
+                        <p class="text-[.925rem]" style="font-family: sans-serif;font-size: 0.7rem;">Utilisteurs
+                            enregistrés</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <!-- <a href="/montre" class="etdjff11">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/perefs.png')}}"  width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif">Mon préférés</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+                </a> -->
+                <!-- <a href="/montre" class="etdjff11">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/hansb2.png')}}"  width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif">Montre H & F</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+                </a> -->
+
+
+                <h1
+                    style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-bottom: 20px;">
+
+                    <h3 class="flex flex-col items-start justify-center m-2 ml-0 font-medium text-xl/tight text-dark">
+                        <span class="mr-3 pl-4 pb-3 font-semibold text-dark"
+                            style="color: white;font-size: 0.9rem;">Categorie</span>
+
+                    </h3>
+                </h1>
+                <a href="/cahuseadmin" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/fdghjk.png')}}" width="20px" alt="">
+                        <p style="font-family: sans-serif;font-size: 0.7rem;" class="text-[.925rem]">Chaussure Homme &
+                            Femme</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/listederobe" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/fertyjkl.png')}}" width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif;font-size: 0.7rem;" class="text-[.925rem]">
+                            Vetement Femme</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/montreadosn" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/monytrds.png')}}" width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif;font-size: 0.7rem;" class="text-[.925rem]">
+                            Montre H & F</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+
+
+                <div class="boases11">
+
+
+                    <a href="/deconnexion" class="etdjff11">
+
+                        <div style="width: 90%;display: flex;gap: 20px;">
+                            <img src="{{url_for('static', filename='IMAGE/admin.png')}}" width="20px" alt="">
+                            <p class="text-[.925rem]" style="font-family: sans-serif;font-size: 0.7rem;">Profil admin
+                            </p>
+                        </div>
+                        <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt=""> -->
+                    </a>
+                    <a href="/deconnexion" class="etdjff11">
+
+                        <div style="width: 90%;display: flex;gap: 20px;">
+                            <img src="{{url_for('static', filename='IMAGE/deconer.png')}}" width="20px" alt="">
+                            <p class="text-[.925rem]" style="font-family: sans-serif;font-size: 0.7rem;">Déconnexion</p>
+                        </div>
+                        <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt=""> -->
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dashordinaa12">
+
+
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: rgba(128, 128, 128, 0.14);">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/dashlo.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Dashboard</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/ajouters.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Ajouter un produit</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/eamoie.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Boite de reception</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/fdghjk.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Chaussure Homme & Femme</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/fertyjkl.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Vetement Femme</p>
+            </div>
+        </div>
+
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/monytrds.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Montre Homme & Femme</p>
+            </div>
+        </div>
+        <div class="pednnsj" style="position: absolute;bottom: 60px;">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/admin.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Beugre Blanchard Boni</p>
+            </div>
+        </div>
+        <div class="pednnsj" style="position: absolute;bottom: 0;">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/deconer.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Déconnexion</p>
+            </div>
+        </div>
+
+        <!-- <div class="boases11">
+                    
+
+            <a href="/deconnexion" class="etdjff11">
+                
+                <div style="width: 90%;display: flex;gap: 20px;">
+                    <img src="{{url_for('static', filename='IMAGE/admin.png')}}"  width="20px" alt="">
+                    <p style="font-size: 0.8rem;font-family: sans-serif">Profil admin</p>
+                </div>
+                <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+            </a>
+            <a href="/deconnexion" class="etdjff11">
+            
+                <div style="width: 90%;display: flex;gap: 20px;">
+                    <img src="{{url_for('static', filename='IMAGE/deconer.png')}}"  width="20px" alt="">
+                    <p style="font-size: 0.8rem;font-family: sans-serif">Déconnexion</p>
+                </div>
+                <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+            </a>
+           
+        </div> -->
+
+    </div>
+
+
+    <div class="elemsms">
+        <p>Mise à jour d'un produit sur le site</p>
+    </div>
+    <div class="statte">
+        <!-- <div class="statte0">
+            
+        </div> -->
+        <div class="statte1">
+
+            <form action="/mofie/{{id}}" method="POST" class="formulaire" id="section">
+                <div class="fghjklsl1">
+                    <div class="formu">
+                        <input type="text" name="categorie" value="{{categorie}}" style="display: none;">
+
+                        <p
+                            style="font-size: 1rem;font-family: sans-serif;color: black;text-align: center;padding-top: 20px;padding-bottom: 20px;">
+                            Modifier chaussure</p>
+
+                        <div class="lesimadewe">
+                            <div class="lesimahes">
+
+                                <img src="{{url_for('static', filename='uploads/' + ajouet.image)}}"
+                                    style="max-height: 100%;" width=" 100%" height="100%" alt="">
+
+                            </div>
+
+
+                            <div class="lesimahes">
+
+                                <img src="{{url_for('static', filename='uploads/' + ajouet.twoimage)}}"
+                                    style="max-height: 100%;" width=" 100%" height="100%" alt="">
+
+                            </div>
+
+
+                            <div class="lesimahes">
+
+                                <img src="{{url_for('static', filename='uploads/' + ajouet.threeimage)}}" width=" 100%"
+                                    height="100%" style="max-height: 100%;" alt="">
+
+                            </div>
+
+
+                            <div class="lesimahes">
+
+                                <img src="{{url_for('static', filename='uploads/' + ajouet.forimage)}}" width=" 100%"
+                                    height="100%" style="max-height: 100%;" alt="">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <p
+                        style="text-align: center;color: black;font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;">
+                        - Quelles sont les tailles des articles ?</p>
+                    
+                    <!-- <input type="checkbox" name="" id="" checked> -->
+                    <div class="rangerpre" style="height: auto;">
+
+                        <div>
+
+                            <div>
+                                {% if ajouet.tranwite != 'rien' %}
+                                <p>38</p>
+                                <input type="checkbox" name="tranwite" id="tranwite" value="38" checked>
+                                {% endif %}
+                                {% if ajouet.tranwite == 'rien' %}
+                                <p>38</p>
+                                <input type="checkbox" name="tranwite" id="tranwite" value="38">
+                                {% endif %}
+                            </div>
+
+                            {% if ajouet.tranwitelet != '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="tranwitelet"
+                                value="{{ajouet.tranwitelet}}">
+                            {% endif %}
+                            {% if ajouet.tranwitelet == '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="tranwitelet">
+                            {% endif %}
+                        </div>
+                        <div>
+
+                            <div>
+                                {% if ajouet.tranneuf != 'rien' %}
+                                <p>39</p>
+                                <input type="checkbox" name="tranneuf" id="tranneuf" value="39" checked>
+                                {% endif %}
+                                {% if ajouet.tranneuf == 'rien' %}
+                                <p>39</p>
+                                <input type="checkbox" name="tranneuf" id="tranneuf" value="39">
+
+                                {% endif %}
+                            </div>
+
+                            {% if ajouet.tranneuflet != '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="tranneuflet"
+                                value="{{ajouet.tranneuflet}}">
+                            {% endif %}
+                            {% if ajouet.tranneuflet == '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="tranneuflet">
+                            {% endif %}
+                        </div>
+                        <div>
+
+                            <div>
+                                {% if ajouet.karente != 'rien' %}
+                                <p>40</p>
+                                <input type="checkbox" name="karente" id="karente" value="40" checked>
+                                {% endif %}
+                                {% if ajouet.karente == 'rien' %}
+                                <p>40</p>
+                                <input type="checkbox" name="karente" id="karente" value="40">
+
+                                {% endif %}
+                            </div>
+
+                            {% if ajouet.karentelet != '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="karentelet"
+                                value="{{ajouet.karentelet}}">
+                            {% endif %}
+                            {% if ajouet.karentelet == '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="karentelet">
+                            {% endif %}
+                        </div>
+                        <div>
+
+                            <div>
+                                {% if ajouet.tranwiteun != 'rien' %}
+                                <p>41</p>
+                                <input type="checkbox" name="tranwiteun" id="tranwiteun" value="41" checked>
+                                {% endif %}
+                                {% if ajouet.tranwiteun == 'rien' %}
+                                <p>41</p>
+                                <input type="checkbox" name="tranwiteun" id="tranwiteun" value="41">
+
+                                {% endif %}
+                            </div>
+
+
+                            {% if ajouet.tranwiteunlet != '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="tranwiteunlet"
+                                value="{{ajouet.tranwiteunlet}}">
+                            {% endif %}
+                            {% if ajouet.tranwiteunlet == '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="tranwiteunlet">
+                            {% endif %}
+                        </div>
+                        <div>
+
+                            <div>
+                                {% if ajouet.tranwitedeux != 'rien' %}
+                                <p>42</p>
+                                <input type="checkbox" name="tranwitedeux" id="tranwitedeux" value="42" checked>
+                                {% endif %}
+                                {% if ajouet.tranwitedeux == 'rien' %}
+                                <p>42</p>
+                                <input type="checkbox" name="tranwitedeux" id="tranwitedeux" value="42">
+
+                                {% endif %}
+                            </div>
+
+                            {% if ajouet.tranwitedeuxlet != '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="tranwitedeuxlet"
+                                value="{{ajouet.tranwitedeuxlet}}">
+                            {% endif %}
+                            {% if ajouet.tranwitedeuxlet == '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="tranwitedeuxlet">
+                            {% endif %}
+                        </div>
+                        <div>
+                            
+
+                            <div>
+                                {% if ajouet.tranwitrois != 'rien' %}
+                                <p>43</p>
+                                <input type="checkbox" name="tranwitrois" id="tranwitrois" value="43" checked>
+                                {% endif %}
+                                {% if ajouet.tranwitrois == 'rien' %}
+                                <p>43</p>
+                                <input type="checkbox" name="tranwitrois" id="tranwitrois" value="43">
+                                {% endif %}
+
+                            </div>
+
+                            {% if ajouet.tranwitroislet != '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="tranwitroislet"
+                                value="{{ajouet.tranwitroislet}}">
+                            {% endif %}
+                            {% if ajouet.tranwitroislet == '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="tranwitroislet">
+                            {% endif %}
+                        </div>
+                        <div>
+                            
+
+                            <div>
+                                {% if ajouet.tranwitekate != 'rien' %}
+                                <p>44</p>
+                                <input type="checkbox" name="tranwitekate" id="tranwitekate" value="44" checked>
+                                {% endif %}
+                                {% if ajouet.tranwitekate == 'rien' %}
+                                <p>44</p>
+                                <input type="checkbox" name="tranwitekate" id="tranwitekate" value="44">
+                                {% endif %}
+
+                            </div>
+
+                            {% if ajouet.tranwitekatelet != '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="tranwitekatelet"
+                                value="{{ajouet.tranwitekatelet}}">
+                            {% endif %}
+                            {% if ajouet.tranwitekatelet == '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="tranwitekatelet">
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="fghjklsl">
+
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Nom du produit !</p>
+                    <div class="formuwpiie">
+                        <input type="text" name="nom" id="" value="{{ajouet.nom}}">
+                    </div>
+
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Prix du produit !</p>
+                    <div class="formuwpiie">
+                        <input type="text" name="prix" id="" value="{{ajouet.prix}}">
+                    </div>
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Reduction du prix du produit en % !</p>
+                    <div class="formuwpiie">
+                        <input type="text" name="porce" id="" value="{{ajouet.porce}}">
+                    </div>
+
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Description complete du produit !</p>
+                    <div class="formuwpiie">
+
+
+
+                        <textarea type="text"
+                            style="resize: none;field-sizing: content;line-height: 1.5;min-height: 3lh;width: 100%;border-radius: 0;outline: none;border: 1px solid rgba(183, 183, 183, 0.501) ;margin-bottom: 20px;padding: 10px;font-size: 0.8rem;"
+                            name="description" placeholder="Description du produit">{{ajouet.description}}</textarea>
+                    </div>
+                    <div class="boutin">
+                        <button>
+                            <h1 style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;color: white;
+                        text-align: center;">AJOUTER MAINTENANT</h1>
+                        </button>
+                    </div>
+
+            </form>
+        </div>
+
+    </div>
+
+   
+
+    </div>
+    {% endif %}
+
+    {% if categorie == "Montre" %}
+
+
+    <div class="dashordinaa">
+        <div class="menuddg211">
+            <div class="menuddg311">
+                <div class="losjfs">
+                    <img src="{{url_for('static',filename='IMAGE/hinglogo.png')}}" width="200px"
+                        style="filter: invert();" alt="">
+                </div>
+                <h1
+                    style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-bottom: 20px;">
+
+                    <h3 class="flex flex-col items-start justify-center m-2 ml-0 font-medium text-xl/tight text-dark">
+                        <span class="mr-3 pl-4 pb-3 font-semibold text-dark"
+                            style="color: white;font-size: 0.9rem;">Paramètre</span>
+
+                    </h3>
+                </h1>
+
+
+                <a href="/administa" class="etdjff11" style=" background-color: rgba(128, 128, 128, 0.14);">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/dashlo.png')}}" style="filter: invert();"
+                            width="20px" alt="">
+                        <p class="text-[.925rem]" style="font-family: sans-serif;color: white;font-size: 0.7rem;">
+                            Dashboard </p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/commadeadmin" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/panier.png')}}" width="20px" alt="">
+                        <p class="text-[.925rem]" style="font-family: sans-serif;font-size: 0.7rem;">Mes commandes</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/userasmin" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/pppp.png')}}" width="20px" alt="">
+                        <p class="text-[.925rem]" style="font-family: sans-serif;font-size: 0.7rem;">Utilisteurs
+                            enregistrés</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <!-- <a href="/montre" class="etdjff11">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/perefs.png')}}"  width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif">Mon préférés</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+                </a> -->
+                <!-- <a href="/montre" class="etdjff11">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/hansb2.png')}}"  width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif">Montre H & F</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+                </a> -->
+
+
+                <h1
+                    style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-bottom: 20px;">
+
+                    <h3 class="flex flex-col items-start justify-center m-2 ml-0 font-medium text-xl/tight text-dark">
+                        <span class="mr-3 pl-4 pb-3 font-semibold text-dark"
+                            style="color: white;font-size: 0.9rem;">Categorie</span>
+
+                    </h3>
+                </h1>
+                <a href="/cahuseadmin" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/fdghjk.png')}}" width="20px" alt="">
+                        <p style="font-family: sans-serif;font-size: 0.7rem;" class="text-[.925rem]">Chaussure Homme &
+                            Femme</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/listederobe" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/fertyjkl.png')}}" width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif;font-size: 0.7rem;" class="text-[.925rem]">
+                            Vetement Femme</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/montreadosn" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/monytrds.png')}}" width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif;font-size: 0.7rem;" class="text-[.925rem]">
+                            Montre H & F</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+
+
+                <div class="boases11">
+
+
+                    <a href="/deconnexion" class="etdjff11">
+
+                        <div style="width: 90%;display: flex;gap: 20px;">
+                            <img src="{{url_for('static', filename='IMAGE/admin.png')}}" width="20px" alt="">
+                            <p class="text-[.925rem]" style="font-family: sans-serif;font-size: 0.7rem;">Profil admin
+                            </p>
+                        </div>
+                        <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt=""> -->
+                    </a>
+                    <a href="/deconnexion" class="etdjff11">
+
+                        <div style="width: 90%;display: flex;gap: 20px;">
+                            <img src="{{url_for('static', filename='IMAGE/deconer.png')}}" width="20px" alt="">
+                            <p class="text-[.925rem]" style="font-family: sans-serif;font-size: 0.7rem;">Déconnexion</p>
+                        </div>
+                        <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt=""> -->
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dashordinaa12">
+
+
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: rgba(128, 128, 128, 0.14);">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/dashlo.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Dashboard</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/ajouters.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Ajouter un produit</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/eamoie.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Boite de reception</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/fdghjk.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Chaussure Homme & Femme</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/fertyjkl.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Vetement Femme</p>
+            </div>
+        </div>
+
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/monytrds.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Montre Homme & Femme</p>
+            </div>
+        </div>
+        <div class="pednnsj" style="position: absolute;bottom: 60px;">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/admin.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Beugre Blanchard Boni</p>
+            </div>
+        </div>
+        <div class="pednnsj" style="position: absolute;bottom: 0;">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/deconer.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Déconnexion</p>
+            </div>
+        </div>
+
+        <!-- <div class="boases11">
+                    
+
+            <a href="/deconnexion" class="etdjff11">
+                
+                <div style="width: 90%;display: flex;gap: 20px;">
+                    <img src="{{url_for('static', filename='IMAGE/admin.png')}}"  width="20px" alt="">
+                    <p style="font-size: 0.8rem;font-family: sans-serif">Profil admin</p>
+                </div>
+                <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+            </a>
+            <a href="/deconnexion" class="etdjff11">
+            
+                <div style="width: 90%;display: flex;gap: 20px;">
+                    <img src="{{url_for('static', filename='IMAGE/deconer.png')}}"  width="20px" alt="">
+                    <p style="font-size: 0.8rem;font-family: sans-serif">Déconnexion</p>
+                </div>
+                <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+            </a>
+            
+        </div> -->
+
+    </div>
+
+
+    <div class="elemsms">
+        <p>Mise à jour d'un produit sur le site</p>
+    </div>
+    <div class="statte">
+        <!-- <div class="statte0">
+            
+        </div> -->
+        <div class="statte1">
+
+            <form action="/mofie/{{id}}" method="POST" class="formulaire" id="section">
+                <div class="fghjklsl1" style="display: none;">
+                    <div class="formu">
+
+
+
+                    </div>
+
+
+                </div>
+                <div class="fghjklsl">
+                    <input type="text" name="categorie" value="{{categorie}}" style="display: none;">
+                    <p
+                        style="font-size: 1rem;font-family: sans-serif;color: black;text-align: center;padding-top: 20px;padding-bottom: 20px;">
+                        Modifier une montre</p>
+
+                    <div class="lesimadewe">
+                        <div class="lesimahes">
+
+                            <img src="{{url_for('static', filename='uploads/' + ajouet.image)}}"
+                                style="max-height: 100%;" width=" 100%" height="100%" alt="">
+
+                        </div>
+
+
+                        <div class="lesimahes">
+
+                            <img src="{{url_for('static', filename='uploads/' + ajouet.twoimage)}}"
+                                style="max-height: 100%;" width=" 100%" height="100%" alt="">
+
+                        </div>
+
+
+                        <div class="lesimahes">
+
+                            <img src="{{url_for('static', filename='uploads/' + ajouet.threeimage)}}"
+                                style="max-height: 100%;" width=" 100%" height="100%" alt="">
+
+                        </div>
+
+
+                        <div class="lesimahes">
+
+                            <img src="{{url_for('static', filename='uploads/' + ajouet.forimage)}}"
+                                style="max-height: 100%;" width=" 100%" height="100%" alt="">
+
+                        </div>
+
+                    </div>
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Nom du produit !</p>
+                    <div class="formuwpiie">
+                        <input type="text" name="nom" id="" placeholder="Nom du produit" value="{{ajouet.nom}}">
+                    </div>
+
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Prix du produit !</p>
+                    <div class="formuwpiie">
+                        <input type="text" name="prix" id="" placeholder="Prix du produit" value="{{ajouet.prix}}">
+                    </div>
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Reduction du prix du produit en % !</p>
+                    <div class="formuwpiie">
+                        <input type="text" name="porce" id="" placeholder="Prix du produit" value="{{ajouet.porce}}">
+                    </div>
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Nombre d'article disponible</p>
+                    <div class="formuwpiie">
+                        <input type="text" name="quantit" id="" placeholder="Nombre d'article disponible"
+                            value="{{ajouet.quantit}}">
+                    </div>
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Description complete du produit !</p>
+                    <div class="formuwpiie">
+
+
+
+                        <textarea type="text"
+                            style="resize: none;field-sizing: content;line-height: 1.5;min-height: 3lh;width: 100%;border-radius: 0;outline: none;border: 1px solid rgba(183, 183, 183, 0.501) ;margin-bottom: 20px;padding: 10px;font-size: 0.8rem;"
+                            name="description" placeholder="Description du produit">{{ajouet.description}}</textarea>
+                    </div>
+                    <div class="boutin">
+                        <button>
+                            <h1 style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;color: white;
+                        text-align: center;">AJOUTER MAINTENANT</h1>
+                        </button>
+                    </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+    </div>
+
+
+    {% endif %}
+
+    {% if categorie == "VetementFemme" %}
+    <div class="dashordinaa">
+        <div class="menuddg211">
+            <div class="menuddg311">
+                <div class="losjfs">
+                    <img src="{{url_for('static',filename='IMAGE/hinglogo.png')}}" width="200px"
+                        style="filter: invert();" alt="">
+                </div>
+                <h1
+                    style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-bottom: 20px;">
+
+                    <h3 class="flex flex-col items-start justify-center m-2 ml-0 font-medium text-xl/tight text-dark">
+                        <span class="mr-3 pl-4 pb-3 font-semibold text-dark"
+                            style="color: white;font-size: 0.9rem;">Paramètre</span>
+
+                    </h3>
+                </h1>
+
+
+                <a href="/administa" class="etdjff11" style=" background-color: rgba(128, 128, 128, 0.14);">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/dashlo.png')}}" style="filter: invert();"
+                            width="20px" alt="">
+                        <p class="text-[.925rem]" style="font-family: sans-serif;color: white;font-size: 0.7rem;">
+                            Dashboard </p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/commadeadmin" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/panier.png')}}" width="20px" alt="">
+                        <p class="text-[.925rem]" style="font-family: sans-serif;font-size: 0.7rem;">Mes commandes</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/userasmin" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/pppp.png')}}" width="20px" alt="">
+                        <p class="text-[.925rem]" style="font-family: sans-serif;font-size: 0.7rem;">Utilisteurs
+                            enregistrés</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <!-- <a href="/montre" class="etdjff11">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/perefs.png')}}"  width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif">Mon préférés</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+                </a> -->
+                <!-- <a href="/montre" class="etdjff11">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/hansb2.png')}}"  width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif">Montre H & F</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+                </a> -->
+
+
+                <h1
+                    style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-bottom: 20px;">
+
+                    <h3 class="flex flex-col items-start justify-center m-2 ml-0 font-medium text-xl/tight text-dark">
+                        <span class="mr-3 pl-4 pb-3 font-semibold text-dark"
+                            style="color: white;font-size: 0.9rem;">Categorie</span>
+
+                    </h3>
+                </h1>
+                <a href="/cahuseadmin" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/fdghjk.png')}}" width="20px" alt="">
+                        <p style="font-family: sans-serif;font-size: 0.7rem;" class="text-[.925rem]">Chaussure Homme &
+                            Femme</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/listederobe" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/fertyjkl.png')}}" width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif;font-size: 0.7rem;" class="text-[.925rem]">
+                            Vetement Femme</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/montreadosn" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/monytrds.png')}}" width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif;font-size: 0.7rem;" class="text-[.925rem]">
+                            Montre H & F</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+
+
+                <div class="boases11">
+
+
+                    <a href="/deconnexion" class="etdjff11">
+
+                        <div style="width: 90%;display: flex;gap: 20px;">
+                            <img src="{{url_for('static', filename='IMAGE/admin.png')}}" width="20px" alt="">
+                            <p class="text-[.925rem]" style="font-family: sans-serif;font-size: 0.7rem;">Profil admin
+                            </p>
+                        </div>
+                        <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt=""> -->
+                    </a>
+                    <a href="/deconnexion" class="etdjff11">
+
+                        <div style="width: 90%;display: flex;gap: 20px;">
+                            <img src="{{url_for('static', filename='IMAGE/deconer.png')}}" width="20px" alt="">
+                            <p class="text-[.925rem]" style="font-family: sans-serif;font-size: 0.7rem;">Déconnexion</p>
+                        </div>
+                        <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt=""> -->
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dashordinaa12">
+
+
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: rgba(128, 128, 128, 0.14);">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/dashlo.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Dashboard</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/ajouters.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Ajouter un produit</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/eamoie.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Boite de reception</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/fdghjk.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Chaussure Homme & Femme</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/fertyjkl.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Vetement Femme</p>
+            </div>
+        </div>
+
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/monytrds.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Montre Homme & Femme</p>
+            </div>
+        </div>
+        <div class="pednnsj" style="position: absolute;bottom: 60px;">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/admin.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Beugre Blanchard Boni</p>
+            </div>
+        </div>
+        <div class="pednnsj" style="position: absolute;bottom: 0;">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/deconer.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Déconnexion</p>
+            </div>
+        </div>
+
+        <!-- <div class="boases11">
+                    
+
+            <a href="/deconnexion" class="etdjff11">
+                
+                <div style="width: 90%;display: flex;gap: 20px;">
+                    <img src="{{url_for('static', filename='IMAGE/admin.png')}}"  width="20px" alt="">
+                    <p style="font-size: 0.8rem;font-family: sans-serif">Profil admin</p>
+                </div>
+                <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+            </a>
+            <a href="/deconnexion" class="etdjff11">
+            
+                <div style="width: 90%;display: flex;gap: 20px;">
+                    <img src="{{url_for('static', filename='IMAGE/deconer.png')}}"  width="20px" alt="">
+                    <p style="font-size: 0.8rem;font-family: sans-serif">Déconnexion</p>
+                </div>
+                <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+            </a>
+           
+        </div> -->
+
+    </div>
+
+
+    <div class="elemsms">
+        <p>Mise à jour d'un produit sur le site</p>
+    </div>
+    <div class="statte">
+        <!-- <div class="statte0">
+            
+        </div> -->
+        <div class="statte1">
+
+            <form action="/mofie/{{id}}" method="POST" class="formulaire" id="section">
+                <div class="fghjklsl1">
+                    <div class="formu">
+                        <input type="text" name="categorie" value="{{categorie}}" style="display: none;">
+
+                        <p
+                            style="font-size: 1rem;font-family: sans-serif;color: black;text-align: center;padding-top: 20px;padding-bottom: 20px;">
+                            Modifier vetement femme</p>
+
+                        <div class="lesimadewe">
+                            <div class="lesimahes">
+
+                                <img src="{{url_for('static', filename='uploads/' + ajouet.image)}}"
+                                    style="max-height: 100%;" width=" 100%" height="100%" alt="">
+
+                            </div>
+
+
+                            <div class="lesimahes">
+
+                                <img src="{{url_for('static', filename='uploads/' + ajouet.twoimage)}}"
+                                    style="max-height: 100%;" width=" 100%" height="100%" alt="">
+
+                            </div>
+
+
+                            <div class="lesimahes">
+
+                                <img src="{{url_for('static', filename='uploads/' + ajouet.threeimage)}}" width=" 100%"
+                                    height="100%" style="max-height: 100%;" alt="">
+
+                            </div>
+
+
+                            <div class="lesimahes">
+
+                                <img src="{{url_for('static', filename='uploads/' + ajouet.forimage)}}" width=" 100%"
+                                    height="100%" style="max-height: 100%;" alt="">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <p
+                        style="text-align: center;color: black;font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;">
+                        - Quelles sont les tailles des articles ?</p>
+                    <div class="inputcouleu" style="display: flex;">
+
+
+
+
+
+
+
+
+                    </div>
+                    <!-- <input type="checkbox" name="" id="" checked> -->
+                    <div class="rangerpre" style="height: auto;">
+
+                        <div>
+
+                            <div>
+                                {% if ajouet.xs != 'rien' %}
+                                <p>xs</p>
+                                <input type="checkbox" name="xs" id="xs" value="xs" checked>
+                                {% endif %}
+                                {% if ajouet.xs == 'rien' %}
+                                <p>xs</p>
+                                <input type="checkbox" name="xs" id="xs" value="xs">
+                                {% endif %}
+                            </div>
+
+                            {% if ajouet.xslet != '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="xslet"
+                                value="{{ajouet.xslet}}">
+                            {% endif %}
+                            {% if ajouet.xslet == '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="xslet">
+                            {% endif %}
+                        </div>
+                        <div>
+
+                            <div>
+                                {% if ajouet.l != 'rien' %}
+                                <p>l</p>
+                                <input type="checkbox" name="l" id="l" value="l" checked>
+                                {% endif %}
+                                {% if ajouet.l == 'rien' %}
+                                <p>l</p>
+                                <input type="checkbox" name="l" id="l" value="l">
+
+                                {% endif %}
+                            </div>
+
+                            {% if ajouet.llet != '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="llet"
+                                value="{{ajouet.llet}}">
+                            {% endif %}
+                            {% if ajouet.llet == '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="llet">
+                            {% endif %}
+                        </div>
+                        <div>
+
+                            <div>
+                                {% if ajouet.m != 'rien' %}
+                                <p>m</p>
+                                <input type="checkbox" name="m" id="m" value="m" checked>
+                                {% endif %}
+                                {% if ajouet.m == 'rien' %}
+                                <p>m</p>
+                                <input type="checkbox" name="m" id="m" value="m">
+
+                                {% endif %}
+                            </div>
+
+                            {% if ajouet.mlet != '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="mlet"
+                                value="{{ajouet.mlet}}">
+                            {% endif %}
+                            {% if ajouet.mlet == '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="mlet">
+                            {% endif %}
+                        </div>
+                        <div>
+
+                            <div>
+                                {% if ajouet.xl != 'rien' %}
+                                <p>xl</p>
+                                <input type="checkbox" name="xl" id="xl" value="xl" checked>
+                                {% endif %}
+                                {% if ajouet.xl == 'rien' %}
+                                <p>xl</p>
+                                <input type="checkbox" name="xl" id="xl" value="xl">
+
+                                {% endif %}
+                            </div>
+
+
+                            {% if ajouet.xllet != '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="xllet"
+                                value="{{ajouet.xllet}}">
+                            {% endif %}
+                            {% if ajouet.xllet == '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="xllet">
+                            {% endif %}
+                        </div>
+                        <div>
+
+                            <div>
+                                {% if ajouet.xxl != 'rien' %}
+                                <p>xxl</p>
+                                <input type="checkbox" name="xxl" id="xxl" value="xxl" checked>
+                                {% endif %}
+                                {% if ajouet.xxl == 'rien' %}
+                                <p>xxl</p>
+                                <input type="checkbox" name="xxl" id="xxl" value="xxl">
+
+                                {% endif %}
+                            </div>
+
+                            {% if ajouet.xxllet != '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="xxllet"
+                                value="{{ajouet.xxllet}}">
+                            {% endif %}
+                            {% if ajouet.xxllet == '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="xxllet">
+                            {% endif %}
+                        </div>
+                        <div>
+
+                            <div>
+                                {% if ajouet.s != 'rien' %}
+                                <p>s</p>
+                                <input type="checkbox" name="s" id="s" value="s" checked>
+                                {% endif %}
+                                {% if ajouet.s == 'rien' %}
+                                <p>s</p>
+                                <input type="checkbox" name="s" id="s" value="s">
+                                {% endif %}
+
+                            </div>
+
+                            {% if ajouet.slet != '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="slet"
+                                value="{{ajouet.slet}}">
+                            {% endif %}
+                            {% if ajouet.slet == '0' %}
+                            <input type="number" style="width: 50px;padding-right: 0;" name="slet">
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="fghjklsl">
+
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Nom du produit !</p>
+                    <div class="formuwpiie">
+                        <input type="text" name="nom" id="" value="{{ajouet.nom}}">
+                    </div>
+
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Prix du produit !</p>
+                    <div class="formuwpiie">
+                        <input type="text" name="prix" id="" value="{{ajouet.prix}}">
+                    </div>
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Reduction du prix du produit en % !</p>
+                    <div class="formuwpiie">
+                        <input type="text" name="porce" id="" value="{{ajouet.porce}}">
+                    </div>
+
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Description complete du produit !</p>
+                    <div class="formuwpiie">
+
+
+
+                        <textarea type="text"
+                            style="resize: none;field-sizing: content;line-height: 1.5;min-height: 3lh;width: 100%;border-radius: 0;outline: none;border: 1px solid rgba(183, 183, 183, 0.501) ;margin-bottom: 20px;padding: 10px;font-size: 0.8rem;"
+                            name="description" placeholder="Description du produit">{{ajouet.description}}</textarea>
+                    </div>
+                    <div class="boutin">
+                        <button>
+                            <h1 style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;color: white;
+                        text-align: center;">AJOUTER MAINTENANT</h1>
+                        </button>
+                    </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+    </div>
+    {% endif %}
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="/static/CSS/ajout.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename='IMAGE/logo.jpg')}}">   
+    <link rel="stylesheet" href="/static/CSS/moood.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1 style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 2rem;color: white;
+    ">HING<span id="deuxlogo">TON SHOP</span></h1>
+    </header>
+    <h1 style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 2rem;text-align: center;
+    ">MODIFICATION</h1>
+    <form action="/mofie/{{id}}" method="POST" class="modiieewe" id="section">
+
+        <p style="text-align: center;color: white;font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;">- Quelles sont les couleurs des articles ?</p>
+
+        <div class="inputcouleu">
+            <input type="checkbox" name="rouge" id="rouge" value="rouge">
+            <input type="checkbox" name="jaune" id="jaune" value="jaune">
+            <input type="checkbox" name="vert" id="vert" value="vert">
+            <input type="checkbox" name="orange" id="orange" value="orange">
+            <input type="checkbox" name="marron" id="marron" value="marron">
+            <input type="checkbox" name="gris" id="gris" value="gris">
+            <input type="checkbox" name="noir" id="noir" value="noir">
+            <input type="checkbox" name="violet" id="violet" value="violet">
+            <input type="checkbox" name="rose" id="rose" value="rose">
+            <input type="checkbox" name="bleu" id="bleu" value="bleu">
+            <input type="checkbox" name="blanc" id="blanc" value="blanc">
+            
+        </div>
+        
+        <div class="rangerpre">
+            
+            <label for="rouge">
+                <div class="coloope" style="background-color: #ff0000;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(11%) sepia(95%) saturate(7479%) hue-rotate(7deg) brightness(108%) contrast(120%);">
+            
+                    
+                </div>
+            </label>
+
+            <label for="vert">
+                <div class="coloope" style="background-color: #008000;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(29%) sepia(69%) saturate(1418%) hue-rotate(89deg) brightness(100%) contrast(105%);">
+            
+                    
+                </div>
+            </label>
+            <label for="jaune">
+                <div class="coloope" style="background-color: #a5a515;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(60%) sepia(19%) saturate(1860%) hue-rotate(21deg) brightness(100%) contrast(84%);">
+            
+                    
+                </div>
+            </label>
+
+            <label for="orange">
+                <div class="coloope" style="background-color: #ff7300;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(52%) sepia(36%) saturate(5712%) hue-rotate(1deg) brightness(105%) contrast(103%);">
+            
+                    
+                </div>
+            </label>
+            <label for="marron">
+                <div class="coloope" style="background-color: #573214;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(17%) sepia(82%) saturate(472%) hue-rotate(346deg) brightness(95%) contrast(93%);">
+            
+                    
+                </div>
+            </label>
+            <label for="gris">
+                <div class="coloope" style="background-color: #808080;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(49%) sepia(6%) saturate(3%) hue-rotate(89deg) brightness(100%) contrast(89%);">
+            
+                    
+                </div>
+            </label>
+
+            <label for="noir">
+                <div class="coloope" style="background-color: #000000;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" >
+            
+                    
+                </div>
+            </label>
+            <label for="violet">
+                <div class="coloope" style="background-color: #800080;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(13%) sepia(76%) saturate(3903%) hue-rotate(290deg) brightness(85%) contrast(117%);">
+            
+                    
+                </div>
+                
+            </label>
+
+            
+            <label for="rose">
+                <div class="coloope" style="background-color: #d87093;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(84%) sepia(22%) saturate(6639%) hue-rotate(294deg) brightness(86%) contrast(97%);">
+            
+                    
+                </div>
+            </label>
+            <label for="bleu">
+                <div class="coloope" style="background-color: #0000ff;">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(8%) sepia(96%) saturate(6156%) hue-rotate(245deg) brightness(122%) contrast(139%);">
+            
+                    
+                </div>
+            </label>
+            <label for="blanc">
+                <div class="coloope" style="background-color: #bebdbd">
+                    <img src="{{url_for('static', filename='IMAGE/chets.png' )}}" width=" 100%" alt="" style="filter: invert(63%) sepia(88%) saturate(0%) hue-rotate(188deg) brightness(100%) contrast(95%);
+
+                    ">
+            
+                    
+                </div>
+            </label>
+        </div>
+        <p style="text-align: center;color: white;font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;">- Quelles sont les tailles des articles ?</p>
+
+
+        <div class="inputcouleu">
+            <input type="checkbox" name="xs" id="xs" value="xs">
+            <input type="checkbox" name="l" id="l" value="l">
+            <input type="checkbox" name="m" id="m" value="m">
+            <input type="checkbox" name="xl" id="xl" value="xl">
+            <input type="checkbox" name="s" id="s" value="s">
+            <input type="checkbox" name="xxl" id="xxl" value="xxl">
+            
+        </div>
+        <div class="rangerpre">
+            
+            
+            <label for="xs">
+                <div class="coloope" id="retyeye">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">xs</p>
+                </div>
+            </label>
+            <label for="l">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">l</p>
+                </div>
+            </label>
+            <label for="m">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">m</p>
+                </div>
+            </label>
+            <label for="xl">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">xl</p>
+                </div>
+            </label>
+            <label for="xxl">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">xxl</p>
+                </div>
+            </label>
+            <label for="s">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">s</p>
+                </div>
+            </label>
+        </div>
+        <p style="text-align: center;color: white;font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;">- Quelles sont les tailles des articles ?</p>
+        <div class="inputcouleu">
+            <input type="checkbox" name="tranwite" id="tranwite" value="38">
+            <input type="checkbox" name="tranneuf" id="tranneuf" value="39">
+            <input type="checkbox" name="karente" id="karente" value="40">
+            <input type="checkbox" name="tranwiteun" id="tranwiteun" value="41">
+            <input type="checkbox" name="tranwitedeux" id="tranwitedeux" value="42">
+            <input type="checkbox" name="tranwitrois" id="tranwitrois" value="43">
+            <input type="checkbox" name="tranwitekate" id="tranwitekate" value="44">
+            
+        </div>
+        <div class="rangerpre">
+            
+            
+            <label for="tranwite">
+                <div class="coloope" id="retyeye">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">38</p>
+                </div>
+            </label>
+            <label for="tranneuf">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">39</p>
+                </div>
+            </label>
+            <label for="karente">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">40</p>
+                </div>
+            </label>
+            <label for="tranwiteun">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">41</p>
+                </div>
+            </label>
+            <label for="tranwitedeux">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">42</p>
+                </div>
+            </label>
+            <label for="tranwitrois">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">43</p>
+                </div>
+            </label>
+            <label for="tranwitekate">
+                <div class="coloope">
+                    <p style="text-align: center;color: black;font-size: 0.8rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">44</p>
+                </div>
+            </label>
+        </div>
+        <p style="text-align: start;color: white;font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 50px;">Reduction du prix du produit en % !</p>
+        <div class="formuwpiie">
+            <input type="text" name="porce" id="" placeholder="Prix du produit">
+        </div>
+
+        <div class="bshds">
+            <button type="submit">MODIFIER</button>
+        </div>
+        
+    </form>
+    <script src="/static/CSS/ajout.js"></script>
+</body>
+</html> -->

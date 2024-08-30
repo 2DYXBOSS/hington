@@ -1,0 +1,78 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;
+    color: gray;
+    font-size: 0.9rem;
+    
+}
+button , a{
+    cursor: pointer;
+}
+
+body{
+    background-color: transparent;
+}
+.jjhejhre{
+    /* height: 800px; */
+    width: 350px;
+    background-color: transparent;
+    margin: 0 auto;
+    border: 1px solid gray;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+.logo{
+    height: 100px;
+    width: 100%;
+    background-color: rgba(226, 226, 226, 0.774);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid gray;
+}
+
+.kiahi{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+}
+.shyeyss{
+    width: 100%;
+    /* height: 70px; */
+    /* background-color: green; */
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 10px;
+    /* padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px; */
+    margin-bottom: 20px;
+}
+.shyeys1{
+    width: 70px;
+    height: 70px;
+    max-width: 70px;
+    min-width: 70px;
+    max-height: 70px;
+    max-height: 70px;
+    
+    /* padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px; */
+    background-color: yellow;
+}
+.shyeyss2{
+    width: 100%;
+
+}
+
+.refsgd{
+    height: 40px;
+    width: 100%;
+    /* background-color: red; */
+}

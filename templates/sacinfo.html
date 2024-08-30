@@ -1,0 +1,1537 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/CSS/info.css">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='IMAGE/logo.jpg')}}" width="50px" alt="">
+        <h1 id="logo">HING<span id="logo1">TON SHOP</span></h1>
+
+
+    </header>
+    <label for="selectOption">Choisissez la categorie :</label>
+            
+    <select id="selectOption" name="selectOptione">
+        <option value="Sac">Sac</option>
+        <option value="Vetement">Vetement</option>
+        <option value="Fourniture">Livre</option>
+    </select> 
+    
+    
+    <div class="info">
+        
+        <div class="image">
+           
+            
+            
+           
+            
+            
+        </div>
+    </div>
+    <footer>
+        <div class="log">
+            <div class="al">
+                <img src="{{ url_for('static', filename='IMAGE/logo.jpg')}}" width="50px" alt="">
+                <h1 id="logo" >HING<span id="logo1">TON SHOP </span></h1>
+            </div>
+            
+            <p style="color: white;">Vous remercie !</p>
+        </div>
+        
+        <div class="log1">
+            
+            <div class="log11">
+                <a style="text-decoration: none;" href="https://api.whatsapp.com/send/?phone=22578587708&text='salut hington'&type=phone_number&app_absent=0">
+                    <img src="{{ url_for('static', filename='IMAGE/whats.png')}}" width="20px" style="filter: invert();" alt="">
+                </a>
+            </div>
+            <div class="log12">
+                <img src="{{ url_for('static', filename='IMAGE/face.png')}}" width="20px" style="filter: invert();" alt="">
+            </div>
+            <div class="log13">
+                <img src="{{ url_for('static', filename='IMAGE/instag.png')}}" width="20px" style="filter: invert();" alt="">
+            </div>
+        </div>
+    </footer>
+    
+
+    <div class="tesf">
+        <div class="pidijd">
+            {% if user %}
+            
+                <img src="{{url_for('static', filename='uploads/' + user.image)}}" width="100%" height="100%" alt="">
+           
+            {% endif %}
+        </div>
+        <div class="descf">
+            <p>Taille : <span>{{user.description}}</span></p>
+
+        </div>
+        <div class="text">
+            {% if user %}
+            <form action="/ssm/{{user.id}}" method="post">
+                <button type="submit" id="but"><img src="{{ url_for('static', filename='IMAGE/whats.png')}}" style="filter: invert();" width="25px" alt="">COMMENDE WHATSAPP !</button>
+            </form>
+            
+            
+            {% endif %}
+        </div>
+        <a href="/vente">
+            <div class="bac">
+                <img src="{{ url_for('static', filename='IMAGE/bacj.png')}}" style="filter: invert();" width="20px" alt="">
+            </div>
+        </a>
+    </div>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail chaussures H & F</title>
+    <link rel="stylesheet" href="/static/CSS/info.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{url_for('static', filename='IMAGE/logo.jpg')}}">
+</head>
+
+<body>
+    <!-- <a href="/vente">
+        <div class="bac">
+            <img src="{{ url_for('static', filename='IMAGE/bacj.png')}}" style="filter: invert();" width="20px" alt="">
+        </div>
+    </a> -->
+    <a href="/monpanier">
+        <div class="marcher">
+            <img src="{{url_for('static', filename='IMAGE/panier.png')}}" style="filter: invert();" width="20px" alt="">
+            <div class="rondquant">
+                <p style="font-size: 1rem;">{{conueww}}</p>
+            </div>
+        </div>
+    </a>
+    <div class="menuddg">
+        <div class="menuddg2">
+            <div class="menuddg3">
+
+
+                <!-- <div class="etdjff1">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                       
+                        <p style="font-size: 1rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-weight: bolder;">Menu</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/croix.png')}}"  width="15px" alt="">
+                </div> -->
+
+                <a href="/sac" class="etdjff">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/chas3.png')}}" width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif">Chaussure Homme & Femme</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/vente" class="etdjff">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/robeee.png')}}" width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif">Vetement Femme</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/montre" class="etdjff">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/hansb2.png')}}" width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif">Montre H & F</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <h1 id="sumpek"
+                    style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-bottom: 15px;padding-top: 20px;">
+                    <a href="/vente"
+                        style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;text-decoration: none;">Utilitaires</a>
+                </h1>
+                <a href="/" class="etdjff" id="sumpek">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/homedd.png')}}" width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif;">Acceuil</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/monpanier" class="etdjff" id="sumpek">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/panier.png')}}" width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif;">Mon panier</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/monprofil" class="etdjff" id="sumpek">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/pppp.png')}}" width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif;">Mon profil</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <!-- <div class="etdjff">
+                    <img src="{{url_for('static', filename='IMAGE/habifeme.png')}}" width="15px" alt="">
+                    <a href="/vente" style="font-size: 0.8rem;">Vetements femmes</a>
+                </div>
+                <div class="etdjff">
+                    <img src="{{url_for('static', filename='IMAGE/shoe.png')}}" width="15px" alt="" >
+                    <a href="/sac" style="font-size: 0.8rem;">Chaussures H & F</a>
+                </div>
+                <div class="etdjff">
+                    <img src="{{url_for('static', filename='IMAGE/montre.png')}}" width="15px" alt="">
+                    <a href="/montre" style="font-size: 0.8rem;">Montres</a>
+                </div>
+                <div class="etdjff">
+                    <img src="{{url_for('static', filename='IMAGE/tle.png')}}"  width="15px" alt="">
+                    <a href="/#contace" style="font-size: 0.8rem;">Contacts</a>
+                </div> -->
+                <div class="boases">
+                    <p
+                        style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding-bottom: 10px;">
+                        Contactez - Nous</p>
+                    <p style="font-size: 0.7rem;padding-bottom: 10px;">Nous sommes heureux de vous assister si vous avez
+                        des questions.</p>
+                    <a href="tel:0778587708" class="zghghz">
+                        <img src="{{url_for('static', filename='IMAGE/tle.png')}}" width="15px" alt="">
+                        <p
+                            style="font-size: 1rem;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color: black;">
+                            +225 0778587708</p>
+                    </a>
+                    <a href="mailto:hington-shop@gmail.com" class="zghghz">
+                        <img src="{{url_for('static', filename='IMAGE/emmqs.png')}}" width="15px" alt="">
+                        <p
+                            style="font-size: 1rem;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color: black;">
+                            hington-shop@gmail.com</p>
+                    </a>
+                    <a href="https://web.whatsapp.com/send?phone=+22578587708&text='Bonjour à vous , j'ai une préoccupations !'"
+                        class="zghghz">
+                        <img src="{{url_for('static', filename='IMAGE/wha.png')}}" width="15px" alt="">
+                        <p style="font-size: 0.8rem;color: black;">Posez vos questions sur <span
+                                style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">WhatsApp</span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header>
+        <div class="hedaf">
+            <div class="logo">
+                <a href="/" class="tete" style="padding-top: 10px;">
+                    <!-- <div class="te1">
+                        <h1 style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 2rem;color: black;
+                   ;font-size: 1.1rem; ">HING<span id="deuxlogo">TON SHOP</span></h1>
+                    </div> -->
+                    <img src="{{url_for('static',filename='IMAGE/hinglogo.png')}}" width="150px" alt="">
+                    <!-- <img src="{{url_for('static',filename='IMAGE/logoze.jpg')}}" width="70px" style="filter: invert();" alt=""> -->
+
+
+
+                </a>
+            </div>
+            <div class="recherche">
+                <form action="/mesrecherches" method="post" id="hjdsd">
+                    <!-- <div class="imsdghde">
+                        <img src="{{url_for('static', filename='IMAGE/recdgdg.png')}}"  width="20px" alt="">
+                    </div> -->
+                    <input type="text" name="recher" id="" placeholder="Cherchez un produit">
+                    <button type="submit">
+                        <div class="imsdghde">
+                            <img src="{{url_for('static', filename='IMAGE/recdgdg.png')}}" width="20px" alt="">
+                        </div>
+                    </button>
+                </form>
+            </div>
+
+            <div class="menu">
+                <a href="/monprofil" class="menuaze">
+                    <img src="{{url_for('static', filename='IMAGE/pppp.png')}}" width="20px" alt="">
+                </a>
+
+                <div class="imsdghde1">
+                    <img src="{{url_for('static', filename='IMAGE/recdgdg.png')}}" width="20px" alt="">
+                </div>
+                <div class="imsdghde12">
+                    <img src="{{url_for('static', filename='IMAGE/recdgdg.png')}}" width="20px" alt="">
+                </div>
+                <img src="{{url_for('static', filename='IMAGE/menu.png')}}" width="20px" alt="" id="hdhdj">
+                <img src="{{url_for('static', filename='IMAGE/menu.png')}}" width="20px" alt="" id="hdhdj2">
+            </div>
+        </div>
+
+    </header>
+    <div class="testudjkcld">
+        <div class="hdueu">
+
+        </div>
+        <div class="monfixder">
+            <div class="blueusw">
+                <div class="croix">
+
+                </div>
+                <div class="retse">
+
+
+                    <a href="/vente" style="text-decoration: none;">
+                        <p><img src="{{url_for('static', filename='IMAGE/habifeme.png')}}" width="20px" alt="">
+                            <span>Vetements femmes </span></p>
+                    </a>
+                    <!-- <a href="/hommes">
+                    <p ><img src="{{url_for('static', filename='IMAGE/habihomme.png')}}" width="20px" alt=""> <span>Vetements hommes </span></p>
+                </a> -->
+                    <a href="/sac">
+
+                        <p><img src="{{url_for('static', filename='IMAGE/shoe.png')}}" width="20px" alt=""> <span
+                                style="color: rgba(255, 102, 0, 0.865);">Chaussures H & F</span></p>
+
+                    </a>
+
+                    <a href="/montre">
+                        <p><img src="{{url_for('static', filename='IMAGE/montre.png')}}" width="20px" alt="">
+                            <span>Montres </span></p>
+                    </a>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="monfix">
+            <div class="croix">
+                <div class="croi">
+                    <img src="{{url_for('static', filename='IMAGE/croix.png')}}" style="filter: invert();" width="30px"
+                        alt="">
+                </div>
+            </div>
+            <div class="retse">
+                <div class="menu">
+                    <h1 style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1.5rem;
+                ">MENU</h1>
+                </div>
+
+
+                <a href="/vente" style="text-decoration: none;">
+                    <p><img src="{{url_for('static', filename='IMAGE/habifeme.png')}}" width="20px" alt="">
+                        <span>Vetements femmes </span></p>
+                </a>
+                <!-- <a href="/hommes" style="text-decoration: none;">
+                <p ><img src="{{url_for('static', filename='IMAGE/habihomme.png')}}" width="20px" alt=""> <span>Vetements hommes </span></p>
+            </a> -->
+
+                <a href="/sac" style="text-decoration: none;">
+                    <p><img src="{{url_for('static', filename='IMAGE/shoe.png')}}" width="20px" alt=""> <span
+                            style="color: rgba(255, 102, 0, 0.865);">Chaussures H & F</span></p>
+                </a>
+                <a href="/montre" style="text-decoration: none;">
+                    <p><img src="{{url_for('static', filename='IMAGE/montre.png')}}" width="20px" alt=""> <span>Montres
+                        </span></p>
+                </a>
+
+
+
+
+
+
+
+                <a href="/#contace" style="text-decoration: none;">
+                    <p><img src="{{url_for('static', filename='IMAGE/tle.png')}}" width="20px" alt=""> <span>Contactez -
+                            nous ! </span></p>
+                </a>
+            </div>
+        </div>
+
+        <div class="ente">
+
+            <div class="tete">
+                <div class="te1">
+                    <h1 style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 2rem;color: white;
+            ">HING<span id="deuxlogo">TON SHOP</span></h1>
+                </div>
+                <div class="te2">
+                    <img src="{{url_for('static', filename='IMAGE/menu.png')}}" style="filter: invert();" width="20px"
+                        alt="">
+                </div>
+
+
+
+            </div>
+            <div class="entete">
+                <!-- <form action="" method="post" id="formulaire">
+                <input type="text" id="input" placeholder="Recherche ton article" style="color: black;">
+                <button id="bouton">Recherche</button>
+            </form> -->
+                <div class="mennn">
+                    <nav>
+                        <ul>
+
+                            <li>
+
+
+
+                                <div>
+                                    <a href="/" id="home">Home</a>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="/#contace" id="contact">Contacts</a>
+                            </li>
+                            <li>
+                                <div class="menue">
+                                    <a href="#" class="menue" id="cleud">> Toutes catégories</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="lesimages">
+        
+        <div class="imageim">
+            <h1 style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1.5rem;text-align: center;color: white;padding-bottom: 20px;padding-top: 10px;
+            ">DETAILS SUR CET ARTICLE </h1>
+            <p style="text-align: center;color: rgb(189, 189, 189);padding-top: 20px;padding-left: 20px;padding-right: 20px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, officiis! Tempore qui quisquam explicabo veniam modi </p>
+            <div class="inform">
+                <div class="principal_image">
+                    {% if user %}
+            
+                    <img src="{{url_for('static', filename='uploads/' + user.image)}}" width="100%" height="100%" alt="">
+               
+                    {% endif %}
+                </div>
+                <div class="second_image">
+                    <div class="unper">
+                        <img src="{{url_for('static', filename='IMAGE/pho2.jpg')}}" width="100%" height="100%"  alt="">
+
+                    </div>
+                    <div class="unper">
+                        <img src="{{url_for('static', filename='IMAGE/pho3.jpg')}}" width="100%" height="100%"  alt="">
+
+                    </div>
+                    <div class="unper">
+                        <img src="{{url_for('static', filename='IMAGE/pho2.jpg')}}" width="100%" height="100%"  alt="">
+
+                    </div>
+                </div>
+            </div>
+           
+           
+            <div class="autre">
+                <div class="appel1">
+                    <p>Taille de l'article : {{user.description}} commander via Whatsapp !!!</p>
+                </div>
+                <div class="appel2">
+                    {% if user %}
+                    <form action="/ssm/{{user.id}}" method="post">
+                       
+                        <button> <img src="{{url_for('static', filename='IMAGE/awp.png')}}" alt="" width="20px"> Commande via WHATSAPP !</button>
+
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+           
+    </div> 
+     -->
+
+
+
+
+        <div class="touezas">
+            <div class="hdjskspekd">
+                <div class="menuddg211">
+                    <div class="menuddg311">
+
+                        <h1
+                            style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-bottom: 20px;">
+                            <a href="/vente"
+                                style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;text-decoration: none;">Categorie</a>
+                        </h1>
+                        <!-- <div class="etdjff1">
+                        
+                        <div style="width: 90%;display: flex;gap: 20px;">
+                           
+                            <p style="font-size: 1rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-weight: bolder;">Menu</p>
+                        </div>
+                        <img src="{{url_for('static', filename='IMAGE/croix.png')}}"  width="15px" alt="">
+                    </div> -->
+
+                        <a href="/sac" class="etdjff11">
+
+                            <div style="width: 90%;display: flex;gap: 20px;">
+                                <img src="{{url_for('static', filename='IMAGE/chas3.png')}}" width="20px" alt="">
+                                <p style="font-size: 0.8rem;font-family: sans-serif">Chaussure Homme & Femme</p>
+                            </div>
+                            <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                        </a>
+                        <a href="/vente" class="etdjff11">
+
+                            <div style="width: 90%;display: flex;gap: 20px;">
+                                <img src="{{url_for('static', filename='IMAGE/robeee.png')}}" width="20px" alt="">
+                                <p style="font-size: 0.8rem;font-family: sans-serif">Vetement Femme</p>
+                            </div>
+                            <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                        </a>
+                        <a href="/montre" class="etdjff11">
+
+                            <div style="width: 90%;display: flex;gap: 20px;">
+                                <img src="{{url_for('static', filename='IMAGE/hansb2.png')}}" width="20px" alt="">
+                                <p style="font-size: 0.8rem;font-family: sans-serif">Montre H & F</p>
+                            </div>
+                            <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                        </a>
+                        <!-- <div class="etdjff">
+                        <img src="{{url_for('static', filename='IMAGE/habifeme.png')}}" width="15px" alt="">
+                        <a href="/vente" style="font-size: 0.8rem;">Vetements femmes</a>
+                    </div>
+                    <div class="etdjff">
+                        <img src="{{url_for('static', filename='IMAGE/shoe.png')}}" width="15px" alt="" >
+                        <a href="/sac" style="font-size: 0.8rem;">Chaussures H & F</a>
+                    </div>
+                    <div class="etdjff">
+                        <img src="{{url_for('static', filename='IMAGE/montre.png')}}" width="15px" alt="">
+                        <a href="/montre" style="font-size: 0.8rem;">Montres</a>
+                    </div>
+                    <div class="etdjff">
+                        <img src="{{url_for('static', filename='IMAGE/tle.png')}}"  width="15px" alt="">
+                        <a href="/#contace" style="font-size: 0.8rem;">Contacts</a>
+                    </div> -->
+                        <h1
+                            style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-bottom: 15px;padding-top: 20px;">
+                            <a href="/vente"
+                                style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;text-decoration: none;">Utilitaires</a>
+                        </h1>
+                        <a href="/" class="etdjff11">
+
+                            <div style="width: 90%;display: flex;gap: 20px;">
+                                <img src="{{url_for('static', filename='IMAGE/homes.png')}}" width="15px" alt="">
+                                <p style="font-size: 0.8rem;font-family: sans-serif">Acceuil</p>
+                            </div>
+                            <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                        </a>
+                        <a href="/monpanier" class="etdjff11">
+
+                            <div style="width: 90%;display: flex;gap: 20px;">
+                                <img src="{{url_for('static', filename='IMAGE/panier.png')}}" width="15px" alt="">
+                                <p style="font-size: 0.8rem;font-family: sans-serif">Mon panier</p>
+                            </div>
+                            <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                        </a>
+                        <a href="/monprofil" class="etdjff11">
+
+                            <div style="width: 90%;display: flex;gap: 20px;">
+                                <img src="{{url_for('static', filename='IMAGE/pppp.png')}}" width="15px" alt="">
+                                <p style="font-size: 0.8rem;font-family: sans-serif">Mon profil</p>
+                            </div>
+                            <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                        </a>
+                        <div class="boases11">
+                            <p
+                                style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding-bottom: 10px;">
+                                Contactez - Nous</p>
+                            <p style="font-size: 0.7rem;padding-bottom: 10px;">Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. RLorem ipsum dolor sit amet consectetur adipisicing elit. R</p>
+                            <a href="tel:0778587708" class="zghghz">
+                                <img src="{{url_for('static', filename='IMAGE/tle.png')}}" width="15px" alt="">
+                                <p
+                                    style="font-size: 1rem;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color: black;">
+                                    +225 0778587708</p>
+                            </a>
+                            <a href="mailto:hington-shop@gmail.com" class="zghghz">
+                                <img src="{{url_for('static', filename='IMAGE/emmqs.png')}}" width="15px" alt="">
+                                <p
+                                    style="font-size: 1rem;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color: black;">
+                                    hington-shop@gmail.com</p>
+                            </a>
+                            <a href="https://web.whatsapp.com/send?phone=+22578587708&text='Bonjour à vous , j'ai une préoccupations !'"
+                                class="zghghz">
+                                <img src="{{url_for('static', filename='IMAGE/wha.png')}}" width="15px" alt="">
+                                <p style="font-size: 0.8rem;color: black;">Posez vos questions sur <span
+                                        style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">WhatsApp</span>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hdjskspekd2">
+                <form action="/ssm" method="post" class="artivles">
+                    <!-- <div class="redux">
+                    
+                </div> -->
+                    <div class="vetemm">
+                        <div class="vetemm1233">
+                            {% if data[0] %}
+
+                            <div class="ecran" onclick="zoommer()"
+                                style="width: 100% ; height: 80%; box-shadow: 1px 1px 3px 2px rgba(181, 181, 181, 0.336);">
+                                <img src="{{url_for('static', filename='uploads/' + data[0])}}" alt="" id="ecran"
+                                    width="100%" height="100%">
+
+                            </div>
+                            <!-- <div class="ecran" style="width: 100% ; height: 80%; box-shadow: 1px 1px 3px 2px rgba(181, 181, 181, 0.336);">
+                       <img src="{{url_for('static', filename='uploads/' + data[0])}}" alt="" id="ecran" width="100%" height="100%">
+        
+                    </div> -->
+                            <!-- <input type="checkbox" name="" id="clispoes">
+                    <label for="clispoes" class="ecran" >
+                    
+                        <img src="{{url_for('static', filename='uploads/' + data[0])}}" alt="" id="ecran" width="100%" height="100%">
+
+                    </label> -->
+
+
+                            {% endif %}
+                            {% if user.porce != '0' %}
+                            <div class="gdhd">
+
+                                <span>
+                                    <p style="color: rgba(255, 102, 0, 0.865);padding-left: 5px;padding-right: 5px;">-
+                                        {{user.porce}} %</p>
+                                </span>
+
+                            </div>
+                            {% endif %}
+
+                            <div class="resteDeImage">
+                                {% if data[0] != 'vide' %}
+                                <div class="restepres" id="image0">
+                                    <input type="text" id="image0Input" value="{{data[0]}}">
+                                    <img src="{{url_for('static', filename='uploads/' + data[0])}}" width="100%"
+                                        height="100%" alt="">
+                                </div>
+                                {% endif %}
+                                {% if data[1] != 'vide' %}
+                                <div class="restepres" id="image1">
+                                    <input type="text" id="image1Input" value="{{data[1]}}">
+                                    <img src="{{url_for('static', filename='uploads/' + data[1])}}" width="100%"
+                                        height="100%" alt="">
+                                </div>
+                                {% endif %}
+                                {% if data[2]!= 'vide' %}
+                                <div class="restepres" id="image2">
+                                    <input type="text" id="image2Input" value="{{data[2]}}">
+                                    <img src="{{url_for('static', filename='uploads/' + data[2])}}" width="100%"
+                                        height="100%" alt="">
+                                </div>
+                                {% endif %}
+                                {% if data[3] != 'vide' %}
+                                <div class="restepres" id="image3">
+                                    <input type="text" id="image3Input" value="{{data[3]}}">
+                                    <img src="{{url_for('static', filename='uploads/' + data[3])}}" width="100%"
+                                        height="100%" alt="">
+
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="vetemm12331">
+                            <div class="vetemm123311">
+                                <div class="imajdyxs1">
+
+                                    <img src="{{url_for('static', filename='IMAGE/dates.png')}}" width="30px"
+                                        height="30px" alt="">
+                                </div>
+                                <div class="imajdyxs2">
+                                    <p
+                                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;">
+                                        Delai de livraison</p>
+                                    <p style="font-size: 0.7rem;">Livraison a vos frais , si vous commandez des
+                                        aujourd'hui,
+                                        vous serez livrez dans 2 jours .</p>
+                                </div>
+                            </div>
+
+                            <div class="vetemm123311">
+                                <div class="imajdyxs1">
+
+                                    <img src="{{url_for('static', filename='IMAGE/dolla.png')}}" width="30px"
+                                        height="30px" alt="">
+                                </div>
+                                <div class="imajdyxs2">
+                                    <p
+                                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;">
+                                        Politique de retour</p>
+                                    <p style="font-size: 0.7rem;">Retours gratuits sur 10 jours.</p>
+                                </div>
+                            </div>
+
+                            <div class="vetemm123311">
+                                <div class="imajdyxs1">
+
+                                    <img src="{{url_for('static', filename='IMAGE/livarsin.png')}}" width="30px"
+                                        height="30px" alt="">
+                                </div>
+                                <div class="imajdyxs2">
+                                    <p
+                                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;">
+                                        Livraison à domicile</p>
+                                    <p style="font-size: 0.7rem;">Frais de livraison 1,600 FCFA
+                                        Livraison le 14 août si vous</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="infoeisd">
+                        <p
+                            style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1.2rem;color: black;text-transform: uppercase;padding-bottom: 10px;">
+                            {{user.nom}}</p>
+                        <h1
+                            style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: #f60;text-transform: uppercase;font-size: 1.4rem;">
+                            {% if user.porce != '0' %}
+                            <span>
+                                <s style="color: black;font-size: 1rem;">{{user.prix}} FCFA</s>
+                            </span>
+                            {% endif %}
+
+                            {{user.porceprix}} FCFA
+
+                        </h1>
+                        <div class="livarsipn">
+                            <img src="{{url_for('static', filename='IMAGE/livarsin.png')}}" width="40px" height="40px"
+                                alt="">
+                            <p
+                                style="color: green;background-color: rgba(220, 220, 220, 0.49);padding: 5px;display: flex;align-items: center;font-size: 0.8rem;">
+                                Livraison à vos frais</p>
+                        </div>
+
+
+                        <input type="text" name="" id="couterw" style="width: 0;height: 0;border: none;"
+                            value="{{user.porceprix}}">
+                        <!-- <p id="couterw"></p> -->
+                        <!-- <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;padding-top: 15px;">DESCRIPTION DE L'ARTICLE</p>
+                    <p style="padding-top: 15px;font-size: 0.7rem;">{{user.description}} </p> -->
+                        <p
+                            style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;padding-top: 15px;">
+                            COULEUR</p>
+                        <div class="cerfsd">
+                            <!-- LA COULEUR VIENT AVEC LE POSTE -->
+                            {% if user.noir == 'noir' %}
+                            <div class="colornoir">
+
+                            </div>
+                            {% endif %}
+
+                            {% if user.rouge == 'rouge' %}
+                            <div class="colorrouge">
+
+                            </div>
+
+                            {% endif %}
+                            {% if user.bleu == 'bleu' %}
+                            <div class="colorbleu">
+
+                            </div>
+                            {% endif %}
+                            {% if user.jaune == 'jaune' %}
+                            <div class="coloryello">
+
+                            </div>
+                            {% endif %}
+                            {% if user.vert == 'vert' %}
+                            <div class="colorgreen">
+
+                            </div>
+                            {% endif %}
+                            {% if user.orange == 'orange' %}
+                            <div class="colororange">
+
+                            </div>
+                            {% endif %}
+                            {% if user.rose == 'rose' %}
+                            <div class="colorrose">
+
+                            </div>
+                            {% endif %}
+                            {% if user.blanc == 'blanc' %}
+                            <div class="colorblanc">
+
+                            </div>
+                            {% endif %}
+                            {% if user.marron == 'marron' %}
+                            <div class="colormarron">
+
+                            </div>
+                            {% endif %}
+                            {% if user.violet == 'violet' %}
+                            <div class="colorviolet">
+
+                            </div>
+                            {% endif %}
+                            {% if user.gris == 'gris' %}
+                            <div class="colorgris">
+
+                            </div>
+                            {% endif %}
+
+                        </div>
+                        <h1
+                            style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.7rem;padding-top: 15px;padding-bottom: 20px;padding-left: 25px;">
+                        </h1>
+
+
+                        <div class="kjjzkjaa">
+                            <div class="vetemm123311">
+                                <div class="imajdyxs1">
+
+                                    <img src="{{url_for('static', filename='IMAGE/dates.png')}}" width="30px"
+                                        height="30px" alt="">
+                                </div>
+                                <div class="imajdyxs2">
+                                    <p
+                                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;">
+                                        Delai de livraison</p>
+                                    <p style="font-size: 0.7rem;">Livraison a vos frais , si vous commandez des
+                                        aujourd'hui,
+                                        vous serez livrez dans 2 jours .</p>
+                                </div>
+                            </div>
+
+                            <div class="vetemm123311">
+                                <div class="imajdyxs1">
+
+                                    <img src="{{url_for('static', filename='IMAGE/dolla.png')}}" width="30px"
+                                        height="30px" alt="">
+                                </div>
+                                <div class="imajdyxs2">
+                                    <p
+                                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;">
+                                        Politique de retour</p>
+                                    <p style="font-size: 0.7rem;">Retours gratuits sur 10 jours.</p>
+                                </div>
+                            </div>
+
+                            <div class="vetemm123311">
+                                <div class="imajdyxs1">
+
+                                    <img src="{{url_for('static', filename='IMAGE/livarsin.png')}}" width="30px"
+                                        height="30px" alt="">
+                                </div>
+                                <div class="imajdyxs2">
+                                    <p
+                                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;">
+                                        Livraison à domicile</p>
+                                    <p style="font-size: 0.7rem;">Frais de livraison 1,600 FCFA
+                                        Livraison le 14 août si vous</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hqeerss">
+
+                            {% if user.tranwite == '38' and user.tranwitelet != "0" %}
+                            <div class="nombredexl">
+                                <div class="nombredexltaille">
+                                    <h1
+                                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;color: black;">
+                                        38</h1>
+                                    <p style="font-size: 0.6rem;color: black;"><span
+                                            style="font-size: 0.7rem;color: black;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">+
+                                            {{user.tranwitelet}} </span> articles de cette taille disponibles</p>
+                                </div>
+                                <div class="nombredexlquant">
+                                    <div class="mmoiie" onclick="moinsp('tranwitenump')">
+                                        <p style="color: black;font-size: 2rem;">-</p>
+                                    </div>
+
+                                    <div class="mmmoihfrd">
+                                        <input type="text" value="0"
+                                            style="width: 50px;border: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1.5rem;"
+                                            id="tranwitenump" name="tranwitenum" >
+                                    </div>
+
+                                    <div class="mmoiie" onclick="plusp('tranwitenump','{{user.tranwitelet}}')">
+                                        <p style="color: black;font-size: 2rem;">+</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if user.tranneuf == '39' and user.tranneuflet != "0" %}
+                            <div class="nombredexl">
+                                <div class="nombredexltaille">
+                                    <h1
+                                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;color: black;">
+                                        39</h1>
+                                    <p style="font-size: 0.6rem;color: black;"><span
+                                            style="font-size: 0.7rem;color: black;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">+
+                                            {{user.tranneuflet}} </span> articles de cette taille disponibles</p>
+                                </div>
+                                <div class="nombredexlquant">
+                                    <div class="mmoiie" onclick="moinsp('tranneufnump')">
+                                        <p style="color: black;font-size: 2rem;">-</p>
+                                    </div>
+
+                                    <div class="mmmoihfrd">
+                                        <input type="text" value="0"
+                                            style="width: 50px;border: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1.5rem;"
+                                            id="tranneufnump" name="tranneufnum">
+                                    </div>
+
+                                    <div class="mmoiie" onclick="plusp('tranneufnump','{{user.tranneuflet}}')">
+                                        <p style="color: black;font-size: 2rem;">+</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if user.karente == '40' and user.karentelet != "0" %}
+                            <div class="nombredexl">
+                                <div class="nombredexltaille">
+                                    <h1
+                                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;color: black;">
+                                        40</h1>
+                                    <p style="font-size: 0.6rem;color: black;"><span
+                                            style="font-size: 0.7rem;color: black;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">+
+                                            {{user.karentelet}} </span> articles de cette taille disponibles</p>
+                                </div>
+                                <div class="nombredexlquant">
+                                    <div class="mmoiie" onclick="moinsp('karentenump')">
+                                        <p style="color: black;font-size: 2rem;">-</p>
+                                    </div>
+
+                                    <div class="mmmoihfrd">
+                                        <input type="text" value="0"
+                                            style="width: 50px;border: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1.5rem;"
+                                            id="karentenump" name="karentenum">
+                                    </div>
+
+                                    <div class="mmoiie" onclick="plusp('karentenump','{{user.karentelet}}')">
+                                        <p style="color: black;font-size: 2rem;">+</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            {% if user.tranwiteun == '41' and user.tranwiteunlet != "0" %}
+                            <div class="nombredexl">
+                                <div class="nombredexltaille">
+                                    <h1
+                                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;color: black;">
+                                        41</h1>
+                                    <p style="font-size: 0.6rem;color: black;"><span
+                                            style="font-size: 0.7rem;color: black;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">+
+                                            {{user.tranwiteunlet}} </span> articles de cette taille disponibles</p>
+                                </div>
+
+                                <div class="nombredexlquant">
+                                    <div class="mmoiie" onclick="moinsp('tranwiteunp')">
+                                        <p style="color: black;font-size: 2rem;">-</p>
+                                    </div>
+
+                                    <div class="mmmoihfrd">
+                                        <input type="text" value="0"
+                                            style="width: 50px;border: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1.5rem;"
+                                            id="tranwiteunp" name="tranwiteunnum">
+                                    </div>
+
+                                    <div class="mmoiie" onclick="plusp('tranwiteunp','{{user.tranwiteunlet}}')">
+                                        <p style="color: black;font-size: 2rem;">+</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if user.tranwitedeux == '42' and user.tranwitedeuxlet != "0" %}
+
+                            <div class="nombredexl">
+                                <div class="nombredexltaille">
+                                    <h1
+                                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;color: black;">
+                                        42</h1>
+                                    <p style="font-size: 0.6rem;color: black;"><span
+                                            style="font-size: 0.7rem;color: black;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">+
+                                            {{user.tranwitedeuxlet}} </span> articles de cette taille disponibles</p>
+                                </div>
+                                <div class="nombredexlquant">
+                                    <div class="mmoiie" onclick="moinsp('tranwitedeuxp')">
+                                        <p style="color: black;font-size: 2rem;">-</p>
+                                    </div>
+
+                                    <div class="mmmoihfrd">
+                                        <input type="text" value="0"
+                                            style="width: 50px;border: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1.5rem;"
+                                            id="tranwitedeuxp" name="tranwitedeuxnum">
+                                    </div>
+
+                                    <div class="mmoiie" onclick="plusp('tranwitedeuxp','{{user.tranwitedeuxlet}}')">
+                                        <p style="color: black;font-size: 2rem;">+</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            {% if user.tranwitrois == '43' and user.tranwitroislet != "0" %}
+                            <div class="nombredexl">
+                                <div class="nombredexltaille">
+                                    <h1
+                                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;color: black;">
+                                        43</h1>
+                                    <p style="font-size: 0.6rem;color: black;"><span
+                                            style="font-size: 0.7rem;color: black;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">+
+                                            {{user.tranwitroislet}} </span> articles de cette taille disponibles</p>
+                                </div>
+                                <div class="nombredexlquant">
+                                    <div class="mmoiie" onclick="moinsp('tranwitroisp')">
+                                        <p style="color: black;font-size: 2rem;">-</p>
+                                    </div>
+
+                                    <div class="mmmoihfrd">
+                                        <input type="text" value="0"
+                                            style="width: 50px;border: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1.5rem;"
+                                            id="tranwitroisp" name="tranwitroisnum">
+                                    </div>
+
+                                    <div class="mmoiie" onclick="plusp('tranwitroisp','{{user.tranwitroislet}}')">
+                                        <p style="color: black;font-size: 2rem;">+</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if user.tranwitekate == '44' and user.tranwitekatelet != "0" %}
+
+                            <div class="nombredexl">
+                                <div class="nombredexltaille">
+                                    <h1
+                                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;color: black;">
+                                        44</h1>
+                                    <p style="font-size: 0.6rem;color: black;"><span
+                                            style="font-size: 0.7rem;color: black;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;">+
+                                            {{user.tranwitekatelet}} </span> articles de cette taille disponibles</p>
+                                </div>
+                                <div class="nombredexlquant">
+                                    <div class="mmoiie" onclick="moinsp('tranwitekatep')">
+                                        <p style="color: black;font-size: 2rem;">-</p>
+                                    </div>
+
+                                    <div class="mmmoihfrd">
+                                        <input type="text" value="0"
+                                            style="width: 50px;border: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1.5rem;"
+                                            id="tranwitekatep" name="tranwitekatenum">
+                                    </div>
+
+                                    <div class="mmoiie" onclick="plusp('tranwitekatep','{{user.tranwitekatelet}}')">
+                                        <p style="color: black;font-size: 2rem;">+</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+
+
+
+                        <input type="text" name="image" id="livraison" placeholder="numero" value="{{user.image}}"
+                            style="visibility: hidden;height: 0;width: 0;">
+                        <input type="text" name="noumeme" id="livraison" placeholder="numero" value="{{user.id}}"
+                            style="visibility: hidden;height: 0;width: 0;">
+                        <input type="text" name="prix" id="livraison" placeholder="numero" value="{{user.porceprix}}"
+                            style="visibility: hidden;height: 0;width: 0;">
+                        <input type="text" name="quantiteplos" id="quantiteplos" placeholder="numero" value="0"
+                            style="visibility: hidden;height: 0;width: 0;">
+                        <p id="somiu"
+                            style="text-align: start;padding-left: 20px;color: transparent;font-size: 1rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 8px;font-weight: bolder;padding-top: 20PX;">
+                            0</p>
+
+                        <input type="text" name="article" id=""
+                            style="width: 0;height: 0;position: absolute;top: -20px;" value="{{user.id}}">
+
+                        <button type="submit" class="commande"
+                            style="display: flex;justify-content: start;border: 1px solid black;background-color: white;">
+                            <div style="width: 10%;display: flex;justify-content: start;">
+
+
+
+                                <div class="regle" style="background-color: white;border: none;">
+                                    <img src="{{url_for('static', filename='IMAGE/panier.png')}}" alt="" width="20px">
+
+                                </div>
+                            </div>
+                            <a href="#formuhfh1" style="width: 90%;background-color: white;">
+                                <div class="bouto" type="submit"
+                                    style="width: 100%;background-color: white;color: black;">AJOUTER AU PANIER ( <p
+                                        id="lepris"
+                                        style="color: black;font-size: 1rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-weight: bolder;">
+                                        0</p> ) FCFA</div>
+                            </a>
+
+                        </button>
+
+                    </div>
+                </form>
+
+                <div class="jhzhjfhejz">
+                    <!-- <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;padding-top: 15px;">DESCRIPTION DE L'ARTICLE</p> -->
+                    <p
+                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;padding-top: 15px;padding-bottom: 10px;">
+                        Texture & Design 3D / 64 GB ROM / RAM extensible</p>
+                    <p style="padding-bottom: 20px;" class="pmoze">{{user.description}} </p>
+                    <p style="padding-bottom: 10px;" class="pmoze">Le SMART 7 HD s'est inspiré des ondulations vives
+                        pour vous offrir une expérience dynamique unique et branchée comme nulle autre.
+
+                        64 GB de stockage massif et plus encore. La technologie de rationalisation du stockage Infinix
+                        de ce Smartphone optimise la logique de stockage des fichiers existants pour libérer jusqu'à 15
+                        % d'espace de stockage, ce qui donne plus d'espace pour stocker vos applications préférées, vos
+                        photos et votre musique.
+
+                        Le SMART 7 HD offre un nouveau niveau de fluidité dans sa catégorie. Regarder des films, écouter
+                        de la musique, ou la musique quotidienne ou d'autres scénarios peuvent être rendus plus
+                        agréables avec la plus grande RAM (y compris 2 Go de RAM étendue).
+
+                        Pour répondre à vos besoins en constante évolution pour toutes les photos, vidéos et chansons
+                        qui vous tiennent à cœur, le SMART 7 HD prend en charge l'extension du stockage jusqu'à 2 Go.
+                        Vous pouvez donc enregistrer votre quotidien et ce qui vous passionne sans vous inquiéter. </p>
+                    <p
+                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;padding-top: 15px;;padding-bottom: 10px;">
+                        Puissant processeur Octa Core à Intelligence Artificielle (IA) </p>
+                    <p style="padding-bottom: 10px;" class="pmoze">{{user.description}} </p>
+                    <p
+                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;padding-top: 15px;;padding-bottom: 10px;">
+                        Texture & Design 3D / 64 GB ROM / RAM extensible</p>
+                    <p style="padding-bottom: 10px;" class="pmoze">La plateforme de processeur IA Octa Core hautement
+                        intégrée est le cerveau intelligent sur lequel vous pouvez compter. Elle gère facilement vos
+                        besoins quotidiens en matière de communication, de photo ou de vos autres utilisations
+                        quotidiennes.
+
+                        La plateforme de processeur IA Octa Core hautement intégrée est le cerveau intelligent sur
+                        lequel vous pouvez compter. Elle gère facilement vos besoins quotidiens en matière de
+                        communication, de photo ou d'autres usages.
+
+                        Le grand écran HD + de 6,6 pouces avec un rapport écran/corps de 84 % crée une expérience
+                        visuelle digne d'un film pour votre plaisir quotidien. Parce que vous avez besoin d'un écran
+                        plus lumineux lorsque la lumière est forte à l'extérieur. Le SMART 7 HD présente 40 niveaux
+                        d'ajustement automatique de la luminosité, de 500 nits à 1 nit, ce qui vous permet de regarder
+                        confortablement à l'extérieur, quelles que soient les conditions d'éclairage. </p>
+                    <p style="padding-bottom: 10px;" class="pmoze">{{user.description}} </p>
+                    <p
+                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;padding-top: 15px;padding-bottom: 10px;">
+                        Double Camera AI </p>
+                    <p class="pmoze">La Durée de vie de la batterie extra-longue. La puissante batterie de 5000 mAh vous
+                        apporte tout cela et plus encore. Que vous écoutiez de la musique ou regardiez votre émission
+                        préférée, le SMART 7 HD est conçu pour durer.
+
+                        Du plaisir toute la journée sans souci. Power Marathon offre 3 solutions d'économie d'énergie
+                        différentes pour s'adapter à vos besoins, le mode d'économie d'énergie ultra permet une
+                        incroyable autonomie en veille pendant toute une journée ou 2 heures d'appel lorsque la batterie
+                        est faible à 5%.</p>
+                </div>
+
+                <div class="commanetzite">
+                    <p
+                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;padding-top: 25px;padding-bottom: 15px;">
+                        Commantaires</p>
+
+
+                    <form action="/commantairear" method="post" class="inputcomme">
+
+
+
+                        <input type="text" name="commentairec">
+                        <input type="text" name="idproduit" id="livraison" placeholder="numero" value="{{user.id}}"
+                            style="visibility: hidden;height: 0;width: 0;">
+                        <input type="text" name="redirhd1" id="livraison" placeholder="numero" value="sacs"
+                            style="visibility: hidden;height: 0;width: 0;">
+
+
+
+
+                        <button type="submit" style="border: none;background-color: white;">
+                            <img src="{{url_for('static', filename='IMAGE/zzzsdd.png')}}" width="20px" alt="">
+                        </button>
+                    </form>
+                    {% for i in tableauserz %}
+                    {% if i.idproduit == user.id %}
+                    <div class="lecome">
+                        <div class="infocomma">
+                            <div class="infocomma1" id="{{i.couleur}}">
+                                <div class="certcomme">
+                                    <p
+                                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.9rem;">
+                                        {{i.nomclient[0:1:1]}}</p>
+                                </div>
+                            </div>
+
+                            <div class="infocomma2">
+                                <p class="textcommenn">
+                                    {{i.nomclient}}</p>
+                                <p style="font-size: 0.5rem;color: rgb(176, 176, 176);">{{i.datecomman}}</p>
+                                <p style="font-size: 0.6rem;padding-top: 10px;color: rgba(0, 0, 0, 0.825);">
+                                    {{i.commentairec}}</p>
+                            </div>
+
+                        </div>
+                        <!-- <div class="infocomma3">
+                        
+                    </div> -->
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- </div> -->
+        <div class="jjhfsdf54">
+            <div class="jdudu">
+                <p
+                    style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 10px;color: black;padding-left: 40px;">
+                    Catégorie Chaussures Hommes & Femmmes</p>
+            </div>
+        </div>
+        <!-- listedeselemet -->
+        <div class="listedeselements">
+            <div class="grsgjd">
+                <div class="flevdh1">
+
+                    <img src="{{url_for('static', filename='IMAGE/sup.png')}}" width="30px" alt="">
+                </div>
+                <div class="listedeselements1">
+                    {% for i in commenta1 %}
+                    {% if i.stat == "vrai" %}
+                    <a href="/sacs/{{i.id}}">
+                        <div class="uneldd">
+                            <div class="imahhd">
+                                <img src="{{url_for('static', filename='uploads/' + i.image)}}" width="100%"
+                                    height="100%" alt="">
+                                <div class="reghd">
+                                    {% if i.porce != "0" %}
+                                    <p style="color: #f60;font-size: 0.7rem;padding-left: 5px;padding-right: 5px;">-
+                                        {{i.porce}} %</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <p class="palhde"
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;font-size: 1rem;">
+                                {{i.nom[:20:]}} ...</p>
+                            <p class="palhde1"
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgb(53, 53, 53);font-size: 1rem;">
+                                <span
+                                    style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.8rem;color: rgb(53, 53, 53);">{{i.nom[:20:]}}
+                                    ...</span></p>
+                            <p
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;">
+                                {{i.porceprix}} FCFA</p>
+                            <p
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);">
+                                <s>{{i.prix}} FCFA</s></p>
+
+                        </div>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                    {% if not commenta1[5] %}
+                    {% for i in commenta1 %}
+                    {% if i.stat == "vrai" %}
+                    <a href="/sacs/{{i.id}}">
+                        <div class="uneldd">
+                            <div class="imahhd">
+                                <img src="{{url_for('static', filename='uploads/' + i.image)}}" width="100%"
+                                    height="100%" alt="">
+                                <div class="reghd">
+                                    {% if i.porce != "0" %}
+                                    {% if i.porce != "0" %}
+                                    <p style="color: #f60;font-size: 0.7rem;padding-left: 5px;padding-right: 5px;">-
+                                        {{i.porce}} %</p>
+                                    {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <p class="palhde"
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;font-size: 1rem;">
+                                {{i.nom[:20:]}} ...</p>
+                            <p class="palhde1"
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgb(53, 53, 53);font-size: 1rem;">
+                                <span
+                                    style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.8rem;color: rgb(53, 53, 53);">{{i.nom[:20:]}}
+                                    ...</span></p>
+                            <p
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;">
+                                {{i.porceprix}} FCFA</p>
+                            <p
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);">
+                                <s>{{i.prix}} FCFA</s></p>
+
+                        </div>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+
+                </div>
+                <div class="flevdh1">
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="30px" alt="">
+                </div>
+            </div>
+
+        </div>
+        <div class="jjhfsdf54">
+            <div class="jdudu">
+                <p
+                    style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 10px;color: black;padding-left: 40px;">
+                    Catégorie montre</p>
+            </div>
+        </div>
+        <!-- listedeselemet -->
+        <div class="listedeselements">
+            <div class="grsgjd">
+                <div class="flevdh1">
+
+                    <img src="{{url_for('static', filename='IMAGE/sup.png')}}" width="30px" alt="">
+                </div>
+                <div class="listedeselements1">
+                    {% for i in commenta %}
+                    {% if i.stat == "vrai" %}
+                    <a href="/montres/{{i.id}}">
+                        <div class="uneldd">
+                            <div class="imahhd">
+                                <img src="{{url_for('static', filename='uploads/' + i.image)}}" width="100%"
+                                    height="100%" alt="">
+                                <div class="reghd">
+                                    {% if i.porce != "0" %}
+                                    <p style="color: #f60;font-size: 0.7rem;padding-left: 5px;padding-right: 5px;">-
+                                        {{i.porce}} %</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <p class="palhde"
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;font-size: 1rem;">
+                                {{i.nom[:20:]}} ...</p>
+                            <p class="palhde1"
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgb(53, 53, 53);font-size: 1rem;">
+                                <span
+                                    style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.8rem;color: rgb(53, 53, 53);">{{i.nom[:20:]}}
+                                    ...</span></p>
+                            <p
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;">
+                                {{i.porceprix}} FCFA</p>
+                            <p
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);">
+                                <s>{{i.prix}} FCFA</s></p>
+
+                        </div>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                    {% if not commenta[5] %}
+                    {% for i in commenta %}
+                    {% if i.stat == "vrai" %}
+                    <a href="/montres/{{i.id}}">
+                        <div class="uneldd">
+                            <div class="imahhd">
+                                <img src="{{url_for('static', filename='uploads/' + i.image)}}" width="100%"
+                                    height="100%" alt="">
+                                <div class="reghd">
+                                    {% if i.porce != "0" %}
+                                    {% if i.porce != "0" %}
+                                    <p style="color: #f60;font-size: 0.7rem;padding-left: 5px;padding-right: 5px;">-
+                                        {{i.porce}} %</p>
+                                    {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <p class="palhde"
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;font-size: 1rem;">
+                                {{i.nom[:20:]}} ...</p>
+                            <p class="palhde1"
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgb(53, 53, 53);font-size: 1rem;">
+                                <span
+                                    style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.8rem;color: rgb(53, 53, 53);">{{i.nom[:20:]}}
+                                    ...</span></p>
+                            <p
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;">
+                                {{i.porceprix}} FCFA</p>
+                            <p
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);">
+                                <s>{{i.prix}} FCFA</s></p>
+
+                        </div>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+
+                </div>
+                <div class="flevdh1">
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="30px" alt="">
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- </div> -->
+        <div class="jjhfsdf54">
+            <div class="jdudu">
+                <p
+                    style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 10px;color: black;padding-left: 40px;">
+                    Catégorie vetement femme</p>
+            </div>
+        </div>
+        <!-- listedeselemet -->
+        <div class="listedeselements">
+            <div class="grsgjd">
+                <div class="flevdh1">
+
+                    <img src="{{url_for('static', filename='IMAGE/sup.png')}}" width="30px" alt="">
+                </div>
+                <div class="listedeselements1">
+                    {% for i in commenta2 %}
+                    {% if i.stat == "vrai" %}
+                    <a href="/info/{{i.id}}">
+                        <div class="uneldd">
+                            <div class="imahhd">
+                                <img src="{{url_for('static', filename='uploads/' + i.image)}}" width="100%"
+                                    height="100%" alt="">
+                                <div class="reghd">
+                                    {% if i.porce != "0" %}
+                                    <p style="color: #f60;font-size: 0.7rem;padding-left: 5px;padding-right: 5px;">-
+                                        {{i.porce}} %</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <p class="palhde"
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;font-size: 1rem;">
+                                {{i.nom[:20:]}} ...</p>
+                            <p class="palhde1"
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgb(53, 53, 53);font-size: 1rem;">
+                                <span
+                                    style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.8rem;color: rgb(53, 53, 53);">{{i.nom[:20:]}}
+                                    ...</span></p>
+                            <p
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;">
+                                {{i.porceprix}} FCFA</p>
+                            <p
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);">
+                                <s>{{i.prix}} FCFA</s></p>
+
+                        </div>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                    {% if not commenta2[5] %}
+                    {% for i in commenta2 %}
+                    {% if i.stat == "vrai" %}
+                    <a href="/info/{{i.id}}">
+                        <div class="uneldd">
+                            <div class="imahhd">
+                                <img src="{{url_for('static', filename='uploads/' + i.image)}}" width="100%"
+                                    height="100%" alt="">
+                                <div class="reghd">
+                                    {% if i.porce != "0" %}
+                                    {% if i.porce != "0" %}
+                                    <p style="color: #f60;font-size: 0.7rem;padding-left: 5px;padding-right: 5px;">-
+                                        {{i.porce}} %</p>
+                                    {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <p class="palhde"
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;font-size: 1rem;">
+                                {{i.nom[:20:]}} ...</p>
+                            <p class="palhde1"
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgb(53, 53, 53);font-size: 1rem;">
+                                <span
+                                    style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.8rem;color: rgb(53, 53, 53);">{{i.nom[:20:]}}
+                                    ...</span></p>
+                            <p
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;">
+                                {{i.porceprix}} FCFA</p>
+                            <p
+                                style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);">
+                                <s>{{i.prix}} FCFA</s></p>
+
+                        </div>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+
+                </div>
+                <div class="flevdh1">
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="30px" alt="">
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- </div> -->
+        <div class="insedfole">
+            <footer id="foot">
+                <a href="/" id="head " style="padding-top: 20px;">
+                    <img src="{{url_for('static',filename='IMAGE/hinglogo.png')}}" style="filter: invert();"
+                        width="170px" alt="">
+                </a>
+                <div class="recherche11" style="background-color: black;">
+                    <form action="/mesrecherches" method="post" id="hjdsd">
+                        <!-- <div class="imsdghde">
+                        <img src="{{url_for('static', filename='IMAGE/recdgdg.png')}}"  width="20px" alt="">
+                    </div> -->
+                        <input type="text" name="recher" id=""
+                            placeholder="Ecrivez - nous pour vos preoccupations et suggestions ">
+                        <button type="submit">
+                            <div class="imsdghde">
+                                <img src="{{url_for('static', filename='IMAGE/emmqs.png')}}" width="20px" alt="">
+                            </div>
+                        </button>
+                    </form>
+                </div>
+                <div id="head " style="padding-top: 20px;padding-left: 20px;">
+                    <h1
+                        style="color: white;font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif">
+                        RETROUVEZ-NOUS SUR</h1>
+                    <div class="zghdes">
+                        <a href="" class="hdsj">
+                            <img src="{{url_for('static', filename='IMAGE/fza.png')}}" width="25px" alt="">
+                        </a>
+                        <a href="" class="hdsj">
+                            <img src="{{url_for('static', filename='IMAGE/wha.png')}}" width="30px" alt="">
+                        </a>
+                        <a href="" class="hdsj">
+                            <img src="{{url_for('static', filename='IMAGE/tikti.png')}}" width="35px" alt="">
+                        </a>
+
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script src="/static/CSS/article.js"></script>
+</body>
+
+</html>

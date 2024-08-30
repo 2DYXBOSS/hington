@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+    <script type="text/javascript">
+        window.tailwind.config = {
+            darkMode: ['class'],
+            theme: {
+                extend: {
+                    colors: {
+                        border: 'hsl(var(--border))',
+                        input: 'hsl(var(--input))',
+                        ring: 'hsl(var(--ring))',
+                        background: 'hsl(var(--background))',
+                        foreground: 'hsl(var(--foreground))',
+                        primary: {
+                            DEFAULT: 'hsl(var(--primary))',
+                            foreground: 'hsl(var(--primary-foreground))'
+                        },
+                        secondary: {
+                            DEFAULT: 'hsl(var(--secondary))',
+                            foreground: 'hsl(var(--secondary-foreground))'
+                        },
+                        destructive: {
+                            DEFAULT: 'hsl(var(--destructive))',
+                            foreground: 'hsl(var(--destructive-foreground))'
+                        },
+                        muted: {
+                            DEFAULT: 'hsl(var(--muted))',
+                            foreground: 'hsl(var(--muted-foreground))'
+                        },
+                        accent: {
+                            DEFAULT: 'hsl(var(--accent))',
+                            foreground: 'hsl(var(--accent-foreground))'
+                        },
+                        popover: {
+                            DEFAULT: 'hsl(var(--popover))',
+                            foreground: 'hsl(var(--popover-foreground))'
+                        },
+                        card: {
+                            DEFAULT: 'hsl(var(--card))',
+                            foreground: 'hsl(var(--card-foreground))'
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            :root {
+                --background: 0 0% 100%;
+                --foreground: 240 10% 3.9%;
+                --card: 0 0% 100%;
+                --card-foreground: 240 10% 3.9%;
+                --popover: 0 0% 100%;
+                --popover-foreground: 240 10% 3.9%;
+                --primary: 240 5.9% 10%;
+                --primary-foreground: 0 0% 98%;
+                --secondary: 240 4.8% 95.9%;
+                --secondary-foreground: 240 5.9% 10%;
+                --muted: 240 4.8% 95.9%;
+                --muted-foreground: 240 3.8% 46.1%;
+                --accent: 240 4.8% 95.9%;
+                --accent-foreground: 240 5.9% 10%;
+                --destructive: 0 84.2% 60.2%;
+                --destructive-foreground: 0 0% 98%;
+                --border: 240 5.9% 90%;
+                --input: 240 5.9% 90%;
+                --ring: 240 5.9% 10%;
+                --radius: 0.5rem;
+                                }
+                                .dark {
+                                    --background: 240 10% 3.9%;
+                --foreground: 0 0% 98%;
+                --card: 240 10% 3.9%;
+                --card-foreground: 0 0% 98%;
+                --popover: 240 10% 3.9%;
+                --popover-foreground: 0 0% 98%;
+                --primary: 0 0% 98%;
+                --primary-foreground: 240 5.9% 10%;
+                --secondary: 240 3.7% 15.9%;
+                --secondary-foreground: 0 0% 98%;
+                --muted: 240 3.7% 15.9%;
+                --muted-foreground: 240 5% 64.9%;
+                --accent: 240 3.7% 15.9%;
+                --accent-foreground: 0 0% 98%;
+                --destructive: 0 62.8% 30.6%;
+                --destructive-foreground: 0 0% 98%;
+                --border: 240 3.7% 15.9%;
+                --input: 240 3.7% 15.9%;
+                --ring: 240 4.9% 83.9%;
+                                }
+                            }
+    </style>
+
+    <link rel="stylesheet" href="/static/CSS/admcss.css">
+</head>
+
+<body>
+
+
+    <div class="styurj">
+  
+        <img src="{{url_for('static',filename='IMAGE/ajouters.png')}}" width="15px"
+        style="filter: invert();" alt="">
+    </div>
+    <div class="afficjdd">
+        
+        <div class="skdkfjd">
+            <form method="post" action="/add_objet" enctype="multipart/form-data" class="demi2">
+                <div class="secpor">
+                    <!-- <div class="secpor1">
+                        <input type="checkbox" name="cheki1" id="" value="VetementFemme">
+                        <p style="font-size: 0.5rem;color: rgb(36, 36, 116);">Vetements femmes</p>
+                    </div>
+                    <div class="secpor2">
+                        <input type="checkbox" name="cheki2" id="">
+                        <p style="font-size: 0.5rem;color: rgb(36, 36, 116);" value="Chaussuresfemmes">Chaussures femmes</p>
+                    </div>
+                    <div class="secpor3">
+                        <input type="checkbox" name="cheki3" id="">
+                        <p style="font-size: 0.5rem;color: rgb(36, 36, 116);" value="Chaussureshommes">Chaussures hommes</p>
+                    </div>
+                    <div class="secpor4">
+                        <input type="checkbox" name="cheki4" id="">
+                        <p style="font-size: 0.5rem;color: rgb(36, 36, 116);" value="montre">Montres</p>
+                    </div> -->
+
+                    <select name="seldldss" id="seldldss">
+                        <option value="Vetementfemmes">Vetement femmes</option>
+                        <option value="Chaussures">Chaussures</option>
+                        <option value="montres">Montres</option>
+                    </select>
+                </div>
+                
+                <dl style="visibility: hidden;" >
+                    <p>
+                        <input  type="file" name="file" class="form-control" autocomplete="off" id="imagefile1" required>
+                    </p>
+                </dl>
+                <dl style="visibility: hidden;">
+                    <p>
+                        <input  type="file" name="file1" class="form-control" autocomplete="off"id="imagefile2" required>
+                    </p>
+                </dl>
+                <dl style="visibility: hidden;">
+                    <p>
+                        <input  type="file" name="file2" class="form-control" autocomplete="off" id="imagefile3" required>
+                    </p>
+                </dl>
+                <dl style="visibility: hidden;">
+                    <p>
+                        <input  type="file" name="file3" class="form-control" autocomplete="off" id="imagefile4" required>
+                    </p>
+                </dl>
+                
+                <p style="visibility: hidden;">
+                    <input required  style="padding: 1px 15px;background-color: rgb(0, 0, 0);color: white;border: none;border-radius: 5px;" type="submit" value="valider l'image choisir" class="btn btn-info" id="envoyer">
+                </p>
+                
+            </form>
+        </div>
+        <div class="skdkfjd2">
+            <div class="fauxtele" >
+             
+                <label for="imagefile1" >
+                    <div class="imagee1lo" >
+                        <img src="{{url_for('static', filename='IMAGE/downimage.png')}}" alt="">
+                        <p style="color: black;">Image Principale</p>
+                    </div>
+                    
+                </label>
+        
+                <label for="imagefile2" >
+                    <div class="imagee1lo">
+                        <img src="{{url_for('static', filename='IMAGE/downimage.png')}}" alt="">
+                     
+                    </div>
+                    
+                </label>
+                <label for="imagefile3" >
+                    <div class="imagee1lo">
+                        <img src="{{url_for('static', filename='IMAGE/downimage.png')}}" alt="">
+                        
+                    </div>
+                    
+                </label>
+                <label for="imagefile4" >
+                    <div class="imagee1lo">
+                        <img src="{{url_for('static', filename='IMAGE/downimage.png')}}" alt="" >
+                       
+                    </div>
+                    
+                </label>
+        
+            </div>
+        </div>
+        <div class="skdkfjd3">
+            <div class="submite" >
+                <label for="envoyer" id="submite1"><img style="filter: invert();" src="{{url_for('static', filename='IMAGE/telfg.png')}}" alt="" width="20px"> <h1 style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;">TELECHARGER MAINTENANT</h1></label>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    </div> 
+    <div class="dashordinaa">
+        <div class="menuddg211">
+            <div class="menuddg311">
+                <div class="losjfs">
+                    <img src="{{url_for('static',filename='IMAGE/hinglogo.png')}}" width="200px"
+                        style="filter: invert();" alt="">
+                </div>
+                <h1
+                    style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-bottom: 20px;">
+
+                    <h3 class="flex flex-col items-start justify-center m-2 ml-0 font-medium text-xl/tight text-dark">
+                        <span class="mr-3 pl-4 pb-3 font-semibold text-dark" style="color: white;">Paramètre</span>
+
+                    </h3>
+                </h1>
+
+
+                <a href="/administa" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/dashlo.png')}}" style="filter: invert();"
+                            width="20px" alt="">
+                        <p class="text-[.925rem]" style="font-family: sans-serif;color: white;">Dashboard </p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/commadeadmin" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/panier.png')}}" width="20px" alt="">
+                        <p class="text-[.925rem]" style="font-family: sans-serif;">Mes commandes</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/userasmin" class="etdjff11" >
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/pppp.png')}}" width="20px" alt="">
+                        <p class="text-[.925rem]" style="font-family: sans-serif">Utilisteurs enregistrés</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <!-- <a href="/montre" class="etdjff11">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/perefs.png')}}"  width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif">Mon préférés</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+                </a> -->
+                <!-- <a href="/montre" class="etdjff11">
+                    
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/hansb2.png')}}"  width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif">Montre H & F</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+                </a> -->
+
+
+                <h1
+                    style="font-size: 0.9rem;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;padding-bottom: 20px;">
+
+                    <h3 class="flex flex-col items-start justify-center m-2 ml-0 font-medium text-xl/tight text-dark">
+                        <span class="mr-3 pl-4 pb-3 font-semibold text-dark" style="color: white;">Categorie</span>
+
+                    </h3>
+                </h1>
+                <a href="/cahuseadmin" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/fdghjk.png')}}" width="20px" alt="">
+                        <p style="font-family: sans-serif" class="text-[.925rem]">Chaussure Homme & Femme</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/listederobe" class="etdjff11" style=" background-color: rgba(128, 128, 128, 0.14);">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/fertyjkl.png')}}" width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif" class="text-[.925rem]">Vetement Femme</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+                <a href="/montreadosn" class="etdjff11">
+
+                    <div style="width: 90%;display: flex;gap: 20px;">
+                        <img src="{{url_for('static', filename='IMAGE/monytrds.png')}}" width="20px" alt="">
+                        <p style="font-size: 0.8rem;font-family: sans-serif" class="text-[.925rem]">Montre H & F</p>
+                    </div>
+                    <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt="">
+                </a>
+
+
+                <div class="boases11">
+
+
+                    <a href="/deconnexion" class="etdjff11">
+
+                        <div style="width: 90%;display: flex;gap: 20px;">
+                            <img src="{{url_for('static', filename='IMAGE/admin.png')}}" width="20px" alt="">
+                            <p class="text-[.925rem]" style="font-family: sans-serif">Profil admin</p>
+                        </div>
+                        <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt=""> -->
+                    </a>
+                    <a href="/deconnexion" class="etdjff11">
+
+                        <div style="width: 90%;display: flex;gap: 20px;">
+                            <img src="{{url_for('static', filename='IMAGE/deconer.png')}}" width="20px" alt="">
+                            <p class="text-[.925rem]" style="font-family: sans-serif">Déconnexion</p>
+                        </div>
+                        <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}" width="15px" alt=""> -->
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashordinaa12">
+
+
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;" >
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/dashlo.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Dashboard</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/ajouters.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Ajouter un produit</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/commadeadmin" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/panier.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Mes commandes</p>
+            </div>
+            
+        </div>
+        <div class="pednnsj">
+            <a href="/userasmin" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/pppp.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Utilisteurs enregistrés</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/cahuseadmin" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/fdghjk.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Chaussure Homme & Femme</p>
+            </div>
+        </div>
+        <div class="pednnsj">
+            <a href="/listederobe" class="pednnsj12" style=" background-color: rgba(128, 128, 128, 0.14);">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/fertyjkl.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Vetement Femme</p>
+            </div>
+        </div>
+
+        <div class="pednnsj">
+            <a href="/montreadosn" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/monytrds.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Montre Homme & Femme</p>
+            </div>
+        </div>
+        <div class="pednnsj" style="position: absolute;bottom: 60px;">
+            <a href="/montreadosn" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/admin.png')}}" style="filter: invert();" width="25px"
+                        alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Beugre Blanchard Boni</p>
+            </div>
+        </div>
+        <div class="pednnsj" style="position: absolute;bottom: 0;">
+            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+
+                <div>
+                    <img src="{{url_for('static', filename='IMAGE/deconer.png')}}" style="filter: invert();"
+                        width="25px" alt="">
+                    <!-- <p style="font-size: 0.8rem;font-family: sans-serif;color: #ff4500;">Dashboard </p> -->
+                </div>
+                <!-- <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="25px" alt=""> -->
+
+            </a>
+            <div class="pednnsj123">
+                <p style="font-family: sans-serif;color: white;">Déconnexion</p>
+            </div>
+        </div>
+
+        <!-- <div class="boases11">
+                    
+
+            <a href="/deconnexion" class="etdjff11">
+                
+                <div style="width: 90%;display: flex;gap: 20px;">
+                    <img src="{{url_for('static', filename='IMAGE/admin.png')}}"  width="20px" alt="">
+                    <p style="font-size: 0.8rem;font-family: sans-serif">Profil admin</p>
+                </div>
+                <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+            </a>
+            <a href="/deconnexion" class="etdjff11">
+            
+                <div style="width: 90%;display: flex;gap: 20px;">
+                    <img src="{{url_for('static', filename='IMAGE/deconer.png')}}"  width="20px" alt="">
+                    <p style="font-size: 0.8rem;font-family: sans-serif">Déconnexion</p>
+                </div>
+                <img src="{{url_for('static', filename='IMAGE/inf.png')}}"  width="15px" alt="">
+            </a>
+           
+        </div> -->
+
+    </div>
+
+
+    <div class="elemsms">
+        <input type="text" name="" id="elemsmsinpo" placeholder="Faites une recherche">
+        <button type="submit" style="display: flex;align-items: center;justify-content: center;"><img
+                src="{{url_for('static', filename='IMAGE/recdgdg.png')}}" width="15px" alt=""></button>
+    </div>
+    <div class="statte">
+        <!-- <div class="statte0">
+            
+        </div> -->
+
+        <div class="statte1">
+            <div style="padding-left: 20px;padding-right: 20px;">
+                <!-- component -->
+                <!-- This is an example component -->
+                <div class="py-5">
+                    <main class="h-full overflow-y-auto">
+                        <div class="container  mx-auto grid">
+
+
+                            <!-- Cards -->
+                            <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+                                <!-- Card -->
+                                <div class="flex items-center p-4 bg-white rounded-lg  border-dashed bg-clip-border"
+                                    style="border:1px dashed gainsboro;">
+                                    <div
+                                        class="p-3 mr-4 text-warning bg-warning-light rounded-full dark:text-green-100 dark:bg-warning-light">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                            Sommes total de commande en cours
+                                        </p>
+                                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                                            {{compt}} FCFA
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- Card -->
+                                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+                                    style="border:1px dashed gainsboro;">
+                                    <div
+                                        class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                            Sommes total de commande validés
+                                        </p>
+                                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                                            {{compt1}} FCFA
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- Card -->
+                                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+                                    style="border:1px dashed gainsboro;">
+                                    <div
+                                        class="p-3 mr-4 text-danger bg-danger-light rounded-full dark:text-blue-100 dark:bg-danger-light">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                            Le nombre de commande annulées
+                                        </p>
+                                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                                            {{nombdre1}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- Card -->
+                                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+                                    style="border:1px dashed gainsboro;">
+
+                                    <div
+                                        class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                            Le nombre de commande sur le site
+                                        </p>
+                                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                                            {{nombdre}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </main>
+                </div>
+            </div>
+
+
+
+            <div class="corbes" style="border: none;padding: 0;">
+                <!-- component -->
+                <link rel="stylesheet"
+                    href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/riva-dashboard-tailwind/riva-dashboard.css">
+                <div class="flex flex-wrap -mx-3 mb-5">
+                    <div class="w-full max-w-full px-3 mb-6  mx-auto">
+                        <div
+                            class="relative flex-[1_auto] flex flex-col break-words min-w-0 bg-clip-border rounded-[.95rem] bg-white m-5">
+                            <div
+                                class="relative flex flex-col min-w-0 break-words border border-dashed bg-clip-border rounded-2xl border-stone-200 bg-light/30">
+                                <!-- card header -->
+                                <div class="px-9 pt-5 flex justify-between items-stretch flex-wrap min-h-[70px] pb-0 ">
+                                    <h3
+                                        class="flex flex-col items-start justify-center m-2 ml-0 font-medium text-xl/tight text-dark">
+                                        <span class="mr-3 font-semibold text-dark">Les vêtements femmes</span>
+                                        <span class="mt-1 font-medium text-secondary-dark text-lg/normal">La liste des
+                                            vêtements femmes</span>
+                                    </h3>
+
+                                </div>
+                                <!-- end card header -->
+                                <!-- card body  -->
+                                <div class="flex-auto block py-8 pt-6 px-9">
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full my-0 align-middle text-dark border-neutral-200">
+                                            <thead class="align-bottom">
+                                                <tr class="font-semibold text-[0.95rem] text-secondary-dark">
+                                                    <th class="pb-3 text-start min-w-[200px] ">IMAGE & NOM DE
+                                                        L'ARTICLE</th>
+
+                                                    <th class="pb-3 text-end min-w-[100px] ">COULEUR</th>
+                                                    <th class="pb-3 text-end min-w-[100px] ">QUANTITÉ</th>
+                                                    <th class="pb-3 text-end min-w-[100px] ">TAILLE</th>
+                                                   
+                                                    <th class="pb-3 text-end min-w-[150px]">PRIX PAR DEFAUT
+                                                    </th>
+                                                    <th class="pb-3 text-end min-w-[100px] ">- PRC %</th>
+                                                    <th class="pb-3 text-end min-w-[150px]">PRIX FINAL</th>
+
+                                                    <th class="pb-3 pr-12 text-end min-w-[130px]">STATUS
+                                                    </th>
+                                                    <th class="pb-3  text-end min-w-[100px]">ACTION
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                {% for i in VetementFemme %}
+
+
+                                                <tr class="border-b border-dashed last:border-b-0">
+
+                                                    <td class="p-3 pl-0">
+                                                        <div class="flex items-center">
+                                                            <div
+                                                                class="relative inline-block shrink-0 rounded-2xl me-3">
+                                                                <img src="{{url_for('static', filename='uploads/' + i.image)}}"
+                                                                    class="w-[50px] h-[50px] inline-block shrink-0 rounded-2xl"
+                                                                    alt="">
+                                                            </div>
+                                                            <div class="flex flex-col justify-start">
+
+                                                                <span
+                                                                    class="font-semibold text-light-inverse text-md/normal">{{i.nom}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+
+
+                                                    <td class="p-3 pr-0 text-end flex items-center justify-end gap-2">
+                                                        <!-- <span
+                                                            class="font-semibold text-light-inverse text-md/normal">RED</span> -->
+
+                                                        {% if i.noir == 'noir' %}
+                                                        <div class="colornoir">
+
+                                                        </div>
+                                                        {% endif %}
+
+                                                        {% if i.rouge == 'rouge' %}
+                                                        <div class="colorrouge">
+
+                                                        </div>
+
+                                                        {% endif %}
+                                                        {% if i.bleu == 'bleu' %}
+                                                        <div class="colorbleu">
+
+                                                        </div>
+                                                        {% endif %}
+                                                        {% if i.jaune == 'jaune' %}
+                                                        <div class="coloryello">
+
+                                                        </div>
+                                                        {% endif %}
+                                                        {% if i.vert == 'vert' %}
+                                                        <div class="colorgreen">
+
+                                                        </div>
+                                                        {% endif %}
+                                                        {% if i.orange == 'orange' %}
+                                                        <div class="colororange">
+
+                                                        </div>
+                                                        {% endif %}
+                                                        {% if i.rose == 'rose' %}
+                                                        <div class="colorrose">
+
+                                                        </div>
+                                                        {% endif %}
+                                                        {% if i.blanc == 'blanc' %}
+                                                        <div class="colorblanc">
+
+                                                        </div>
+                                                        {% endif %}
+                                                        {% if i.marron == 'marron' %}
+                                                        <div class="colormarron">
+
+                                                        </div>
+                                                        {% endif %}
+                                                        {% if i.violet == 'violet' %}
+                                                        <div class="colorviolet">
+
+                                                        </div>
+                                                        {% endif %}
+                                                        {% if i.gris == 'gris' %}
+                                                        <div class="colorgris">
+
+                                                        </div>
+                                                        {% endif %}
+                                                    </td>
+                                                    <td class="p-3 pr-0 text-end">
+                                                        <span
+                                                            class="text-center align-baseline inline-flex px-2 py-1 mr-auto items-center font-semibold text-base/none text-success bg-success-light rounded-lg">
+                                                            {{i.quantit}}</span>
+                                                    </td>
+                                                    <td class="p-3 pr-0 text-end flex items-center justify-end ">
+                                                      
+                      
+                                                        <span
+                                                            class="text-center align-baseline inline-flex px-2 py-1 items-center font-semibold text-base/none text-black-500 bg-yetext-black-500 rounded-lg">
+                                                            {{i.taille}}</span>
+                                                        
+                                                    </td>
+                                                    
+                                                    <td class="p-3 pr-0 text-end">
+                                                        <span
+                                                            class="text-center align-baseline inline-flex px-2 py-1 mr-auto items-center font-semibold text-base/none text-primary bg-primary-light rounded-lg">
+                                                            {{i.prix}} FCFA</span>
+                                                    </td>
+                                                    <td class="p-3 pr-0 text-end">
+                                                        {% if i.porce != "0" %}
+                                                        <span
+                                                            class="text-center align-baseline inline-flex px-2 py-1 mr-auto items-center font-semibold text-base/none text-success bg-success-light rounded-lg">
+                                                            {{i.porce}} %</span>
+                                                        {% endif %}
+                                                    </td>
+
+                                                    <td class="p-3 pr-0 text-end">
+                                                        <span
+                                                            class="text-center align-baseline inline-flex px-2 py-1 mr-auto items-center font-semibold text-base/none text-primary bg-primary-light rounded-lg">
+                                                            {{i.porceprix}} FCFA</span>
+                                                    </td>
+
+
+
+                                                    <td class="p-3 pr-8 text-end">
+                                                        {% if i.quantit == "0" %}
+                                                        <span
+                                                            class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-danger bg-danger-light rounded-lg">
+                                                            FINI 
+                                                        </span>
+                                                        {% endif %}
+                                                        {% if i.quantit != "0" %}
+                                                        <span
+                                                            class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-green-500 bg-green-100 rounded-lg">
+                                                            DISPONIBLE 
+                                                        </span>
+
+                                                        {% endif %}
+                                                    </td>
+
+
+
+                                                    <td class="p-3 pr-0 text-end flex items-center  gap-2">
+                                                        <form action="/completplus/{{i.id}}" method="post"
+                                                        class="flex items-center justify-start rounded-lg">
+                                                        
+                                                            <input type="text" name="taille" 
+                                                                placeholder="taille" value="{{i.taille}}"
+                                                                style="display: none;" >
+                                                            <input type="text" name="redirhd1" 
+                                                                placeholder="numero" value="{{i.quantit}}"
+                                                                style="display: none;">
+                                                            <input type="text" name="catego" 
+                                                                placeholder="numero" value="VetementFemme"
+                                                                style="display: none;">
+                                                            <input type="text" name="losjjs" 
+                                                                placeholder="numero" value="listederobe"
+                                                                style="display: none;">
+                                                            <button type="submit"  class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-yellow-500 bg-warning-light rounded-lg">
+                                                                <ion-icon name="add-circle-outline"></ion-icon>
+                                                            </button>
+                                                        </form>
+                                                        <form action="/fairemoins/{{i.id}}" method="post"
+                                                        class="flex items-center justify-start rounded-lg">
+                                                        
+                                                            <input type="text" name="taillem" 
+                                                                placeholder="taille" value="{{i.taille}}"
+                                                                style="display: none;" >
+                                                            <input type="text" name="redirhd1" 
+                                                            placeholder="numero" value="{{i.quantit}}"
+                                                            style="display: none;">
+                                                            <input type="text" name="categom" 
+                                                                placeholder="numero" value="VetementFemme"
+                                                                style="display: none;">
+                                                            <input type="text" name="losjjsm" 
+                                                                placeholder="numero" value="listederobe"
+                                                                style="display: none;">
+                                                            <button type="submit"  class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-primary bg-primary-light rounded-lg">
+                                                                <ion-icon name="remove-circle-outline"></ion-icon>
+                                                            </button>
+                                                        </form>
+                                                        <form action="/mofiedd/{{i.id}}" method="post"
+                                                        class="flex items-center justify-start rounded-lg">
+                                                            
+                                                            <input type="text" name="categorie" 
+                                                                placeholder="numero" value="VetementFemme"
+                                                                style="display: none;">
+                                                            <button type="submit" >
+                                                                <span
+                                                            class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-green-500 bg-green-100 rounded-lg">
+                                                            <ion-icon name="create-outline"></ion-icon>
+                                                            </span>
+                                                            </button>
+
+                                                             
+                                                        </form>
+                                                        <form action="/Suppesz/{{i.id}}" method="post"
+                                                        class="flex items-center justify-start rounded-lg">
+                                                        
+                                                            
+                                                            <input type="text" name="redirhd1" 
+                                                                placeholder="numero" value="listederobe"
+                                                                style="display: none;">
+                                                            
+                                                            <button type="submit"  class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-danger bg-danger-light rounded-lg">
+                                                                <i class="material-icons-round text-base">delete_outline</i>
+                                                            </button>
+                                                        </form>
+                                                        
+                                                        
+
+                                                    </td>
+                                                </tr>
+                                                {%endfor%}
+
+
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="/static/CSS/addmin.js"></script>
+</body>
+
+</html>
