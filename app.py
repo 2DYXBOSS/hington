@@ -2047,8 +2047,9 @@ def finishcommand():
             with app.open_resource("static/IMAGE/awp.png") as img:
                     msg.attach("awp.png", "image/jpeg", img.read(), headers={'Content-ID': f'<whats>'})
             for i in pmse :
-                with app.open_resource(f"static/uploads/{i["image"]}") as img:
-                    msg.attach(f"{i["image"]}", "image/jpeg", img.read(), headers={'Content-ID': f'<{i["image"]}>'})
+                lesfg = i["image"]
+                with app.open_resource(f"static/uploads/{lesfg}") as img:
+                    msg.attach(f"{lesfg}", "image/jpeg", img.read(), headers={'Content-ID': f'<{lesfg}>'})
             # Rendre le template HTML
             msg.html = render_template("designmail.html",lenhsfd=lenhsfd,pmse=pmse,prenom=prenom,commen=commen,nom=nom,datez=datez,livraison=lieulivraison,emballage=data,quantitezr=quantitezr,total=total)
             
