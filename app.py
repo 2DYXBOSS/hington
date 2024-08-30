@@ -2208,7 +2208,7 @@ def ssm():
         if cpo == 0 :
             xs = "xs"
             
-            pani = Panieruser(image=image,tailed =xs,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=xsnum,xs=xs,xsn=xsnum,s="",sn=snum,l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+            pani = Panieruser(image=image,tailed =xs,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=xsnum,xs=xs,xsn=xsnum,s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
             
             db.session.add(pani)
             db.session.commit()
@@ -2647,10 +2647,10 @@ def passsm():
             if int(i.produite) == int(noumeme) and int(i.identifiant)==int(useru.id):
                 print("les articles ",i.produite,i.identifiant)
                 dhher = Panieruser.query.get(i.id)
-
-
-                dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                db.session.commit()
+                zhher = Ajouter.query.get(int(i.produite))
+                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.quantit) :
+                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                    db.session.commit()
                 return redirect("/monpanier")
         return redirect("/monpanier")
 
@@ -2667,9 +2667,10 @@ def passsm():
                 
                 dhher = Panieruser.query.get(i.id)
 
-
-                dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                db.session.commit()
+                zhher = Ajouter.query.get(int(i.produite))
+                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.xslet) :
+                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                    db.session.commit()
 
         
     if int(xsnum) == 0 :
@@ -2688,8 +2689,10 @@ def passsm():
                 print("les articles s",i.produite,i.identifiant)
                 
                 dhher = Panieruser.query.get(i.id)
-                dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                db.session.commit()
+                zhher = Ajouter.query.get(int(i.produite))
+                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.slet) :
+                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                    db.session.commit()
 
     if int(snum) == 0 :
         s = ""
@@ -2706,9 +2709,10 @@ def passsm():
                 
                 dhher = Panieruser.query.get(i.id)
 
-
-                dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                db.session.commit()
+                zhher = Ajouter.query.get(int(i.produite))
+                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.mlet) :
+                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                    db.session.commit()
 
 
     if int(mnum) == 0 :
@@ -2726,9 +2730,10 @@ def passsm():
                 
                 dhher = Panieruser.query.get(i.id)
 
-
-                dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                db.session.commit()
+                zhher = Ajouter.query.get(int(i.produite))
+                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.llet) :
+                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                    db.session.commit()
     if int(lnum) == 0 :
         l = ""
         lnum = ""
@@ -2744,9 +2749,10 @@ def passsm():
                 
                 dhher = Panieruser.query.get(i.id)
 
-
-                dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                db.session.commit()
+                zhher = Ajouter.query.get(int(i.produite))
+                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.xllet) :
+                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                    db.session.commit()
     if int(xlnum) == 0 :
         xl = ""
         xlnum = ""
@@ -2762,9 +2768,10 @@ def passsm():
                 
                 dhher = Panieruser.query.get(i.id)
 
-
-                dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                db.session.commit()
+                zhher = Ajouter.query.get(int(i.produite))
+                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.xxllet) :
+                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                    db.session.commit()
     if int(xxlnum) == 0 :
         xxl = ""
         xxlnum = ""
@@ -2780,9 +2787,10 @@ def passsm():
                 
                 dhher = Panieruser.query.get(i.id)
 
-
-                dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                db.session.commit()
+                zhher = Ajouter.query.get(int(i.produite))
+                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwitelet) :
+                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                    db.session.commit()
     if int(tranwitenum) == 0 :
         tranwite = ""
         tranwitenum = ""
@@ -2799,9 +2807,10 @@ def passsm():
                 
                 dhher = Panieruser.query.get(i.id)
 
-
-                dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                db.session.commit()
+                zhher = Ajouter.query.get(int(i.produite))
+                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranneuflet) :
+                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                    db.session.commit()
     if int(tranneufnum) == 0 :
         tranneuf = ""
         tranneufnum = ""
@@ -2818,8 +2827,10 @@ def passsm():
                 dhher = Panieruser.query.get(i.id)
 
 
-                dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                db.session.commit()
+                zhher = Ajouter.query.get(int(i.produite))
+                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.karentelet) :
+                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                    db.session.commit()
     if int(karentenum) == 0 :
         karente = ""
         karentenum = ""
@@ -2836,8 +2847,10 @@ def passsm():
                 dhher = Panieruser.query.get(i.id)
 
 
-                dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                db.session.commit()
+                zhher = Ajouter.query.get(int(i.produite))
+                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwiteunlet) :
+                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                    db.session.commit()
     if int(tranwiteunnum) == 0 :
         tranwiteun = ""
         tranwiteunnum = ""
@@ -2853,9 +2866,10 @@ def passsm():
                 
                 dhher = Panieruser.query.get(i.id)
 
-
-                dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                db.session.commit()
+                zhher = Ajouter.query.get(int(i.produite))
+                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwitedeuxlet) :
+                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                    db.session.commit()
     if int(tranwitedeuxnum) == 0 :
         tranwitedeux = ""
         tranwitedeuxnum = ""
@@ -2871,9 +2885,11 @@ def passsm():
                 
                 dhher = Panieruser.query.get(i.id)
 
-
-                dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                db.session.commit()
+                
+                zhher = Ajouter.query.get(int(i.produite))
+                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwitroislet) :
+                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                    db.session.commit()
     if int(tranwitroisnum) == 0 :
         tranwitrois = ""
         tranwitroisnum = ""
@@ -2890,8 +2906,10 @@ def passsm():
                 dhher = Panieruser.query.get(i.id)
 
 
-                dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                db.session.commit()
+                zhher = Ajouter.query.get(int(i.produite))
+                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwitekatelet) :
+                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                    db.session.commit()
     if int(tranwitekatenum) == 0 :
         tranwitekate = ""
         tranwitekatenum = ""
@@ -4056,9 +4074,9 @@ def sprome(routeure) :
         return redirect(f"/pre/{routeure}")
     
     
-@app.route('/dedyiez/<routeure>',methods = ["GET","POST"])
-def dedyiez(routeure) :
-   
+@app.route('/dedyiez',methods = ["GET","POST"])
+def dedyiez() :
+    routeure = request.form.get("routeure")
     return redirect(f"{routeure}")
     
     

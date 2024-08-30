@@ -151,7 +151,52 @@ if (boutonshd){
         // let quantite = document.querySelector("#quantiteplos").value
         // let categorie = document.querySelector("#categorie").value
         // let data = {"image":image,"tailed" : "","produite":noumeme,"prixtottal":prix,"quantiteto":quantite,"xs":"","xsn":"","s":"","sn":"","l":"","ln":"","m":"","mn":"","xl":"","xln":"","xxl":"","xxln":"","tranwite":"","tranwiten":"","tranneuf":"","tranneufn":"","karente":"","karenten":"","tranwiteun":"","tranwiteunn":"","tranwitedeux":"","tranwitedeuxn":"","tranwitrois":"","tranwitroisn":"","tranwitekate":"","tranwitekaten":""}
+         
+       
+       
         
+       
+        
+        
+       
+        tranwitekatelet = document.querySelector("tranwitekatelet")
+        if (tranwitekatelet) {
+            tranwitekatelet = document.querySelector("tranwitekatelet").value
+        }
+        tranwitroislet = document.querySelector("tranwitroislet")
+        if (tranwitroislet) {
+            tranwitroislet = document.querySelector("tranwitroislet").value
+        }
+        tranwitedeuxlet = document.querySelector("tranwitedeuxlet")
+        if (tranwitedeuxlet) {
+            tranwitedeuxlet = document.querySelector("tranwitedeuxlet").value
+        }
+        tranwiteunlet = document.querySelector("tranwiteunlet")
+        if (tranwiteunlet) {
+            tranwiteunlet = document.querySelector("tranwiteunlet").value
+        }
+        karentelet = document.querySelector("karentelet")
+        if (karentelet) {
+            karentelet = document.querySelector("karentelet").value
+        }
+        tranneuflet = document.querySelector("tranneuflet")
+        if (tranneuflet) {
+            tranneuflet = document.querySelector("tranneuflet").value
+        }
+
+
+
+
+
+
+
+
+        
+        
+       
+        
+        
+       
         
         let nom = document.querySelector(".nom").value
         let desccopte = document.querySelector(".desccopte").value
@@ -204,7 +249,18 @@ if (boutonshd){
         }
 
         if (categorie=="VetementFemme"){
-
+            let xslet = document.querySelector("xslet")
+           
+            
+            
+            let mlet = document.querySelector("mlet")
+            
+            let llet = document.querySelector("llet")
+           
+            let xllet = document.querySelector("xllet")
+            
+            let xxllet = document.querySelector("xxllet")
+          
             let snume = document.querySelector("#snumq");
             let xsnumq = document.querySelector("#xsnumq")
             let xlnumq = document.querySelector("#xlnumq")
@@ -213,18 +269,32 @@ if (boutonshd){
             let mnumq = document.querySelector("#mnumq")
 
             if (snume)  {
+                console.log("tesssssssss");
                 let cometrh = 0
                 tabUsere.forEach((user) =>{
+                    console.log("tesssssssss");
                     let taillepoe = document.querySelector(".taillepoes").value
                     let i = user["data"]
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
-                        
-                        i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                        
-                        localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                        console.log("les articles", i);
-                        window.location.href = "/monpanier";
+                        let slet = document.querySelector("slet")
+                        if (slet){
+                            console.log("tesssssssss");
+                            
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(document.querySelector("slet").value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(slet.value));
+                            
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                
+                                localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                                console.log("les articles", i);
+                            }
+
+
+
+                            
+                        }
+                        // window.location.href = "/monpanier";
                         
                     }
                 })
@@ -263,12 +333,13 @@ if (boutonshd){
                     let i = user["data"]
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
-                        
-                        i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                        
-                        localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                        console.log("les articles", i);
-                        window.location.href = "/monpanier";
+                        if (xslet && parseInt(i.quantiteto || 0) + parseInt(quantite) <= parseInt(xslet.value)){
+                            i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                            
+                            localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                            console.log("les articles", i);
+                        }
+                        window.location.href = "/monpanierls";
                         
                     }
                 })
@@ -304,11 +375,13 @@ if (boutonshd){
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
                         
-                        i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                        
-                        localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                        console.log("les articles", i);
-                        window.location.href = "/monpanier";
+                        if (xllet && parseInt(i.quantiteto || 0) + parseInt(quantite) <= parseInt(xllet.value)){
+                            i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                            
+                            localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                            console.log("les articles", i);
+                        }
+                        window.location.href = "/monpanierls";
                         
                     }
                 })
@@ -344,11 +417,13 @@ if (boutonshd){
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
                         
-                        i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                        
-                        localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                        console.log("les articles", i);
-                        window.location.href = "/monpanier";
+                        if (xxllet && parseInt(i.quantiteto || 0) + parseInt(quantite) <= parseInt(xxllet.value)){
+                            i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                            
+                            localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                            console.log("les articles", i);
+                        }
+                        window.location.href = "/monpanierls";
                         
                     }
                 })
@@ -384,11 +459,13 @@ if (boutonshd){
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
                         
-                        i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                        
-                        localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                        console.log("les articles", i);
-                        window.location.href = "/monpanier";
+                        if (llet && parseInt(i.quantiteto || 0) + parseInt(quantite) <= parseInt(llet.value)){
+                            i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                            
+                            localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                            console.log("les articles", i);
+                        }
+                        window.location.href = "/monpanierls";
                         
                     }
                 })
@@ -425,11 +502,13 @@ if (boutonshd){
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
                         
-                        i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                        
-                        localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                        console.log("les articles", i);
-                        window.location.href = "/monpanier";
+                        if (mlet && parseInt(i.quantiteto || 0) + parseInt(quantite) <= parseInt(mlet.value)){
+                            i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                            
+                            localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                            console.log("les articles", i);
+                        }
+                        window.location.href = "/monpanierls";
                         
                     }
                 })
@@ -457,7 +536,7 @@ if (boutonshd){
                 }
                 }
             }
-            window.location.href = "http://127.0.0.1:5005/monpanierls"
+            // window.location.href = "http://127.0.0.1:5005/monpanierls"
             // console.log(xsnume);
         }
         if (categorie=="chaussure"){
