@@ -1371,6 +1371,27 @@ def vetefemlog():
     return render_template("habifemmelog.html", data = data)
    
 
+@app.route('/mesrechercheszq',methods = ["POST"])
+def mesrechercheszq():
+    
+    if 'utilisateur_id' in session:
+        useru = Profil.query.get(session['utilisateur_id'])
+    else :
+        useru = SMTP_USERNAME
+        return redirect("/pre/monpanier")
+    
+ 
+    mail = Mail(app)
+    msg = Message("Préoccupation ou une suggestion depuis la plateforme",
+                sender=useru.last_name,
+                recipients=[SMTP_USERNAME])
+    recher = request.form.get('recher', '').lower()
+    # Envoyer l'e-mail
+    msg.body = recher
+    mail.send(msg)
+    
+
+    return redirect('/')
 @app.route('/mesrecherches',methods = ["POST"])
 def rechepo():
     recherches = {
@@ -5270,13 +5291,14 @@ def redsete():
                     mskd = Ajouter.query.get(int(b['produite']))
                     
                     mskde = int(mskd.quantit)
+                    print("dfghjk", mskde ,">=" ,int(b['quantiteto']))
                     if mskde >= int(b['quantiteto']) :
                         pani = Panieruser(
                                 image=b['image'],
                                 tailed="",
                                 identifiant=useru.id,
                                 produite= int(b['produite']),
-                                prixtottal= int(b['prixtottal']),
+                                prixtottal= int(b['porceprix']),
                                 quantiteto= int(b['quantiteto']),
                                 xs=b['xs'],
                                 xsn=b['xsn'],
@@ -5324,7 +5346,7 @@ def redsete():
                         tailed="",
                         identifiant=useru.id,
                         produite= int(b['produite']),
-                        prixtottal= int(b['prixtottal']),
+                        prixtottal= int(b['porceprix']),
                         quantiteto= int(b['quantiteto']),
                         xs=b['xs'],
                         xsn=b['xsn'],
@@ -5432,7 +5454,7 @@ def redsete():
                             tailed=b['tailed'],
                             identifiant=useru.id,
                             produite=b['produite'],
-                            prixtottal=b['prixtottal'],
+                            prixtottal=b['porceprix'],
                             quantiteto=b['quantiteto'],
                             xs=b['xs'],
                             xsn=b['xsn'],
@@ -5479,7 +5501,7 @@ def redsete():
                             tailed=b['tailed'],
                             identifiant=useru.id,
                             produite=b['produite'],
-                            prixtottal=b['prixtottal'],
+                            prixtottal=b['porceprix'],
                             quantiteto=b['quantiteto'],
                             xs=b['xs'],
                             xsn=b['xsn'],
@@ -5542,17 +5564,24 @@ def redsete():
 
                     if b['categorie'] == "Montre" :
 
-                        print("fghger",int(p.produite),"==",int(b['produite']))
+                        print("Montre",int(p.produite),"==",int(b['produite']))
                         print("hger",int(p.identifiant),"==",int(int(useru.id)))
 
-                        crte +=1
-                        dhher = Panieruser.query.get(int(p.id))
+                       
+                        
 
-                    
-                        if (int(dhher.quantiteto) + int(b['quantiteto']) )<= int(p.dispono):
-                            dhher.quantiteto = int(dhher.quantiteto) + int(b['quantiteto'])
-                            db.session.commit()
-                        continue
+                        if int(p.identifiant) == int(useru.id) and int(p.produite) == int(b['produite']):
+                            print("cvbn,;:")
+                            crte +=1
+                            mpsxd = int(p.id)
+                            dhher = Panieruser.query.get(mpsxd)
+                            if (int(dhher.quantiteto) + int(b['quantiteto']) ) <= int(dhher.dispono):
+                                print("mpskjdkd")
+                                
+                                dhher.quantiteto = int(dhher.quantiteto) + int(b['quantiteto'])
+                                db.session.commit()
+
+                            
 
 
                 if crte == 0 :

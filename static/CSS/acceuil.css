@@ -1919,7 +1919,7 @@ body {
         /* background-color: white; */
         width: 50px;
         display: flex;
-        justify-content: start;
+        justify-content: center;
         align-items: center;
     }
     .imahhd {
@@ -2873,7 +2873,7 @@ body {
         /* background-color: white; */
         width: 50px;
         display: flex;
-        justify-content: start;
+        justify-content: center;
         align-items: center;
     }
     .imahhd {

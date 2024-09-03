@@ -1140,7 +1140,7 @@ a{
         /* background-color: white; */
         width: 50px;
         display: flex;
-        justify-content: start;
+        justify-content: center;
         align-items: center;
     }
     .imahhd {
@@ -1921,7 +1921,7 @@ a{
         /* background-color: white; */
         width: 50px;
         display: flex;
-        justify-content: start;
+        justify-content: center;
         align-items: center;
     }
     .imahhd {

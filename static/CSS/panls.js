@@ -475,7 +475,7 @@ function zqszds(sereghfjfzd) {
 
 function connecter() {
     let montecsh = document.querySelector('#montecsh');
-    montecsh.innerHTML = "Access restreint connectez-vous , merci ..."
+    montecsh.innerHTML = "Accès restreint connectez-vous , merci ..."
     montecsh.style.padding = "5px"
     montecsh.style.paddingLeft = "15px"
 
@@ -483,10 +483,10 @@ function connecter() {
     var currentDate = new Date();
 
     // Récupérer les secondes actuelles et ajouter 2
-    var seconds = currentDate.getSeconds() + 2;
+    var seconds = currentDate.getSeconds() + 1;
 
     // Calculer le délai en millisecondes jusqu'à l'exécution (2 secondes)
-    var delay = 2000;
+    var delay = 1000;
 
     // Définir l'action à exécuter après le délai
     setTimeout(function() {
