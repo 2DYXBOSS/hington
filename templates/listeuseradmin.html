@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -115,12 +113,11 @@
 
 
     <div class="styurj">
-  
-        <img src="{{url_for('static',filename='IMAGE/ajouters.png')}}" width="15px"
-        style="filter: invert();" alt="">
+
+        <img src="{{url_for('static',filename='IMAGE/ajouters.png')}}" width="15px" style="filter: invert();" alt="">
     </div>
     <div class="afficjdd">
-        
+
         <div class="skdkfjd">
             <form method="post" action="/add_objet" enctype="multipart/form-data" class="demi2">
                 <div class="secpor">
@@ -147,72 +144,82 @@
                         <option value="montres">Montres</option>
                     </select>
                 </div>
-                
-                <dl style="visibility: hidden;" >
+
+                <dl style="visibility: hidden;">
                     <p>
-                        <input  type="file" name="file" class="form-control" autocomplete="off" id="imagefile1" required>
+                        <input type="file" name="file" class="form-control" autocomplete="off" id="imagefile1" required>
                     </p>
                 </dl>
                 <dl style="visibility: hidden;">
                     <p>
-                        <input  type="file" name="file1" class="form-control" autocomplete="off"id="imagefile2" required>
+                        <input type="file" name="file1" class="form-control" autocomplete="off" id="imagefile2"
+                            required>
                     </p>
                 </dl>
                 <dl style="visibility: hidden;">
                     <p>
-                        <input  type="file" name="file2" class="form-control" autocomplete="off" id="imagefile3" required>
+                        <input type="file" name="file2" class="form-control" autocomplete="off" id="imagefile3"
+                            required>
                     </p>
                 </dl>
                 <dl style="visibility: hidden;">
                     <p>
-                        <input  type="file" name="file3" class="form-control" autocomplete="off" id="imagefile4" required>
+                        <input type="file" name="file3" class="form-control" autocomplete="off" id="imagefile4"
+                            required>
                     </p>
                 </dl>
-                
+
                 <p style="visibility: hidden;">
-                    <input required  style="padding: 1px 15px;background-color: rgb(0, 0, 0);color: white;border: none;border-radius: 5px;" type="submit" value="valider l'image choisir" class="btn btn-info" id="envoyer">
+                    <input required
+                        style="padding: 1px 15px;background-color: rgb(0, 0, 0);color: white;border: none;border-radius: 5px;"
+                        type="submit" value="valider l'image choisir" class="btn btn-info" id="envoyer">
                 </p>
-                
+
             </form>
         </div>
         <div class="skdkfjd2">
-            <div class="fauxtele" >
-             
-                <label for="imagefile1" >
-                    <div class="imagee1lo" >
+            <div class="fauxtele">
+
+                <label for="imagefile1">
+                    <div class="imagee1lo">
                         <img src="{{url_for('static', filename='IMAGE/downimage.png')}}" alt="">
                         <p style="color: black;">Image Principale</p>
                     </div>
-                    
+
                 </label>
-        
-                <label for="imagefile2" >
+
+                <label for="imagefile2">
                     <div class="imagee1lo">
                         <img src="{{url_for('static', filename='IMAGE/downimage.png')}}" alt="">
-                     
+
                     </div>
-                    
+
                 </label>
-                <label for="imagefile3" >
+                <label for="imagefile3">
                     <div class="imagee1lo">
                         <img src="{{url_for('static', filename='IMAGE/downimage.png')}}" alt="">
-                        
+
                     </div>
-                    
+
                 </label>
-                <label for="imagefile4" >
+                <label for="imagefile4">
                     <div class="imagee1lo">
-                        <img src="{{url_for('static', filename='IMAGE/downimage.png')}}" alt="" >
-                       
+                        <img src="{{url_for('static', filename='IMAGE/downimage.png')}}" alt="">
+
                     </div>
-                    
+
                 </label>
-        
+
             </div>
         </div>
         <div class="skdkfjd3">
-            <div class="submite" >
-                <label for="envoyer" id="submite1"><img style="filter: invert();" src="{{url_for('static', filename='IMAGE/telfg.png')}}" alt="" width="20px"> <h1 style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;">TELECHARGER MAINTENANT</h1></label>
+            <div class="submite">
+                <label for="envoyer" id="submite1"><img style="filter: invert();"
+                        src="{{url_for('static', filename='IMAGE/telfg.png')}}" alt="" width="20px">
+                    <h1
+                        style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;">
+                        TELECHARGER MAINTENANT</h1>
+                </label>
             </div>
         </div>
 
@@ -223,7 +230,7 @@
 
 
 
-    </div> 
+    </div>
     <div class="dashordinaa">
         <div class="menuddg211">
             <div class="menuddg311">
@@ -241,7 +248,7 @@
                 </h1>
 
 
-                <a href="/administa" class="etdjff11" >
+                <a href="/administa" class="etdjff11">
 
                     <div style="width: 90%;display: flex;gap: 20px;">
                         <img src="{{url_for('static', filename='IMAGE/dashlo.png')}}" style="filter: invert();"
@@ -321,7 +328,7 @@
                 <div class="boases11">
 
 
-                    <a href="/deconnexion" class="etdjff11">
+                    <a href="/administa" class="etdjff11">
 
                         <div style="width: 90%;display: flex;gap: 20px;">
                             <img src="{{url_for('static', filename='IMAGE/admin.png')}}" width="20px" alt="">
@@ -390,7 +397,7 @@
             <div class="pednnsj123">
                 <p style="font-size: 0.9rem;font-family: sans-serif;color: white;">Mes commandes</p>
             </div>
-            
+
         </div>
         <div class="pednnsj">
             <a href="/userasmin" class="pednnsj12" style="background-color: rgba(128, 128, 128, 0.14);">
@@ -469,7 +476,7 @@
             </div>
         </div>
         <div class="pednnsj" style="position: absolute;bottom: 0;">
-            <a href="/administa" class="pednnsj12" style=" background-color: transparent;">
+            <a href="/deconnexion" class="pednnsj12" style=" background-color: transparent;">
 
                 <div>
                     <img src="{{url_for('static', filename='IMAGE/deconer.png')}}" style="filter: invert();"
@@ -511,8 +518,8 @@
 
     <div class="elemsms">
         <input type="text" name="" id="elemsmsinpo" placeholder="Faites une recherche">
-        <button type="submit" style="display: flex;align-items: center;justify-content: center;"><img src="{{url_for('static', filename='IMAGE/recdgdg.png')}}" width="15px"
-                alt=""></button>
+        <button type="submit" style="display: flex;align-items: center;justify-content: center;"><img
+                src="{{url_for('static', filename='IMAGE/recdgdg.png')}}" width="15px" alt=""></button>
     </div>
     <div class="statte">
         <!-- <div class="statte0">
@@ -531,7 +538,8 @@
                             <!-- Cards -->
                             <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
                                 <!-- Card -->
-                                <div class="flex items-center p-4 bg-white rounded-lg  border-dashed bg-clip-border" style="border:1px dashed gainsboro;">
+                                <div class="flex items-center p-4 bg-white rounded-lg  border-dashed bg-clip-border"
+                                    style="border:1px dashed gainsboro;">
                                     <div
                                         class="p-3 mr-4 text-warning bg-warning-light rounded-full dark:text-green-100 dark:bg-warning-light">
                                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -550,7 +558,8 @@
                                     </div>
                                 </div>
                                 <!-- Card -->
-                                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800" style="border:1px dashed gainsboro;">
+                                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+                                    style="border:1px dashed gainsboro;">
                                     <div
                                         class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
                                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -569,7 +578,8 @@
                                     </div>
                                 </div>
                                 <!-- Card -->
-                                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800" style="border:1px dashed gainsboro;">
+                                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+                                    style="border:1px dashed gainsboro;">
                                     <div
                                         class="p-3 mr-4 text-danger bg-danger-light rounded-full dark:text-blue-100 dark:bg-danger-light">
                                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -580,15 +590,16 @@
                                     </div>
                                     <div>
                                         <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                            Le nombre de commande annulées 
+                                            Le nombre de commande annulées
                                         </p>
                                         <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                            {{nombdre1}} 
+                                            {{nombdre1}}
                                         </p>
                                     </div>
                                 </div>
                                 <!-- Card -->
-                                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800" style="border:1px dashed gainsboro;">
+                                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+                                    style="border:1px dashed gainsboro;">
 
                                     <div
                                         class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
@@ -613,8 +624,8 @@
                     </main>
                 </div>
             </div>
-            
-        
+
+
 
             <div class="corbes" style="border: none;padding: 0;">
                 <!-- component -->
@@ -635,7 +646,7 @@
                                         <span class="mt-1 font-medium text-secondary-dark text-lg/normal">Listes des
                                             personnes inscrites sur la plateforme</span>
                                     </h3>
-                                   
+
                                 </div>
                                 <!-- end card header -->
                                 <!-- card body  -->
@@ -669,16 +680,17 @@
                                                 </td> -->
                                                 {% for i in pofil %}
 
-
+                                                {% if i.satuq != 1 %}
                                                 <tr class="border-b border-dashed last:border-b-0">
                                                     <!-- NOM & PRENOM -->
                                                     <td class="p-3 pl-0">
                                                         <div class="flex items-center">
 
                                                             <div class="flex flex-col justify-start">
-                                                                
-                                                                    <span
-                                                                    class="font-semibold text-light-inverse text-md/normal">{{i.first_name}} {{i.prenom}}
+
+                                                                <span
+                                                                    class="font-semibold text-light-inverse text-md/normal">{{i.first_name}}
+                                                                    {{i.prenom}}
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -697,7 +709,8 @@
                                                     <!-- NUMERO -->
                                                     <td class="pr-0 pl-4 text-end">
                                                         <span
-                                                            class="font-semibold text-light-inverse text-md/normal">+225 {{i.numero}}</span>
+                                                            class="font-semibold text-light-inverse text-md/normal">+225
+                                                            {{i.numero}}</span>
                                                     </td>
                                                     <!-- COMMANDES -->
                                                     <td class="p-3 pr-0 text-end">
@@ -714,9 +727,17 @@
 
 
                                                     <td class="p-3 pr-8 text-end">
+
+                                                        {% if i.satuq == 0 %}
                                                         <span
                                                             class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-primary bg-primary-light rounded-lg">
                                                             Active </span>
+                                                        {% endif %}
+                                                        {% if i.satuq == 2 %}
+                                                        <span
+                                                            class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-danger bg-danger-light rounded-lg">
+                                                            Inactif </span>
+                                                        {% endif %}
                                                     </td>
                                                     <!-- INSCRIPTION -->
                                                     <td class="pr-0 text-start">
@@ -724,7 +745,7 @@
                                                             class="font-semibold text-light-inverse text-md/normal">2023-08-23</span>
                                                     </td>
                                                     <!-- ACTION -->
-                                                    <td class="p-3 pr-0 text-end">
+                                                    <td class="p-3 pr-0 flex  text-end">
                                                         <!-- <a href="#" class="text-gray-400 hover:text-gray-100  mr-2">
                                                             <i class="material-icons-outlined text-base">visibility</i>
                                                         </a>
@@ -739,21 +760,64 @@
 
 
 
-                                                        <form action="/Suppesss/{{i.id}}" method="post"
-                                                        >
-                                                        
-                                                        <input type="text" name="redirhd1" 
-                                                            placeholder="numero" value="userasmin"
-                                                            style="visibility: hidden;height: 0;width: 0;">
-                                                        <button type="submit" class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-danger bg-danger-light rounded-lg">
-                                                            <i class="material-icons-round text-base">delete_outline</i>
-                                                        </button>
-                                                    </form>
+                                                        <form action="/attendre/{{i.id}}" method="post">
+
+                                                            <input type="text" name="redirhd1" placeholder="numero"
+                                                                value="userasmin"
+                                                                style="visibility: hidden;height: 0;width: 0;">
+                                                                {% if i.satuq == 2 %}
+                                                            <button type="submit"
+                                                                class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none  text-success bg-success-light rounded-lg">
+                                                                
+
+                                                                
+
+                                                                
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 24 24" stroke-width="1.5"
+                                                                    stroke="currentColor" class="size-6">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                                </svg>
+                                                               
+                                                                
+                                                                
+                                                                
+                                                            </button>
+                                                            {% endif %}
+                                                            {% if i.satuq == 0 %}
+                                                            <button type="submit"
+                                                                class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-danger bg-danger-light rounded-lg">
+                                                                
+
+                                                                
+
+                                                                
+                                                               
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
+                                                                  </svg>
+                                                               
+                                                            </button>
+                                                            {% endif %}
+                                                        </form>
+                                                        <form action="/Suppesss/{{i.id}}" method="post">
+
+                                                            <input type="text" name="redirhd1" placeholder="numero"
+                                                                value="userasmin"
+                                                                style="visibility: hidden;height: 0;width: 0;">
+                                                            <button type="submit"
+                                                                class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-danger bg-danger-light rounded-lg">
+                                                                <i
+                                                                    class="material-icons-round text-base">delete_outline</i>
+                                                            </button>
+                                                        </form>
                                                     </td>
 
 
-                                                    
+
                                                 </tr>
+                                                {% endif %}
                                                 {%endfor%}
 
 
@@ -771,7 +835,7 @@
 
 
             </div>
-      
+
 
         </div>
 

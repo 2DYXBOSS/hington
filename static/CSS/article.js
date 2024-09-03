@@ -5,8 +5,8 @@ let taer = 0
 
 if (tabUsere) {
     tabUsere.forEach((i) => {
-    
-        taer+=1
+        let user = i["data"]
+        taer+=parseInt(user.quantiteto)
         etdrdvhe.innerHTML = taer
     
     })
@@ -210,26 +210,46 @@ if (boutonshd){
         let tabUsere = JSON.parse(localStorage.getItem("inscpce")) || []
         // let tabUsere = []
         if (categorie=="Montre") {
+            console.log("AAAAAAA");
             let cometrh = 0
-            tabUsere.forEach((user) =>{
+            tabUsere && tabUsere.forEach((user) =>{
+                console.log("MMMM");
                 let taillepoe = document.querySelector(".taillepoe").value
                 let i = user["data"]
                 if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                     cometrh+=1
-                    
-                    i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                    
-                    localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                    console.log("les articles", i);
-                    window.location.href = "/monpanier";
+                    let quantitp = document.querySelector(".quantitp")
+                    console.log("TTTTT",parseInt(quantitp.value));
+                    if (quantitp){
+                        console.log("OOOOO");
+                        
+                        if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(quantitp.value)) {
+                            console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(quantitp.value));
+                        
+                            i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                            
+                            localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                            console.log("les articles", i);
+                        }
+
+
+
+                        
+                    }
+                    // window.location.href = "/monpanier";
                     
                 }
             })
+
+                
+
+
+
             if (cometrh<1) {
                 let taillepoe = document.querySelector(".taillepoe").value
                 // tabUsere = JSON.parse(localStorage.getItem("inscpce")) || []
                 let ideler = 0
-                tabUsere.forEach(i => {
+                tabUsere && tabUsere.forEach(i => {
                     let user = i["data"]
                     if ( parseInt( user["position"] )>= ideler) {
                         ideler = parseInt(user["position"]) + 1
@@ -243,23 +263,13 @@ if (boutonshd){
                 tabUsere.push(usere)
                 localStorage.setItem('inscpce',JSON.stringify(tabUsere))
                 console.log('Data successfullyz sent to Python:', data);
-                window.location.href = "http://127.0.0.1:5005/monpanierls"
+                window.location.href = "/monpanierls"
             }
             
         }
 
         if (categorie=="VetementFemme"){
-            let xslet = document.querySelector("xslet")
-           
             
-            
-            let mlet = document.querySelector("mlet")
-            
-            let llet = document.querySelector("llet")
-           
-            let xllet = document.querySelector("xllet")
-            
-            let xxllet = document.querySelector("xxllet")
           
             let snume = document.querySelector("#snumq");
             let xsnumq = document.querySelector("#xsnumq")
@@ -269,19 +279,20 @@ if (boutonshd){
             let mnumq = document.querySelector("#mnumq")
 
             if (snume)  {
-                console.log("tesssssssss");
+                console.log("AAAAAAA");
                 let cometrh = 0
-                tabUsere.forEach((user) =>{
-                    console.log("tesssssssss");
+                tabUsere && tabUsere.forEach((user) =>{
+                    console.log("MMMM");
                     let taillepoe = document.querySelector(".taillepoes").value
                     let i = user["data"]
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
-                        let slet = document.querySelector("slet")
+                        let slet = document.querySelector(".slet")
+                        console.log("TTTTT",parseInt(slet.value));
                         if (slet){
-                            console.log("tesssssssss");
+                            console.log("OOOOO");
                             
-                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(document.querySelector("slet").value)) {
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(slet.value)) {
                                 console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(slet.value));
                             
                                 i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
@@ -308,7 +319,7 @@ if (boutonshd){
                         let taillepoe = document.querySelector(".taillepoes").value
                         let ideler = 0
 
-                        tabUsere.forEach(i => {
+                        tabUsere && tabUsere.forEach(i => {
                             let user = i["data"]
                             if ( parseInt( user["position"] )>= ideler) {
                                 ideler = parseInt(user["position"]) + 1
@@ -322,34 +333,55 @@ if (boutonshd){
                         tabUsere.push(usere)
                         localStorage.setItem('inscpce',JSON.stringify(tabUsere))
                         console.log('Data successfullyz sent to Python:', data);
-                        // window.location.href = "http://127.0.0.1:5005/monpanierls"
+                        // window.location.href = "/monpanierls"
                     }
                 }
             }
+
+
+
             if (xsnumq)  {
+                console.log("AAAAAAA");
                 let cometrh = 0
-                tabUsere.forEach((user) =>{
+                tabUsere && tabUsere.forEach((user) =>{
+                    console.log("MMMM");
                     let taillepoe = document.querySelector(".taillepoexs").value
                     let i = user["data"]
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
-                        if (xslet && parseInt(i.quantiteto || 0) + parseInt(quantite) <= parseInt(xslet.value)){
-                            i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                        let xslet = document.querySelector(".xslet")
+                        console.log("TTTTT",parseInt(xslet.value));
+                        if (xslet){
+                            console.log("OOOOO");
                             
-                            localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                            console.log("les articles", i);
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(xslet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(xslet.value));
+                            
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                
+                                localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                                console.log("les articles", i);
+                            }
+
+
+
+                            
                         }
-                        window.location.href = "/monpanierls";
+                        // window.location.href = "/monpanier";
                         
                     }
                 })
+
+
+
+
                 if (cometrh<1) {
                 let xsnumq1 = parseInt(xsnumq.value)
                 if (xsnumq1 > 0){
                     // let tabUsere = []
                     let taillepoe = document.querySelector(".taillepoexs").value
                     let ideler = 0
-                    tabUsere.forEach(i => {
+                    tabUsere && tabUsere.forEach(i => {
                         let user = i["data"]
                         if ( parseInt( user["position"] )>= ideler) {
                             ideler = parseInt(user["position"]) + 1
@@ -363,25 +395,40 @@ if (boutonshd){
                     tabUsere.push(usere)
                     localStorage.setItem('inscpce',JSON.stringify(tabUsere))
                     console.log('Data successfullyz sent to Python:', data);
-                    // window.location.href = "http://127.0.0.1:5005/monpanierls"
+                    // window.location.href = "/monpanierls"
                 }
                 }
             }
+
+
             if (xlnumq)  {
+                console.log("AAAAAAA");
                 let cometrh = 0
-                tabUsere.forEach((user) =>{
+                tabUsere && tabUsere.forEach((user) =>{
+                    console.log("MMMM");
                     let taillepoe = document.querySelector(".taillepoexl").value
                     let i = user["data"]
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
-                        
-                        if (xllet && parseInt(i.quantiteto || 0) + parseInt(quantite) <= parseInt(xllet.value)){
-                            i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                        let xllet = document.querySelector(".xllet")
+                        console.log("TTTTT",parseInt(xllet.value));
+                        if (xllet){
+                            console.log("OOOOO");
                             
-                            localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                            console.log("les articles", i);
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(xllet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(xllet.value));
+                            
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                
+                                localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                                console.log("les articles", i);
+                            }
+
+
+
+                            
                         }
-                        window.location.href = "/monpanierls";
+                        // window.location.href = "/monpanier";
                         
                     }
                 })
@@ -391,7 +438,7 @@ if (boutonshd){
                     // let tabUsere = []
                     let taillepoe = document.querySelector(".taillepoexl").value
                     let ideler = 0
-                    tabUsere.forEach(i => {
+                    tabUsere && tabUsere.forEach(i => {
                         let user = i["data"]
                         if ( parseInt( user["position"] )>= ideler) {
                             ideler = parseInt(user["position"]) + 1
@@ -405,25 +452,41 @@ if (boutonshd){
                     tabUsere.push(usere)
                     localStorage.setItem('inscpce',JSON.stringify(tabUsere))
                     console.log('Data successfullyz sent to Python:', data);
-                    // window.location.href = "http://127.0.0.1:5005/monpanierls"
+                    // window.location.href = "/monpanierls"
                 }
                 }
             }
+
+
+
             if (xxlnumq)  {
+                console.log("AAAAAAA");
                 let cometrh = 0
-                tabUsere.forEach((user) =>{
-                    let taillepoe = document.querySelector(".taillepoexxl").value
+                tabUsere && tabUsere.forEach((user) =>{
+                    console.log("MMMM");
+                    let taillepoe = document.querySelector(".taillepoes").value
                     let i = user["data"]
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
-                        
-                        if (xxllet && parseInt(i.quantiteto || 0) + parseInt(quantite) <= parseInt(xxllet.value)){
-                            i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                        let xxllet = document.querySelector(".xxllet")
+                        console.log("TTTTT",parseInt(xxllet.value));
+                        if (xxllet){
+                            console.log("OOOOO");
                             
-                            localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                            console.log("les articles", i);
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(xxllet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(xxllet.value));
+                            
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                
+                                localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                                console.log("les articles", i);
+                            }
+
+
+
+                            
                         }
-                        window.location.href = "/monpanierls";
+                        // window.location.href = "/monpanier";
                         
                     }
                 })
@@ -433,7 +496,7 @@ if (boutonshd){
                     // let tabUsere = []
                     let taillepoe = document.querySelector(".taillepoexxl").value
                     let ideler = 0
-                    tabUsere.forEach(i => {
+                    tabUsere && tabUsere.forEach(i => {
                         let user = i["data"]
                         if ( parseInt( user["position"] )>= ideler) {
                             ideler = parseInt(user["position"]) + 1
@@ -447,25 +510,41 @@ if (boutonshd){
                     tabUsere.push(usere)
                     localStorage.setItem('inscpce',JSON.stringify(tabUsere))
                     console.log('Data successfullyz sent to Python:', data);
-                    // window.location.href = "http://127.0.0.1:5005/monpanierls"
+                    // window.location.href = "/monpanierls"
                 }
                 }
             }
+
+
+
             if (lnumq)  {
+                console.log("AAAAAAA");
                 let cometrh = 0
-                tabUsere.forEach((user) =>{
+                tabUsere && tabUsere.forEach((user) =>{
+                    console.log("MMMM");
                     let taillepoe = document.querySelector(".taillepoel").value
                     let i = user["data"]
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
-                        
-                        if (llet && parseInt(i.quantiteto || 0) + parseInt(quantite) <= parseInt(llet.value)){
-                            i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                        let llet = document.querySelector(".llet")
+                        console.log("TTTTT",parseInt(llet.value));
+                        if (llet){
+                            console.log("OOOOO");
                             
-                            localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                            console.log("les articles", i);
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(llet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(llet.value));
+                            
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                
+                                localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                                console.log("les articles", i);
+                            }
+
+
+
+                            
                         }
-                        window.location.href = "/monpanierls";
+                        // window.location.href = "/monpanier";
                         
                     }
                 })
@@ -475,7 +554,7 @@ if (boutonshd){
                     // let tabUsere = []
                     let taillepoe = document.querySelector(".taillepoel").value
                     let ideler = 0
-                    tabUsere.forEach(i => {
+                    tabUsere && tabUsere.forEach(i => {
                         let user = i["data"]
                         if ( parseInt( user["position"] )>= ideler) {
                             ideler = parseInt(user["position"]) + 1
@@ -489,29 +568,44 @@ if (boutonshd){
                     tabUsere.push(usere)
                     localStorage.setItem('inscpce',JSON.stringify(tabUsere))
                     console.log('Data successfullyz sent to Python:', data);
-                    // window.location.href = "http://127.0.0.1:5005/monpanierls"
+                    // window.location.href = "/monpanierls"
                 }
                 }
             }
         
             if (mnumq)  {
+                console.log("AAAAAAA");
                 let cometrh = 0
-                tabUsere.forEach((user) =>{
+                tabUsere && tabUsere.forEach((user) =>{
+                    console.log("MMMM");
                     let taillepoe = document.querySelector(".taillepoem").value
                     let i = user["data"]
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
-                        
-                        if (mlet && parseInt(i.quantiteto || 0) + parseInt(quantite) <= parseInt(mlet.value)){
-                            i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                        let mlet = document.querySelector(".mlet")
+                        console.log("TTTTT",parseInt(mlet.value));
+                        if (mlet){
+                            console.log("OOOOO");
                             
-                            localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                            console.log("les articles", i);
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(mlet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(mlet.value));
+                            
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                
+                                localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                                console.log("les articles", i);
+                            }
+
+
+
+                            
                         }
-                        window.location.href = "/monpanierls";
+
+                        // window.location.href = "/monpanier";
                         
                     }
                 })
+
                 if (cometrh<1) {
                 let mnumq1 = parseInt(mnumq.value)
                 if (mnumq1 > 0){
@@ -532,14 +626,16 @@ if (boutonshd){
                     tabUsere.push(usere)
                     localStorage.setItem('inscpce',JSON.stringify(tabUsere))
                     console.log('Data successfullyz sent to Python:', data);
-                    // window.location.href = "http://127.0.0.1:5005/monpanierls"
+                    // window.location.href = "/monpanierls"
                 }
                 }
             }
-            // window.location.href = "http://127.0.0.1:5005/monpanierls"
+            // window.location.href = "/monpanierls"
             // console.log(xsnume);
         }
+        // let tabUsere = JSON.parse(localStorage.getItem("inscpce"))|| []
         if (categorie=="chaussure"){
+            
             let tranwitenumq = document.querySelector("#tranwitenumq");
             let tranneufnumq = document.querySelector("#tranneufnumq")
             let karentenumq = document.querySelector("#karentenumq")
@@ -547,23 +643,44 @@ if (boutonshd){
             let tranwitedeuxnumq = document.querySelector("#tranwitedeuxnumq")
             let tranwitroisnumq = document.querySelector("#tranwitroisnumq")
             let tranwitekatenumq = document.querySelector("#tranwitekatenumq")
+
             if (tranwitenumq)  {
 
+                console.log("AAAAAAA");
                 let cometrh = 0
-                tabUsere.forEach((user) =>{
-                    let taillepoe = document.querySelector(".taillepoetranwite").value
-                    let i = user["data"]
-                    if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
-                        cometrh+=1
-                        
-                        i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                        
-                        localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                        console.log("les articles", i);
-                        window.location.href = "/monpanier";
-                        
-                    }
-                })
+                
+                tabUsere && tabUsere.forEach((user) =>{
+                        console.log("MMMM");
+                        let taillepoe = document.querySelector(".taillepoetranwite").value
+                        taillepoe += " ° "
+                        let i = user["data"]
+                        if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
+                            cometrh+=1
+                            let tranwitelet = document.querySelector(".tranwitelet")
+                            console.log("TTTTT",parseInt(tranwitelet.value));
+                            if (tranwitelet){
+                                console.log("OOOOO");
+                                
+                                if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(tranwitelet.value)) {
+                                    console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(tranwitelet.value));
+                                
+                                    i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                    
+                                    localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                                    console.log("les articles", i);
+                                }
+
+
+
+                                
+                            }
+                            // window.location.href = "/monpanier";
+                            
+                        }
+                    })
+
+
+
                 if (cometrh<1) {
                 let tranwitenumq1 = parseInt(tranwitenumq.value)
                 if (tranwitenumq1 > 0){
@@ -584,33 +701,53 @@ if (boutonshd){
                     tabUsere.push(usere)
                     localStorage.setItem('inscpce',JSON.stringify(tabUsere))
                     console.log('Data successfullyz sent to Python:', data);
-                    // window.location.href = "http://127.0.0.1:5005/monpanierls"
+                    // window.location.href = "/monpanierls"
                 }
                 }
             }
+
+
             if (tranneufnumq)  {
+                console.log("AAAAAAA");
                 let cometrh = 0
-                tabUsere.forEach((user) =>{
+                tabUsere && tabUsere.forEach((user) =>{
+                    console.log("MMMM");
                     let taillepoe = document.querySelector(".taillepoetranneuf").value
-                    let i = user["data"]
+                    taillepoe += " ° "
+                    let i = user["data"] 
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
-                        
-                        i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                        
-                        localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                        console.log("les articles", i);
-                        window.location.href = "/monpanier";
+                        let tranneuflet = document.querySelector(".tranneuflet")
+                        console.log("TTTTT",parseInt(tranneuflet.value));
+                        if (tranneuflet){
+                            console.log("OOOOO");
+                            
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(tranneuflet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(tranneuflet.value));
+                            
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                
+                                localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                                console.log("les articles", i);
+                            }
+
+
+
+                            
+                        }
+                        // window.location.href = "/monpanier";
                         
                     }
                 })
+
                 if (cometrh<1) {
                 let tranneufnumq1 = parseInt(tranneufnumq.value)
                 if (tranneufnumq1 > 0){
                     // let tabUsere = []
                     let taillepoe = document.querySelector(".taillepoetranneuf").value
+                    
                     let ideler = 0
-                    tabUsere.forEach(i => {
+                    tabUsere && tabUsere.forEach(i => {
                         let user = i["data"]
                         if ( parseInt( user["position"] )>= ideler) {
                             ideler = parseInt(user["position"]) + 1
@@ -624,33 +761,56 @@ if (boutonshd){
                     tabUsere.push(usere)
                     localStorage.setItem('inscpce',JSON.stringify(tabUsere))
                     console.log('Data successfullyz sent to Python:', data);
-                    // window.location.href = "http://127.0.0.1:5005/monpanierls"
+                    // window.location.href = "/monpanierls"
                 }
                 }
             }
+
+
             if (karentenumq)  {
+                console.log("AAAAAAA12");
                 let cometrh = 0
-                tabUsere.forEach((user) =>{
+                tabUsere && tabUsere.forEach((user) =>{
+                    console.log("MMMM");
                     let taillepoe = document.querySelector(".taillepoekarente").value
+                    
+                    taillepoe += " ° "
+                        
                     let i = user["data"]
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
-                        
-                        i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                        
-                        localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                        console.log("les articles", i);
-                        window.location.href = "/monpanier";
+                        let karentelet = document.querySelector(".karentelet")
+                        console.log("TTTTT",parseInt(karentelet.value));
+                        if (karentelet){
+                            console.log("OOOOO");
+                            
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(karentelet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(karentelet.value));
+                            
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                
+                                localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                                console.log("les articles", i);
+                            }
+
+
+
+                            
+                        }
+                        // window.location.href = "/monpanier";
                         
                     }
                 })
+
+
+
                 if (cometrh<1) {
                 let karentenumq1 = parseInt(karentenumq.value)
                 if (karentenumq1 > 0){
                     // let tabUsere = []
                     let taillepoe = document.querySelector(".taillepoekarente").value
                     let ideler = 0
-                    tabUsere.forEach(i => {
+                    tabUsere && tabUsere.forEach(i => {
                         let user = i["data"]
                         if ( parseInt( user["position"] )>= ideler) {
                             ideler = parseInt(user["position"]) + 1
@@ -664,33 +824,54 @@ if (boutonshd){
                     tabUsere.push(usere)
                     localStorage.setItem('inscpce',JSON.stringify(tabUsere))
                     console.log('Data successfullyz sent to Python:', data);
-                    // window.location.href = "http://127.0.0.1:5005/monpanierls"
+                    // window.location.href = "/monpanierls"
                 }
                 }
             }
+
+
             if (tranwiteunnumq)  {
+                console.log("AAAAAAA");
                 let cometrh = 0
-                tabUsere.forEach((user) =>{
+                tabUsere && tabUsere.forEach((user) =>{
+                    console.log("MMMM");
                     let taillepoe = document.querySelector(".taillepoetranwiteun").value
+                    taillepoe += " ° "
                     let i = user["data"]
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
-                        
-                        i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                        
-                        localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                        console.log("les articles", i);
-                        window.location.href = "/monpanier";
+                        let tranwiteunlet = document.querySelector(".tranwiteunlet")
+                        console.log("TTTTT",parseInt(tranwiteunlet.value));
+                        if (tranwiteunlet){
+                            console.log("OOOOO");
+                            
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(tranwiteunlet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(tranwiteunlet.value));
+                            
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                
+                                localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                                console.log("les articles", i);
+                            }
+
+
+
+                            
+                        }
+                        // window.location.href = "/monpanier";
                         
                     }
                 })
+
+
+
                 if (cometrh<1) {
                     let tranwiteunnumq1 = parseInt(tranwiteunnumq.value)
                     if (tranwiteunnumq1 > 0){
                         // let tabUsere = []
                         let taillepoe = document.querySelector(".taillepoetranwiteun").value
                         let ideler = 0
-                        tabUsere.forEach(i => {
+                        tabUsere && tabUsere.forEach(i => {
                             let user = i["data"]
                             if ( parseInt( user["position"] )>= ideler) {
                                 ideler = parseInt(user["position"]) + 1
@@ -704,33 +885,55 @@ if (boutonshd){
                         tabUsere.push(usere)
                         localStorage.setItem('inscpce',JSON.stringify(tabUsere))
                         console.log('Data successfullyz sent to Python:', data);
-                        // window.location.href = "http://127.0.0.1:5005/monpanierls"
+                        // window.location.href = "/monpanierls"
                     }
                 }
             }
+
+
             if (tranwitedeuxnumq)  {
+                console.log("AAAAAAA");
                 let cometrh = 0
-                tabUsere.forEach((user) =>{
+                tabUsere && tabUsere.forEach((user) =>{
+                    console.log("MMMM");
                     let taillepoe = document.querySelector(".taillepoetranwitedeux").value
+                    taillepoe += " ° "
                     let i = user["data"]
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
-                        
-                        i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                        
-                        localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                        console.log("les articles", i);
-                        window.location.href = "/monpanier";
+                        let tranwitedeuxlet = document.querySelector(".tranwitedeuxlet")
+                        console.log("TTTTT",parseInt(tranwitedeuxlet.value));
+                        if (tranwitedeuxlet){
+                            console.log("OOOOO");
+                            
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(tranwitedeuxlet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(tranwitedeuxlet.value));
+                            
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                
+                                localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                                console.log("les articles", i);
+                            }
+
+
+
+                            
+                        }
+                        // window.location.href = "/monpanier";
                         
                     }
                 })
+
+
+
+
                 if (cometrh<1) {
                     let tranwitedeuxnumq1 = parseInt(tranwitedeuxnumq.value)
                     if (tranwitedeuxnumq1 > 0){
                         // let tabUsere = []
                         let taillepoe = document.querySelector(".taillepoetranwitedeux").value
                         let ideler = 0
-                        tabUsere.forEach(i => {
+                        tabUsere && tabUsere.forEach(i => {
                             let user = i["data"]
                             if ( parseInt( user["position"] )>= ideler) {
                                 ideler = parseInt(user["position"]) + 1
@@ -744,33 +947,54 @@ if (boutonshd){
                         tabUsere.push(usere)
                         localStorage.setItem('inscpce',JSON.stringify(tabUsere))
                         console.log('Data successfullyz sent to Python:', data);
-                        // window.location.href = "http://127.0.0.1:5005/monpanierls"
+                        // window.location.href = "/monpanierls"
                     }
                 }
             }
+
+
             if (tranwitroisnumq)  {
+                console.log("AAAAAAA");
                 let cometrh = 0
-                tabUsere.forEach((user) =>{
+                tabUsere && tabUsere.forEach((user) =>{
+                    console.log("MMMM");
                     let taillepoe = document.querySelector(".taillepoetranwitrois").value
+                    taillepoe += " ° "
                     let i = user["data"]
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
-                        
-                        i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                        
-                        localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                        console.log("les articles", i);
-                        window.location.href = "/monpanier";
+                        let tranwitroislet = document.querySelector(".tranwitroislet")
+                        console.log("TTTTT",parseInt(tranwitroislet.value));
+                        if (tranwitroislet){
+                            console.log("OOOOO");
+                            
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(tranwitroislet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(tranwitroislet.value));
+                            
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                
+                                localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                                console.log("les articles", i);
+                            }
+
+
+
+                            
+                        }
+                        // window.location.href = "/monpanier";
                         
                     }
                 })
+
+
+
                 if (cometrh<1) {
                     let tranwitroisnumq1 = parseInt(tranwitroisnumq.value)
                     if (tranwitroisnumq1 > 0){
                         // let tabUsere = []
                         let taillepoe = document.querySelector(".taillepoetranwitrois").value
                         let ideler = 0
-                        tabUsere.forEach(i => {
+                        tabUsere && tabUsere.forEach(i => {
                             let user = i["data"]
                             if ( parseInt( user["position"] )>= ideler) {
                                 ideler = parseInt(user["position"]) + 1
@@ -784,33 +1008,59 @@ if (boutonshd){
                         tabUsere.push(usere)
                         localStorage.setItem('inscpce',JSON.stringify(tabUsere))
                         console.log('Data successfullyz sent to Python:', data);
-                        // window.location.href = "http://127.0.0.1:5005/monpanierls"
+                        // window.location.href = "/monpanierls"
                     }
                 }
             }
+
+
             if (tranwitekatenumq)  {
+                console.log("AAAAAAA");
                 let cometrh = 0
-                tabUsere.forEach((user) =>{
+
+                tabUsere && tabUsere.forEach((user) => {
+
+                    console.log("MMMM");
                     let taillepoe = document.querySelector(".taillepoetranwitekate").value
+                    taillepoe += " ° "
+                    console.log("dfghj",taillepoe);
+         
+                    
                     let i = user["data"]
-                    if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
+                    if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe ){
                         cometrh+=1
-                        
-                        i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                        
-                        localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                        console.log("les articles", i);
-                        window.location.href = "/monpanier";
+                        let tranwitekatelet = document.querySelector(".tranwitekatelet")
+                        console.log("TTTTT",parseInt(tranwitekatelet.value));
+                        if (tranwitekatelet){
+                            console.log("OOOOO");
+                            
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(tranwitekatelet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(tranwitekatelet.value));
+                            
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                
+                                localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                                console.log("les articles", i);
+                            }
+
+
+
+                            
+                        }
+                        // window.location.href = "/monpanier";
                         
                     }
-                })
+                } )
+
+
+
                 if (cometrh<1) {
                     let tranwitekatenumq1 = parseInt(tranwitekatenumq.value)
                     if (tranwitekatenumq1 > 0){
                         // let tabUsere = []
                         let taillepoe = document.querySelector(".taillepoetranwitekate").value
                         let ideler = 0
-                        tabUsere.forEach(i => {
+                        tabUsere && tabUsere.forEach(i => {
                             let user = i["data"]
                             if ( parseInt( user["position"] )>= ideler) {
                                 ideler = parseInt(user["position"]) + 1
@@ -824,11 +1074,13 @@ if (boutonshd){
                         tabUsere.push(usere)
                         localStorage.setItem('inscpce',JSON.stringify(tabUsere))
                         console.log('Data successfullyz sent to Python:', data);
-                        // window.location.href = "http://127.0.0.1:5005/monpanierls"
+                        // window.location.href = "/monpanierls"
                     }
                 }
             }
-            window.location.href = "http://127.0.0.1:5005/monpanierls"
+
+
+            window.location.href = "/monpanierls"
             // console.log(xsnume);
         }
         // if (parseInt(xsnume) > 0 ){
@@ -905,7 +1157,7 @@ if (boutonshd){
     
 
         // console.log('Data successfully sent to Python:', data);
-        // window.location.href = "http://127.0.0.1:5005/monpanierls"
+        // window.location.href = "/monpanierls"
     })
 }
 // boutonshd.addEventListener('click',()=>{
@@ -1110,7 +1362,7 @@ let xxlnum = document.querySelector('#xxlnum')
 // let b = document.querySelector('.b')
 
 
-xl.addEventListener('click',()=>{
+xl && xl.addEventListener('click',()=>{
    
     // wee.style.border = '10px solid red'
     // a.style.border = '10px solid pink';
@@ -1123,7 +1375,7 @@ xl.addEventListener('click',()=>{
 })
 
 
-l.addEventListener('click',()=>{
+l && l.addEventListener('click',()=>{
     // wee.style.border = '10px solid red'
     // a.style.border = '10px solid pink';
     l.style.background = 'green';
@@ -1135,7 +1387,7 @@ l.addEventListener('click',()=>{
 }
 
 )
-s.addEventListener('click',()=>{
+s && s.addEventListener('click',()=>{
     // wee.style.border = '10px solid red'
     // a.style.border = '10px solid pink';
     s.style.background = 'green';
@@ -1147,7 +1399,7 @@ s.addEventListener('click',()=>{
 }
 
 )
-m.addEventListener('click',()=>{
+m && m.addEventListener('click',()=>{
     // wee.style.border = '10px solid red'
     // a.style.border = '10px solid pink';
     m.style.background = 'green';
@@ -1159,7 +1411,7 @@ m.addEventListener('click',()=>{
 }
 
 )
-xxl.addEventListener('click',()=>{
+xxl && xxl.addEventListener('click',()=>{
     // wee.style.border = '10px solid red'
     // a.style.border = '10px solid pink';
     xxl.style.background = 'green';
@@ -1171,7 +1423,7 @@ xxl.addEventListener('click',()=>{
 }
 
 )
-xs.addEventListener('click',()=>{
+xs && xs.addEventListener('click',()=>{
     
     // wee.style.border = '10px solid red'
     // a.style.border = '10px solid pink';
@@ -1391,7 +1643,7 @@ function verif(ide,quantep) {
 //     event.preventDefault()
     
    
-//     fetch('http://127.0.0.1:5005/song', {
+//     fetch('/song', {
 //         method: 'GET',
 //         headers: {
 //             'Content-Type': 'application/json'

@@ -166,7 +166,7 @@
                     <!-- <div class="imsdghde">
                         <img src="{{url_for('static', filename='IMAGE/recdgdg.png')}}"  width="20px" alt="">
                     </div> -->
-                    <input type="text" name="recher" id="" placeholder="Cherchez un produit">
+                    <input type="text" name="recher" id="" placeholder="Chercher un produit">
                     <button type="submit">
                         <div class="imsdghde">
                             <img src="{{url_for('static', filename='IMAGE/recdgdg.png')}}" width="20px" alt="">
@@ -240,6 +240,22 @@
                                     style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;padding-top: 5px;color: rgb(53, 53, 53);">{{i.tailed}}</span>
                             </p>
                             {% endif %}
+                            {% if i.statuse == "dispobine" %}
+                            <div 
+                                style="margin-top: 10px;">
+                                <p
+                                    style="color: rgb(45, 150, 0);font-size: 0.7rem;padding-left: 8px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;background-color: rgba(15, 176, 0, 0.289);border-radius: 5px;min-width: none;width: 140px;">
+                                    Disponible pour achat</p>
+                            </div>
+                            {% endif %}
+                            {% if i.statuse == "nondisp" %}
+                            <div 
+                            style="margin-top: 10px;">
+                            <p
+                            style="color: red;font-size: 0.7rem;padding-left: 8px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;background-color: rgba(255, 0, 0, 0.086);border-radius: 5px;min-width: none;width: 140px;">
+                            Quantité indisponible </p>
+                            </div>
+                            {% endif %}
                         </div>
                         <div class="imahdjd3">
 
@@ -250,10 +266,10 @@
                                 <s>{{i.prix}} FCFA</s>
                             </p>
                             <div class="uufw"
-                                style="background-color: rgba(170, 170, 170, 0.289);width: 50px;border-radius: 5px;margin-top: 10px;">
-                                <p
-                                    style="color: rgba(255, 102, 0, 0.865);font-size: 0.7rem;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">
-                                    - {{i.porce}} %</p>
+                            style="background-color: rgba(255, 171, 75, 0.175);width: 50px;border-radius: 5px;margin-top: 10px;">
+                            <p
+                                style="color: rgba(255, 102, 0, 0.865);font-size: 0.7rem;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">
+                                - {{i.porce}} %</p>
                             </div>
 
                         </div>
@@ -398,6 +414,22 @@
                                     style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;padding-top: 5px;color: rgb(53, 53, 53);">{{i.tailed}}</span>
                             </p>
                             {% endif %}
+                            {% if i.statuse == "dispobine" %}
+                            <div 
+                                style="margin-top: 10px;">
+                                <p
+                                    style="color: rgb(45, 150, 0);font-size: 0.7rem;padding-left: 8px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;background-color: rgba(15, 176, 0, 0.289);border-radius: 5px;min-width: none;width: 140px;">
+                                    Disponible pour achat</p>
+                            </div>
+                            {% endif %}
+                            {% if i.statuse == "nondisp" %}
+                            <div 
+                            style="margin-top: 10px;">
+                            <p
+                            style="color: red;font-size: 0.7rem;padding-left: 8px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;background-color: rgba(255, 0, 0, 0.086);border-radius: 5px;min-width: none;width: 140px;">
+                            Quantité indisponible </p>
+                            </div>
+                            {% endif %}
                         </div>
                         <div class="imahdjd3">
 
@@ -408,10 +440,10 @@
                                 <s>{{i.prix}} FCFA</s>
                             </p>
                             <div class="uufw"
-                                style="background-color: rgba(170, 170, 170, 0.289);width: 50px;border-radius: 5px;margin-top: 10px;">
-                                <p
-                                    style="color: rgba(255, 102, 0, 0.865);font-size: 0.7rem;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">
-                                    - {{i.porce}} %</p>
+                            style="background-color: rgba(255, 171, 75, 0.175);width: 50px;border-radius: 5px;margin-top: 10px;">
+                            <p
+                                style="color: rgba(255, 102, 0, 0.865);font-size: 0.7rem;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">
+                                - {{i.porce}} %</p>
                             </div>
 
                         </div>
@@ -678,6 +710,22 @@
                                     style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;padding-top: 5px;color: rgb(53, 53, 53);">{{i.tailed}}</span>
                             </p>
                             {% endif %}
+                            {% if i.statuse == "dispobine" %}
+                            <div 
+                                style="margin-top: 10px;">
+                                <p
+                                    style="color: rgb(45, 150, 0);font-size: 0.7rem;padding-left: 8px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;background-color: rgba(15, 176, 0, 0.289);border-radius: 5px;min-width: none;width: 140px;">
+                                    Disponible pour achat</p>
+                            </div>
+                            {% endif %}
+                            {% if i.statuse == "nondisp" %}
+                            <div 
+                            style="margin-top: 10px;">
+                            <p
+                            style="color: red;font-size: 0.7rem;padding-left: 8px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;background-color: rgba(255, 0, 0, 0.086);border-radius: 5px;min-width: none;width: 140px;">
+                            Quantité indisponible </p>
+                            </div>
+                            {% endif %}
                         </div>
                         <div class="imahdjd3">
 
@@ -688,7 +736,7 @@
                                 <s>{{i.prix}} FCFA</s>
                             </p>
                             <div class="uufw"
-                                style="background-color: rgba(170, 170, 170, 0.289);width: 50px;border-radius: 5px;margin-top: 10px;">
+                                style="background-color: rgba(255, 171, 75, 0.175);width: 50px;border-radius: 5px;margin-top: 10px;">
                                 <p
                                     style="color: rgba(255, 102, 0, 0.865);font-size: 0.7rem;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">
                                     - {{i.porce}} %</p>
@@ -969,7 +1017,7 @@
                     <!-- <input type="text" name="recher" id="" placeholder="Choisir un lieu pour la livraison"> -->
                     <p
                         style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;font-size: 0.8rem;display: flex;align-items: center;gap: 10px;">
-                        <input style="width: 10px;" type="checkbox" name="" id="other">Cochez pour expedié à Abidjan .
+                        <input style="width: 10px;" type="checkbox" name="" id="other">Cocher pour expedier à Abidjan .
                     </p>
 
 
@@ -992,7 +1040,7 @@
 
                     <p
                         style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;font-size: 0.8rem;display: flex;align-items: center;gap: 10px;">
-                        <input style="width: 10px;" type="checkbox" name="" id="other1">Cochez pour expedié ailleurs .
+                        <input style="width: 10px;" type="checkbox" name="" id="other1">Cocher pour expedier ailleurs .
                     </p>
                     <select name="livraison" id="otherValue1">
 
@@ -1489,7 +1537,7 @@
 
 
                     <a href="https://www.google.com/search?sca_esv=565cf4ca48d1601c&sxsrf=ADLYWIKY6Icpydn5Niwrb-P8Y3tKTm-GyQ:1724186799791&q=*%2306%23+iphone+12+pro+max&udm=2&"
-                        style="padding-top: 5px;color: blackgreen;padding-left: 10px;padding-right: 10px;color: rgba(20, 82, 148, 0.797);font-size: 0.5rem">https://www.jumia.ci/samsung-galaxy-a15-2-sim-4g-6.6-4128-go-50mpx-bleu-nuit-24-mois-de-garantie-27906310.html</a>
+                        style="padding-top: 5px;color: blackgreen;padding-left: 10px;padding-right: 10px;color: rgba(20, 82, 148, 0.797);font-size: 0.5rem">{{i.liens}}</a>
                 </div>
                 {% endfor %}
             </div>

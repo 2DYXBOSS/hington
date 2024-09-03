@@ -160,219 +160,221 @@ function verif(ide,quantep) {
 
 
 
-let tabUsere = JSON.parse(localStorage.getItem("inscpce"))
+// let tabUsere = JSON.parse(localStorage.getItem("inscpce"))
 
 
 
-let reczz = document.querySelector(".imahdjd2");
-let rec = document.querySelector(".meselele");
-let jdidsed = document.querySelector(".jdidsed2");
+// let reczz = document.querySelector(".imahdjd2");
+// let rec = document.querySelector(".meselele");
+// let jdidsed = document.querySelector(".jdidsed2");
 
-let etdrdvhe = document.querySelector(".etdrdvhe");
+// let etdrdvhe = document.querySelector(".etdrdvhe");
 // let darsghd = document.querySelector(".darsghd");
 // let darsghdzs = document.querySelector("#darsghdzs");
 // let caeekr = 0
-let taer = 0
+// let taer = 0
 
 
-let somme = 0
-tabUsere.forEach((i) => {
+// let somme = 0
+// tabUsere.forEach((i) => {
     
     
-    let user = i["data"]
-    taer+=1
-    console.log(taer,"dfsjhklds");
-    etdrdvhe.innerHTML = taer
+//     let user = i["data"]
+//     taer+=1
+//     console.log(taer,"dfsjhklds");
+//     if (etdrdvhe) {
+//         etdrdvhe.innerHTML = taer
+//     }
     
     
-    console.log(user);
-    console.log(user.name);
-    console.log(user.tailed);
-    console.log(user.image);
-    console.log(user.porceprix);
-    console.log(user.position);
-    if (user.categorie == "VetementFemme") {
+//     console.log(user);
+//     console.log(user.name);
+//     console.log(user.tailed);
+//     console.log(user.image);
+//     console.log(user.porceprix);
+//     console.log(user.position);
+//     if (user.categorie == "VetementFemme") {
         
    
-        rettr =  `<div class="lesvrai">
-                    <div class="geujdjd">
-                        <div class="imahdjd1">
-                            <a href="/habidetls/${user.produite}">
-                            <img src="static/uploads/${user.image}"  width="100%" height="90%" alt="" >
-                            </a>
-                        </div>
-                        <div class="imahdjd2">
-                            <p class="gradfs" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;font-size: 1rem;">${user.name}</p>
-                            <p class="gradfs1" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgb(53, 53, 53);font-size: 1rem;"><span style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.8rem;color: rgb(53, 53, 53);"> ${user.name} ...</span></p>
+//         rettr =  `<div class="lesvrai">
+//                     <div class="geujdjd">
+//                         <div class="imahdjd1">
+//                             <a href="/habidetls/${user.produite}">
+//                             <img src="static/uploads/${user.image}"  width="100%" height="90%" alt="" >
+//                             </a>
+//                         </div>
+//                         <div class="imahdjd2">
+//                             <p class="gradfs" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;font-size: 1rem;">${user.name}</p>
+//                             <p class="gradfs1" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgb(53, 53, 53);font-size: 1rem;"><span style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.8rem;color: rgb(53, 53, 53);"> ${user.name} ...</span></p>
                             
-                            <p style="font-size: 0.7rem;padding-top: 5px;color: blackgreen;">Size : <span style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;padding-top: 5px;color: rgb(53, 53, 53);">${user.tailed
-                            }</span></p>
+//                             <p style="font-size: 0.7rem;padding-top: 5px;color: blackgreen;">Size : <span style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;padding-top: 5px;color: rgb(53, 53, 53);">${user.tailed
+//                             }</span></p>
                                 
-                        </div>
-                        <div class="imahdjd3">
+//                         </div>
+//                         <div class="imahdjd3">
                             
-                            <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-top: 5px;color: black;" id="sadtdyayuda" >${user.porceprix} FCFA</p>
-                            <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);"><s>${user.prixtottal} FCFA</s></p>
-                            <div class="uufw" style="background-color: rgba(170, 170, 170, 0.289);width: 50px;border-radius: 5px;margin-top: 10px;">
-                                <p style="color: rgba(255, 102, 0, 0.865);font-size: 0.7rem;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">- ${user.porce} %</p>
-                            </div>
+//                             <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-top: 5px;color: black;" id="sadtdyayuda" >${user.porceprix} FCFA</p>
+//                             <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);"><s>${user.prixtottal} FCFA</s></p>
+//                             <div class="uufw" style="background-color: rgba(170, 170, 170, 0.289);width: 50px;border-radius: 5px;margin-top: 10px;">
+//                                 <p style="color: rgba(255, 102, 0, 0.865);font-size: 0.7rem;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">- ${user.porce} %</p>
+//                             </div>
                             
-                        </div>
-                    </div>
-                    <div class="duudcddc">
-                        <div class="jujdcuudwucd">
+//                         </div>
+//                     </div>
+//                     <div class="duudcddc">
+//                         <div class="jujdcuudwucd">
                            
-                            <form >
+//                             <form >
                                 
-                                <button classe="sereghfjf" onclick="zqszds(${user.position})" type="submit" > <img src="static/IMAGE/pouebd.png"  width="15px"  height="15px" alt="" ></button>
-                            </form>
-                        </div>
-                        <div class="jujdcuudwucd1">
-                            <input type="text" name="" id="couterw" style="width: 0;height: 0;border: none;"  value="${user.porce}">
-                            <input type="text" name="" id="gdhsuuzed" style="width: 0;height: 0;border: none;"  value="{{gdhsuud}}">
-                            <div class="ududdw2" onclick="moinsp('mnumq_${user.position}','${user.porceprix}')">
-                                <p style="color: black;font-size: 2rem;">-</p>
-                            </div>
-                            <div class="ududdw1">
-                                <input type="text" name="quantity" id="mnumq_${user.position}" style="width: 100%; height: 100%; padding-left: 10px; border: none; outline: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;" value="${user.quantiteto}">
-                            </div>
-                            <div class="ududdw" onclick="plusp('mnumq_${user.position}','${user.porceprix}')">
-                                <p style="color: black;font-size: 2rem;">+</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> `
+//                                 <button classe="sereghfjf" onclick="zqszds(${user.position})" type="submit" > <img src="static/IMAGE/pouebd.png"  width="15px"  height="15px" alt="" ></button>
+//                             </form>
+//                         </div>
+//                         <div class="jujdcuudwucd1">
+//                             <input type="text" name="" id="couterw" style="width: 0;height: 0;border: none;"  value="${user.porce}">
+//                             <input type="text" name="" id="gdhsuuzed" style="width: 0;height: 0;border: none;"  value="{{gdhsuud}}">
+//                             <div class="ududdw2" onclick="moinsp('mnumq_${user.position}','${user.porceprix}')">
+//                                 <p style="color: black;font-size: 2rem;">-</p>
+//                             </div>
+//                             <div class="ududdw1">
+//                                 <input type="text" name="quantity" id="mnumq_${user.position}" style="width: 100%; height: 100%; padding-left: 10px; border: none; outline: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;" value="${user.quantiteto}">
+//                             </div>
+//                             <div class="ududdw" onclick="plusp('mnumq_${user.position}','${user.porceprix}')">
+//                                 <p style="color: black;font-size: 2rem;">+</p>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div> `
                             
-        rec.innerHTML += rettr
-    }
-    if (user.categorie == "chaussure") {
+//         rec.innerHTML += rettr
+//     }
+//     if (user.categorie == "chaussure") {
         
    
-        rettr =  `<div class="lesvrai">
-                    <div class="geujdjd">
-                        <div class="imahdjd1">
-                            <a href="/chasuss/${user.produite}">
-                            <img src="static/uploads/${user.image}"  width="100%" height="90%" alt="" >
-                            </a>
-                        </div>
-                        <div class="imahdjd2">
-                            <p class="gradfs" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;font-size: 1rem;">${user.name}</p>
-                            <p class="gradfs1" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgb(53, 53, 53);font-size: 1rem;"><span style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.8rem;color: rgb(53, 53, 53);"> ${user.name} ...</span></p>
+//         rettr =  `<div class="lesvrai">
+//                     <div class="geujdjd">
+//                         <div class="imahdjd1">
+//                             <a href="/chasuss/${user.produite}">
+//                             <img src="static/uploads/${user.image}"  width="100%" height="90%" alt="" >
+//                             </a>
+//                         </div>
+//                         <div class="imahdjd2">
+//                             <p class="gradfs" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;font-size: 1rem;">${user.name}</p>
+//                             <p class="gradfs1" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgb(53, 53, 53);font-size: 1rem;"><span style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.8rem;color: rgb(53, 53, 53);"> ${user.name} ...</span></p>
                             
-                            <p style="font-size: 0.7rem;padding-top: 5px;color: blackgreen;">Size : <span style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;padding-top: 5px;color: rgb(53, 53, 53);">${user.tailed
-                            }</span></p>
+//                             <p style="font-size: 0.7rem;padding-top: 5px;color: blackgreen;">Size : <span style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;padding-top: 5px;color: rgb(53, 53, 53);">${user.tailed
+//                             }</span></p>
                                 
-                        </div>
-                        <div class="imahdjd3">
+//                         </div>
+//                         <div class="imahdjd3">
                             
-                            <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-top: 5px;color: black;" id="sadtdyayuda" >${user.porceprix} FCFA</p>
-                            <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);"><s>${user.prixtottal} FCFA</s></p>
-                            <div class="uufw" style="background-color: rgba(170, 170, 170, 0.289);width: 50px;border-radius: 5px;margin-top: 10px;">
-                                <p style="color: rgba(255, 102, 0, 0.865);font-size: 0.7rem;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">- ${user.porce} %</p>
-                            </div>
+//                             <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-top: 5px;color: black;" id="sadtdyayuda" >${user.porceprix} FCFA</p>
+//                             <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);"><s>${user.prixtottal} FCFA</s></p>
+//                             <div class="uufw" style="background-color: rgba(170, 170, 170, 0.289);width: 50px;border-radius: 5px;margin-top: 10px;">
+//                                 <p style="color: rgba(255, 102, 0, 0.865);font-size: 0.7rem;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">- ${user.porce} %</p>
+//                             </div>
                             
-                        </div>
-                    </div>
-                    <div class="duudcddc">
-                        <div class="jujdcuudwucd">
+//                         </div>
+//                     </div>
+//                     <div class="duudcddc">
+//                         <div class="jujdcuudwucd">
                            
-                            <form >
+//                             <form >
                                 
-                                <button classe="sereghfjf" onclick="zqszds(${user.position})" type="submit" > <img src="static/IMAGE/pouebd.png"  width="15px"  height="15px" alt="" ></button>
-                            </form>
-                        </div>
-                        <div class="jujdcuudwucd1">
-                            <input type="text" name="" id="couterw" style="width: 0;height: 0;border: none;"  value="${user.porce}">
-                            <input type="text" name="" id="gdhsuuzed" style="width: 0;height: 0;border: none;"  value="{{gdhsuud}}">
-                            <div class="ududdw2" onclick="moinsp('mnumq_${user.position}','${user.porceprix}')">
-                                <p style="color: black;font-size: 2rem;">-</p>
-                            </div>
-                            <div class="ududdw1">
-                                <input type="text" name="quantity" id="mnumq_${user.position}" style="width: 100%; height: 100%; padding-left: 10px; border: none; outline: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;" value="${user.quantiteto}">
-                            </div>
-                            <div class="ududdw" onclick="plusp('mnumq_${user.position}','${user.porceprix}')">
-                                <p style="color: black;font-size: 2rem;">+</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> `
+//                                 <button classe="sereghfjf" onclick="zqszds(${user.position})" type="submit" > <img src="static/IMAGE/pouebd.png"  width="15px"  height="15px" alt="" ></button>
+//                             </form>
+//                         </div>
+//                         <div class="jujdcuudwucd1">
+//                             <input type="text" name="" id="couterw" style="width: 0;height: 0;border: none;"  value="${user.porce}">
+//                             <input type="text" name="" id="gdhsuuzed" style="width: 0;height: 0;border: none;"  value="{{gdhsuud}}">
+//                             <div class="ududdw2" onclick="moinsp('mnumq_${user.position}','${user.porceprix}')">
+//                                 <p style="color: black;font-size: 2rem;">-</p>
+//                             </div>
+//                             <div class="ududdw1">
+//                                 <input type="text" name="quantity" id="mnumq_${user.position}" style="width: 100%; height: 100%; padding-left: 10px; border: none; outline: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;" value="${user.quantiteto}">
+//                             </div>
+//                             <div class="ududdw" onclick="plusp('mnumq_${user.position}','${user.porceprix}')">
+//                                 <p style="color: black;font-size: 2rem;">+</p>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div> `
                             
-        rec.innerHTML += rettr
-    }
-    if (user.categorie == "Montre") {
+//         rec.innerHTML += rettr
+//     }
+//     if (user.categorie == "Montre") {
         
    
-        rettr =  `<div class="lesvrai">
-                    <div class="geujdjd">
-                        <div class="imahdjd1">
-                            <a href="/montredetls/${user.produite}">
-                            <img src="static/uploads/${user.image}"  width="100%" height="90%" alt="" >
-                            </a>
-                        </div>
-                        <div class="imahdjd2">
-                            <p class="gradfs" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;font-size: 1rem;">${user.name}</p>
-                            <p class="gradfs1" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgb(53, 53, 53);font-size: 1rem;"><span style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.8rem;color: rgb(53, 53, 53);"> ${user.name} ...</span></p>
+//         rettr =  `<div class="lesvrai">
+//                     <div class="geujdjd">
+//                         <div class="imahdjd1">
+//                             <a href="/montredetls/${user.produite}">
+//                             <img src="static/uploads/${user.image}"  width="100%" height="90%" alt="" >
+//                             </a>
+//                         </div>
+//                         <div class="imahdjd2">
+//                             <p class="gradfs" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;font-size: 1rem;">${user.name}</p>
+//                             <p class="gradfs1" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: rgb(53, 53, 53);font-size: 1rem;"><span style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 0.8rem;color: rgb(53, 53, 53);"> ${user.name} ...</span></p>
                             
-                            <p style="font-size: 0.7rem;padding-top: 5px;color: blackgreen;">Size : <span style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;padding-top: 5px;color: rgb(53, 53, 53);">${user.tailed
-                            }</span></p>
+//                             <p style="font-size: 0.7rem;padding-top: 5px;color: blackgreen;">Size : <span style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;padding-top: 5px;color: rgb(53, 53, 53);">${user.tailed
+//                             }</span></p>
                                 
-                        </div>
-                        <div class="imahdjd3">
+//                         </div>
+//                         <div class="imahdjd3">
                             
-                            <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-top: 5px;color: black;" id="sadtdyayuda" >${user.porceprix} FCFA</p>
-                            <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);"><s>${user.prixtottal} FCFA</s></p>
-                            <div class="uufw" style="background-color: rgba(170, 170, 170, 0.289);width: 50px;border-radius: 5px;margin-top: 10px;">
-                                <p style="color: rgba(255, 102, 0, 0.865);font-size: 0.7rem;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">- ${user.porce} %</p>
-                            </div>
+//                             <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-top: 5px;color: black;" id="sadtdyayuda" >${user.porceprix} FCFA</p>
+//                             <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);"><s>${user.prixtottal} FCFA</s></p>
+//                             <div class="uufw" style="background-color: rgba(170, 170, 170, 0.289);width: 50px;border-radius: 5px;margin-top: 10px;">
+//                                 <p style="color: rgba(255, 102, 0, 0.865);font-size: 0.7rem;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">- ${user.porce} %</p>
+//                             </div>
                             
-                        </div>
-                    </div>
-                    <div class="duudcddc">
-                        <div class="jujdcuudwucd">
+//                         </div>
+//                     </div>
+//                     <div class="duudcddc">
+//                         <div class="jujdcuudwucd">
                            
-                            <form >
+//                             <form >
                                 
-                                <button classe="sereghfjf" onclick="zqszds(${user.position})" type="submit" > <img src="static/IMAGE/pouebd.png"  width="15px"  height="15px" alt="" ></button>
-                            </form>
-                        </div>
-                        <div class="jujdcuudwucd1">
-                            <input type="text" name="" id="couterw" style="width: 0;height: 0;border: none;"  value="${user.porce}">
-                            <input type="text" name="" id="gdhsuuzed" style="width: 0;height: 0;border: none;"  value="{{gdhsuud}}">
-                            <div class="ududdw2" onclick="moinsp('mnumq_${user.position}','${user.porceprix}')">
-                                <p style="color: black;font-size: 2rem;">-</p>
-                            </div>
-                            <div class="ududdw1">
-                                <input type="text" name="quantity" id="mnumq_${user.position}" style="width: 100%; height: 100%; padding-left: 10px; border: none; outline: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;" value="${user.quantiteto}">
-                            </div>
-                            <div class="ududdw" onclick="plusp('mnumq_${user.position}','${user.porceprix}')">
-                                <p style="color: black;font-size: 2rem;">+</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> `
+//                                 <button classe="sereghfjf" onclick="zqszds(${user.position})" type="submit" > <img src="static/IMAGE/pouebd.png"  width="15px"  height="15px" alt="" ></button>
+//                             </form>
+//                         </div>
+//                         <div class="jujdcuudwucd1">
+//                             <input type="text" name="" id="couterw" style="width: 0;height: 0;border: none;"  value="${user.porce}">
+//                             <input type="text" name="" id="gdhsuuzed" style="width: 0;height: 0;border: none;"  value="{{gdhsuud}}">
+//                             <div class="ududdw2" onclick="moinsp('mnumq_${user.position}','${user.porceprix}')">
+//                                 <p style="color: black;font-size: 2rem;">-</p>
+//                             </div>
+//                             <div class="ududdw1">
+//                                 <input type="text" name="quantity" id="mnumq_${user.position}" style="width: 100%; height: 100%; padding-left: 10px; border: none; outline: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;" value="${user.quantiteto}">
+//                             </div>
+//                             <div class="ududdw" onclick="plusp('mnumq_${user.position}','${user.porceprix}')">
+//                                 <p style="color: black;font-size: 2rem;">+</p>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div> `
                             
-        rec.innerHTML += rettr
-    }
-    somme+= user.porceprix * user.quantiteto
-    jdidsed.innerHTML = `<div class="jdidsed2">
-                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;font-size: 0.8rem;" >Prix total</p>
-                    <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 10px;color: black;font-weight: bolder;font-size: 1.3rem;" ><span id="somiu" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-weight: bolder;font-size: 1.3rem;">${somme}</span> FCFA</p>
+//         rec.innerHTML += rettr
+//     }
+//     somme+= user.porceprix * user.quantiteto
+//     jdidsed.innerHTML = `<div class="jdidsed2">
+//                     <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;color: black;font-size: 0.8rem;" >Prix total</p>
+//                     <p style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 10px;color: black;font-weight: bolder;font-size: 1.3rem;" ><span id="somiu" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-weight: bolder;font-size: 1.3rem;">${somme}</span> FCFA</p>
                     
-                </div>`
+//                 </div>`
     
     
-    console.log(rec);
+//     console.log(rec);
 
 
-    // caeekr += parseInt(user.porceprix)*parseInt(user.quantiteto)                      
-    // darsghd.innerHTML = taer
-    // darsghdzs.innerHTML = caeekr
+//     // caeekr += parseInt(user.porceprix)*parseInt(user.quantiteto)                      
+//     // darsghd.innerHTML = taer
+//     // darsghdzs.innerHTML = caeekr
 
 
     
     
 
-});
+// });
 // let tabUserezes = JSON.parse(localStorage.getItem("inscpce"))
 
 

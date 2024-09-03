@@ -476,6 +476,7 @@ with app.app_context() :
 class Profil(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
+    satuq = db.Column(db.Integer)
     prenom = db.Column(db.String(500), unique = False , nullable = False)
     residence = db.Column(db.String(500), unique = False , nullable = False)
     livraison = db.Column(db.String(500), unique = False , nullable = False)
@@ -488,7 +489,7 @@ class Profil(db.Model):
     age = db.Column(db.String(8),nullable = False)
 
     # achat = db.relationship('Panier',back_populates='prendre')
-    def __init__(self,first_name,last_name,age,prenom,residence,livraison,numero,deslivraion,infoplus):
+    def __init__(self,first_name,last_name,age,prenom,residence,livraison,numero,deslivraion,infoplus,satuq):
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
@@ -498,6 +499,7 @@ class Profil(db.Model):
         self.numero = numero
         self.deslivraion = deslivraion
         self.infoplus = infoplus
+        self.satuq = satuq
 
     # db.init_app(app)
     # with app.app_context() :
@@ -516,7 +518,8 @@ class Profil(db.Model):
             "livraison": self.livraison,
             "numero": self.numero,
             "deslivraion": self.deslivraion,
-            "infoplus": self.infoplus
+            "infoplus": self.infoplus,
+            "satuq": self.satuq
         }
     
 with app.app_context() :
@@ -625,6 +628,9 @@ class Panieruser(db.Model):
     pourcentage = db.Column(db.String(100), unique = False , nullable = False)
     categorie = db.Column(db.String(100), unique = False , nullable = False)
 
+    dispono = db.Column(db.String(100), unique = False , nullable = False)
+    statuse = db.Column(db.String(100), unique = False , nullable = False)
+
 
     quantiteto = db.Column(db.String(100), unique = False , nullable = False)
     tailed = db.Column(db.String(100), unique = False , nullable = False)
@@ -657,7 +663,8 @@ class Panieruser(db.Model):
    
    
    
-    def __init__(self,identifiant,tailed,image,produite,prixtottal,quantiteto,xs,xsn,s,sn,m,mn,l,ln,xl,xln,xxl,xxln,tranwite,tranwiten,tranneuf,tranneufn,karente,karenten,tranwiteun,tranwiteunn,tranwitedeux,tranwitedeuxn,tranwitrois,tranwitroisn,tranwitekate,tranwitekaten,prixdepouce,nomprodui,descrprosui,pourcentage,categorie):
+    def __init__(self,identifiant,tailed,image,produite,prixtottal,quantiteto,xs,xsn,s,sn,m,mn,l,ln,xl,xln,xxl,xxln,tranwite,tranwiten,tranneuf,tranneufn,karente,karenten,tranwiteun,tranwiteunn,tranwitedeux,tranwitedeuxn,tranwitrois,tranwitroisn,tranwitekate,tranwitekaten,prixdepouce,nomprodui,descrprosui,pourcentage,categorie,dispono,statuse):
+
         self.identifiant = identifiant
         self.image = image
         self.produite = produite
@@ -695,6 +702,8 @@ class Panieruser(db.Model):
         self.descrprosui = descrprosui
         self.pourcentage = pourcentage
         self.categorie = categorie
+        self.dispono = dispono
+        self.statuse = statuse
       
         
 
@@ -745,8 +754,11 @@ class Panieruser(db.Model):
             "descrprosui" : self.descrprosui,
             "pourcentage" : self.pourcentage,
             "categorie" : self.categorie,
+            "dispono" : self.dispono,
+            "statuse" : self.statuse,
             
         }
+
     
 
 with app.app_context() :
@@ -786,7 +798,14 @@ def commentaire():
 
 @app.route('/mailsamin')
 def mailsamin():
-    
+    if 'utilisateur_id' in session:
+        useru = Profil.query.get(session['utilisateur_id'])
+        if useru.satuq == 1 :
+            pass
+        else:
+            return redirect('/')
+    else:
+        return redirect('/pre/administa')
     return render_template("mailadmin.html")
 # AJOUTER IMAGES DES ARTICLES{}
 
@@ -799,6 +818,14 @@ def allowed_file(filename):
 
 @app.route('/add_objet', methods=['POST'])
 def upload_image():
+    if 'utilisateur_id' in session:
+        useru = Profil.query.get(session['utilisateur_id'])
+        if useru.satuq == 1 :
+            pass
+        else:
+            return redirect('/')
+    else:
+        return redirect('/pre/administa')
     try :
         if 'file' not in request.files:
             # flash('No file part')
@@ -914,6 +941,14 @@ def display_image(filename):
 
 @app.route('/objet',methods = ["POST"])
 def objet(): 
+        if 'utilisateur_id' in session:
+            useru = Profil.query.get(session['utilisateur_id'])
+            if useru.satuq == 1 :
+                pass
+            else:
+                return redirect('/')
+        else:
+            return redirect('/pre/administa')
     
     
       
@@ -1087,7 +1122,8 @@ def sacs(id):
     for i in tableaus : 
         
         if int(i.identifiant) == useruo.id :
-            conueww += int(i.quantiteto)
+            if i.statuse == "dispobine" :
+                conueww += int(i.quantiteto)
             print('prevdg', i.identifiant , 'prevdg' , useruo.id)
             hdhdud = Ajouter.query.get(i.produite)
            
@@ -1173,15 +1209,18 @@ def sac():
             hdhdud = Ajouter.query.get(i.produite)
         
 
-            gdhsuud.append({"element":i.produite,"prix":i.prixdepouce,"image":i.image,"quantite":i.quantiteto,"taille":i.tailed,"nom":i.nomprodui,"description":i.descrprosui,"pource":i.prixtottal,"porce":i.pourcentage ,"tailed":i.tailed,"categorie":i.categorie})
+            gdhsuud.append({"element":i.produite,"prix":i.prixdepouce,"image":i.image,"quantite":i.quantiteto,"taille":i.tailed,"nom":i.nomprodui,"description":i.descrprosui,"pource":i.prixtottal,"porce":i.pourcentage ,"tailed":i.tailed,"categorie":i.categorie, "statuse":i.statuse})
 
             # prixdepouce,nomprodui,descrprosui,pourcentage,categorie
 
     # conueww = len(gdhsuud)    
     somme = 0     
     for i in gdhsuud :
-        conueww += int(i["quantite"])
-        somme += int(i["pource"])  
+ 
+        if i["statuse"] == "dispobine" :
+            
+            conueww += int(i["quantite"])
+            somme += int(i["pource"])  
     return render_template("sac.html", data = data ,conueww=conueww,somme=somme)
 @app.route('/homme/<int:id>')
 def homme(id):
@@ -1249,15 +1288,17 @@ def acc():
             hdhdud = Ajouter.query.get(i.produite)
         
 
-            gdhsuud.append({"element":i.produite,"prix":i.prixdepouce,"image":i.image,"quantite":i.quantiteto,"taille":i.tailed,"nom":i.nomprodui,"description":i.descrprosui,"pource":i.prixtottal,"porce":i.pourcentage ,"tailed":i.tailed,"categorie":i.categorie})
+            gdhsuud.append({"element":i.produite,"prix":i.prixdepouce,"image":i.image,"quantite":i.quantiteto,"taille":i.tailed,"nom":i.nomprodui,"description":i.descrprosui,"pource":i.prixtottal,"porce":i.pourcentage ,"tailed":i.tailed,"categorie":i.categorie,"statuse":i.statuse})
 
             # prixdepouce,nomprodui,descrprosui,pourcentage,categorie
 
     # conueww = len(gdhsuud)    
     somme = 0     
     for i in gdhsuud :
-        conueww += int(i["quantite"])
-        somme += int(i["pource"])  
+      
+        if i["statuse"] == "dispobine" :
+            conueww += int(i["quantite"])
+            somme += int(i["pource"])  
     return render_template("vente.html", data = data , conueww=conueww,somme=somme)
 @app.route("/montre")
 def montre():
@@ -1286,15 +1327,17 @@ def montre():
             hdhdud = Ajouter.query.get(i.produite)
             
 
-            gdhsuud.append({"element":i.produite,"prix":i.prixdepouce,"image":i.image,"quantite":i.quantiteto,"taille":i.tailed,"nom":i.nomprodui,"description":i.descrprosui,"pource":i.prixtottal,"porce":i.pourcentage ,"tailed":i.tailed,"categorie":i.categorie})
+            gdhsuud.append({"element":i.produite,"prix":i.prixdepouce,"image":i.image,"quantite":i.quantiteto,"taille":i.tailed,"nom":i.nomprodui,"description":i.descrprosui,"pource":i.prixtottal,"porce":i.pourcentage ,"tailed":i.tailed,"categorie":i.categorie,"statuse":i.statuse})
 
             # prixdepouce,nomprodui,descrprosui,pourcentage,categorie
 
     # conueww = len(gdhsuud)  
     somme = 0     
     for i in gdhsuud :
-        conueww += int(i["quantite"])
-        somme += int(i["pource"])  
+        
+        if i["statuse"] == "dispobine" :
+            conueww += int(i["quantite"])
+            somme += int(i["pource"])  
     return render_template("montre.html", data = data,conueww=conueww,somme=somme)
 @app.route("/montrels")
 def montrels():
@@ -1561,7 +1604,8 @@ def montres(id):
     for i in tableaus : 
         
         if int(i.identifiant) == useruo.id :
-            conueww += int(i.quantiteto)
+            if i.statuse == "dispobine" :
+                conueww += int(i.quantiteto)
             print('prevdg', i.identifiant , 'prevdg' , useruo.id)
             hdhdud = Ajouter.query.get(i.produite)
             gdhsuud.append({"element":i.produite,"prix":i.prixdepouce,"image":i.image,"quantite":i.quantiteto,"taille":i.tailed,"nom":i.nomprodui,"description":i.descrprosui,"pource":i.prixtottal,"porce":i.pourcentage ,"tailed":i.tailed,"categorie":i.categorie})
@@ -1832,7 +1876,8 @@ def info(id):
     for i in tableaus : 
         
         if int(i.identifiant) == useruo.id :
-            conueww += int(i.quantiteto)
+            if i.statuse == "dispobine" :
+                conueww += int(i.quantiteto)
             print('prevdg', i.identifiant , 'prevdg' , useruo.id)
             hdhdud = Ajouter.query.get(i.produite)
             gdhsuud.append({"element":i.produite,"prix":i.prixdepouce,"image":i.image,"quantite":i.quantiteto,"taille":i.tailed,"nom":i.nomprodui,"description":i.descrprosui,"pource":i.prixtottal,"porce":i.pourcentage ,"tailed":i.tailed,"categorie":i.categorie})
@@ -1954,14 +1999,14 @@ def finishcommand():
     
         aleaez = random.randint(0,(len(couleurz)-1))
         print("aleatoore",aleaez)
-        if int(i.identifiant) == useru.id :
+        if int(i.identifiant) == useru.id and i.statuse == "dispobine" :
             
             hdhdud = Ajouter.query.get(i.produite)
             compterut = int(compterut) + 1
             compterute =  couleurz[aleaez] + str(compterut)
              
             
-            quantitezr += 1
+            quantitezr += int(i.quantiteto)
             total += int(i.quantiteto) * int(hdhdud.porceprix)
             pmse.append({"idpro":i.produite,"nom":nom,"prenom":prenom,"mail":mail,"residence":residence,"produitname":hdhdud.nom,"prixunit":hdhdud.porceprix,"pourcent":hdhdud.porce,"prixtotal":(int(i.quantiteto) * int(hdhdud.porceprix)),"aller":aller,"livrer":livrer,"numero":numero,"lieulivraison":lieulivraison,"deslieulivraison":deslieulivraison,"comnumid":compterute,"taille":i.tailed,"quantite":i.quantiteto,"status":"En cours","image":i.image,"categorie":hdhdud.categorie,"client":useru.id})
             pani = Commande(idpro=i.produite,nom=nom,prenom=prenom,mail=mail,residence=residence,produitname=hdhdud.nom,prixunit=hdhdud.porceprix,pourcent=hdhdud.porce,prixtotal=(int(i.quantiteto) * int(hdhdud.porceprix)),aller=aller,livrer=livrer,numero=numero,lieulivraison=lieulivraison,deslieulivraison=deslieulivraison,comnumid=compterute,taille=i.tailed,quantite=i.quantiteto,status="En cours",image=i.image,categorie=hdhdud.categorie,client=useru.id)
@@ -1970,7 +2015,7 @@ def finishcommand():
             db.session.commit()
             veridie+=1
 
-        if int(i.identifiant) == useru.id :
+        if int(i.identifiant) == useru.id and i.statuse == "dispobine" :
             pani = Mailboite(dateactu=jsuef,image=i.image,status="En cours",depart=aller,arriver=livrer,proprio=useru.id,serie=compterute,lieu=lieulivraison,nom=hdhdud.nom,categorie=hdhdud.categorie)
                     
             db.session.add(pani)
@@ -1980,7 +2025,7 @@ def finishcommand():
     if veridie > 0:
         tableods = ""
         for i in tableaus : 
-            if int(i.identifiant) == useru.id :
+            if int(i.identifiant) == useru.id and i.statuse == "dispobine" :
                 
                 hdhdud = Ajouter.query.get(i.produite)
                 compterut +=1
@@ -2017,49 +2062,976 @@ def finishcommand():
                 adm= Panieruser.query.get(lpmsezs)
                 db.session.delete(adm)
                 db.session.commit()
-        try:
+    
 
-            comens = Commande.query.all()
- 
+        comens = Commande.query.all()
+
+        
+        for i in comens :
             
-            for i in comens :
+            if i.mail == useru.last_name:
+                datez = i.livrer
+                commen = i.comnumid
+                prenom = i.prenom
+                nom =i.nom
+
+        lenhsfd = len(pmse)
+
+        
+        mail = Mail(app)
+        msg = Message("Commande éffectuée chez HINGTON SHOP",
+                    sender=SMTP_USERNAME,
+                    recipients=[useru.last_name])
+        with app.open_resource("static/IMAGE/hinglogo.png") as img:
+                msg.attach("hinglogo.png", "image/jpeg", img.read(), headers={'Content-ID': f'<myimage>'})
+
+        with app.open_resource("static/IMAGE/fgshs.png") as img:
+                msg.attach("fgshs.png", "image/jpeg", img.read(), headers={'Content-ID': f'<facebook>'})
+        with app.open_resource("static/IMAGE/tikti.png") as img:
+                msg.attach("tikti.png", "image/jpeg", img.read(), headers={'Content-ID': f'<titko>'})
+        with app.open_resource("static/IMAGE/awp.png") as img:
+                msg.attach("awp.png", "image/jpeg", img.read(), headers={'Content-ID': f'<whats>'})
+        for i in pmse :
+            lesfg = i["image"]
+            with app.open_resource(f"static/uploads/{lesfg}") as img:
+                msg.attach(f"{lesfg}", "image/jpeg", img.read(), headers={'Content-ID': f'<{lesfg}>'})
+        # Rendre le template HTML
+        msg.html = render_template("designmail.html",lenhsfd=lenhsfd,pmse=pmse,prenom=prenom,commen=commen,nom=nom,datez=datez,livraison=lieulivraison,emballage=data,quantitezr=quantitezr,total=total)
+        
+        # Envoyer l'e-mail
+        mail.send(msg)
+
+
+
+        
+        
+
+        for empa in pmse :
+
+            
                 
-                if i.mail == useru.last_name:
-                    datez = i.livrer
-                    commen = i.comnumid
-                    prenom = i.prenom
-                    nom =i.nom
+            print(empa["categorie"])
+            if empa["categorie"] == "VetementFemme" :
 
-            lenhsfd = len(pmse)
+                print(empa["categorie"])
+                taille = empa["taille"]
+                
+                adm = Ajouter.query.get(int(empa["idpro"]))
 
-            
-            mail = Mail(app)
-            msg = Message("Commande éffectuée chez HINGTON SHOP",
-                        sender=SMTP_USERNAME,
-                        recipients=[useru.last_name])
-            with app.open_resource("static/IMAGE/hinglogo.png") as img:
-                    msg.attach("hinglogo.png", "image/jpeg", img.read(), headers={'Content-ID': f'<myimage>'})
+                if taille == "m" :
+                    if int(adm.mlet) > 0 :
+                        print("int(adm.mlet)", int(adm.mlet) , ">" , 0)
 
-            with app.open_resource("static/IMAGE/fgshs.png") as img:
-                    msg.attach("fgshs.png", "image/jpeg", img.read(), headers={'Content-ID': f'<facebook>'})
-            with app.open_resource("static/IMAGE/tikti.png") as img:
-                    msg.attach("tikti.png", "image/jpeg", img.read(), headers={'Content-ID': f'<titko>'})
-            with app.open_resource("static/IMAGE/awp.png") as img:
-                    msg.attach("awp.png", "image/jpeg", img.read(), headers={'Content-ID': f'<whats>'})
-            for i in pmse :
-                lesfg = i["image"]
-                with app.open_resource(f"static/uploads/{lesfg}") as img:
-                    msg.attach(f"{lesfg}", "image/jpeg", img.read(), headers={'Content-ID': f'<{lesfg}>'})
-            # Rendre le template HTML
-            msg.html = render_template("designmail.html",lenhsfd=lenhsfd,pmse=pmse,prenom=prenom,commen=commen,nom=nom,datez=datez,livraison=lieulivraison,emballage=data,quantitezr=quantitezr,total=total)
+                        if int(adm.quantit) == int(empa["quantite"]) :
+
+                            adm.stat = "faux"
+                            adm.mlet = int(adm.mlet) - int(empa["quantite"])
+                            adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                            db.session.commit()
+
+                            monkzu = Panieruser.query.all()
+                            print("on a recu")
+                            for imo in monkzu :
+                                if int(imo.produite) == int(empa["idpro"]) :
+                                    sfymp = int(imo.dispono) - int(empa["quantite"])
+                                    if sfymp >= int(imo.quantiteto)   :
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "dispobine"
+                                        print(sfymp , ">=" , int(imo.quantiteto))
+                                        print("terlin")
+                                    else : 
+                                        print(sfymp , "<" , int(imo.quantiteto))
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "nondisp"
+                                        print("pas terlin")
+                                    db.session.commit()
+                            continue
+
+
+                        if int(adm.quantit) == 0 :
+                            adm.stat = "faux"
+                            
+                            db.session.commit()
+                            continue
+
+                        adm.mlet = int(adm.mlet) - int(empa["quantite"])
+                        adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                        db.session.commit()
+
+
+
+
+                        monkzu = Panieruser.query.all()
+                        for imo in monkzu :
+                            if int(imo.produite) == int(empa["idpro"]) :
+                                sfymp = int(imo.dispono) - int(empa["quantite"])
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "nondisp"
+                                db.session.commit()
+                        
+                        continue
+
+                    if int(adm.mlet) == 0 :
+                        continue
+
+
+
+                if taille == "xs" :
+                    if int(adm.xslet) > 0 :
+                        print("int(adm.xslet)", int(adm.xslet) , ">" , 0)
+
+                        if int(adm.quantit) == int(empa["quantite"]) :
+
+                            adm.stat = "faux"
+                            adm.xslet = int(adm.xslet) - int(empa["quantite"])
+                            adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                            db.session.commit()
+
+                            monkzu = Panieruser.query.all()
+                            print("on a recu")
+                            for imo in monkzu :
+                                if int(imo.produite) == int(empa["idpro"]) :
+                                    sfymp = int(imo.dispono) - int(empa["quantite"])
+                                    if sfymp >= int(imo.quantiteto)   :
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "dispobine"
+                                        print(sfymp , ">=" , int(imo.quantiteto))
+                                        print("terlin")
+                                    else : 
+                                        print(sfymp , "<" , int(imo.quantiteto))
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "nondisp"
+                                        print("pas terlin")
+                                    db.session.commit()
+                            continue
+
+
+                        if int(adm.quantit) == 0 :
+                            adm.stat = "faux"
+                            
+                            db.session.commit()
+                            continue
+
+                        adm.xslet = int(adm.xslet) - int(empa["quantite"])
+                        adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                        db.session.commit()
+
+
+
+
+                        monkzu = Panieruser.query.all()
+                        for imo in monkzu :
+                            if int(imo.produite) == int(empa["idpro"]) :
+                                sfymp = int(imo.dispono) - int(empa["quantite"])
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "nondisp"
+                                db.session.commit()
+                        
+                        continue
+
+                    if int(adm.xslet) == 0 :
+                        continue
+
+
+                if taille == "xl" :
+                    if int(adm.xllet) > 0 :
+                        print("int(adm.xllet)", int(adm.xllet) , ">" , 0)
+
+                        if int(adm.quantit) == int(empa["quantite"]) :
+
+                            adm.stat = "faux"
+                            adm.xllet = int(adm.xllet) - int(empa["quantite"])
+                            adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                            db.session.commit()
+
+                            monkzu = Panieruser.query.all()
+                            print("on a recu")
+                            for imo in monkzu :
+                                if int(imo.produite) == int(empa["idpro"]) :
+                                    sfymp = int(imo.dispono) - int(empa["quantite"])
+                                    if sfymp >= int(imo.quantiteto)   :
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "dispobine"
+                                        print(sfymp , ">=" , int(imo.quantiteto))
+                                        print("terlin")
+                                    else : 
+                                        print(sfymp , "<" , int(imo.quantiteto))
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "nondisp"
+                                        print("pas terlin")
+                                    db.session.commit()
+                            continue
+
+
+                        if int(adm.quantit) == 0 :
+                            adm.stat = "faux"
+                            
+                            db.session.commit()
+                            continue
+
+                        adm.xllet = int(adm.xllet) - int(empa["quantite"])
+                        adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                        db.session.commit()
+
+
+
+
+                        monkzu = Panieruser.query.all()
+                        for imo in monkzu :
+                            if int(imo.produite) == int(empa["idpro"]) :
+                                sfymp = int(imo.dispono) - int(empa["quantite"])
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "nondisp"
+                                db.session.commit()
+                        
+                        continue
+
+                    if int(adm.xllet) == 0 :
+                        continue
+
+                if taille == "xxl" :
+                    if int(adm.xxllet) > 0 :
+                        print("int(adm.xxllet)", int(adm.xxllet) , ">" , 0)
+
+                        if int(adm.quantit) == int(empa["quantite"]) :
+
+                            adm.stat = "faux"
+                            adm.xxllet = int(adm.xxllet) - int(empa["quantite"])
+                            adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                            db.session.commit()
+
+                            monkzu = Panieruser.query.all()
+                            print("on a recu")
+                            for imo in monkzu :
+                                if int(imo.produite) == int(empa["idpro"]) :
+                                    sfymp = int(imo.dispono) - int(empa["quantite"])
+                                    if sfymp >= int(imo.quantiteto)   :
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "dispobine"
+                                        print(sfymp , ">=" , int(imo.quantiteto))
+                                        print("terlin")
+                                    else : 
+                                        print(sfymp , "<" , int(imo.quantiteto))
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "nondisp"
+                                        print("pas terlin")
+                                    db.session.commit()
+                            continue
+
+
+                        if int(adm.quantit) == 0 :
+                            adm.stat = "faux"
+                            
+                            db.session.commit()
+                            continue
+
+                        adm.xxllet = int(adm.xxllet) - int(empa["quantite"])
+                        adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                        db.session.commit()
+
+
+
+
+                        monkzu = Panieruser.query.all()
+                        for imo in monkzu :
+                            if int(imo.produite) == int(empa["idpro"]) :
+                                sfymp = int(imo.dispono) - int(empa["quantite"])
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "nondisp"
+                                db.session.commit()
+                        
+                        continue
+
+                    if int(adm.xxllet) == 0 :
+                        continue
+
+                
+
+                if taille == "s" :
+                    if int(adm.slet) > 0 :
+                        print("int(adm.slet)", int(adm.slet) , ">" , 0)
+
+                        if int(adm.quantit) == int(empa["quantite"]) :
+
+                            adm.stat = "faux"
+                            adm.slet = int(adm.slet) - int(empa["quantite"])
+                            adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                            db.session.commit()
+
+                            monkzu = Panieruser.query.all()
+                            print("on a recu")
+                            for imo in monkzu :
+                                if int(imo.produite) == int(empa["idpro"]) :
+                                    sfymp = int(imo.dispono) - int(empa["quantite"])
+                                    if sfymp >= int(imo.quantiteto)   :
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "dispobine"
+                                        print(sfymp , ">=" , int(imo.quantiteto))
+                                        print("terlin")
+                                    else : 
+                                        print(sfymp , "<" , int(imo.quantiteto))
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "nondisp"
+                                        print("pas terlin")
+                                    db.session.commit()
+                            continue
+
+
+                        if int(adm.quantit) == 0 :
+                            adm.stat = "faux"
+                            
+                            db.session.commit()
+                            continue
+
+                        adm.slet = int(adm.slet) - int(empa["quantite"])
+                        adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                        db.session.commit()
+
+
+
+
+                        monkzu = Panieruser.query.all()
+                        for imo in monkzu :
+                            if int(imo.produite) == int(empa["idpro"]) :
+                                sfymp = int(imo.dispono) - int(empa["quantite"])
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "nondisp"
+                                db.session.commit()
+                        
+                        continue
+
+                    if int(adm.slet) == 0 :
+                        continue
+
+                if taille == "l" :
+                    if int(adm.llet) > 0 :
+                        print("int(adm.llet)", int(adm.llet) , ">" , 0)
+
+                        if int(adm.quantit) == int(empa["quantite"]) :
+
+                            adm.stat = "faux"
+                            adm.llet = int(adm.llet) - int(empa["quantite"])
+                            adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                            db.session.commit()
+
+                            monkzu = Panieruser.query.all()
+                            print("on a recu")
+                            for imo in monkzu :
+                                if int(imo.produite) == int(empa["idpro"]) :
+                                    sfymp = int(imo.dispono) - int(empa["quantite"])
+                                    if sfymp >= int(imo.quantiteto)   :
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "dispobine"
+                                        print(sfymp , ">=" , int(imo.quantiteto))
+                                        print("terlin")
+                                    else : 
+                                        print(sfymp , "<" , int(imo.quantiteto))
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "nondisp"
+                                        print("pas terlin")
+                                    db.session.commit()
+                            continue
+
+
+                        if int(adm.quantit) == 0 :
+                            adm.stat = "faux"
+                            
+                            db.session.commit()
+                            continue
+
+                        adm.llet = int(adm.llet) - int(empa["quantite"])
+                        adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                        db.session.commit()
+
+
+
+
+                        monkzu = Panieruser.query.all()
+                        for imo in monkzu :
+                            if int(imo.produite) == int(empa["idpro"]) :
+                                sfymp = int(imo.dispono) - int(empa["quantite"])
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "nondisp"
+                                db.session.commit()
+                        
+                        continue
+
+                    if int(adm.llet) == 0 :
+                        continue
+
+
+            if empa["categorie"] == "chaussure" :
+                print(empa["categorie"])
+                taille = empa["taille"]
+                
+                adm = Ajouter.query.get(int(empa["idpro"]))
+
+
+                if taille == "38 ° " :
+                    if int(adm.tranwitelet) > 0 :
+                        print("int(adm.tranwitelet)", int(adm.tranwitelet) , ">" , 0)
+
+                        if int(adm.quantit) == int(empa["quantite"]) :
+
+                            adm.stat = "faux"
+                            adm.tranwitelet = int(adm.tranwitelet) - int(empa["quantite"])
+                            adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                            db.session.commit()
+
+                            monkzu = Panieruser.query.all()
+                            print("on a recu")
+                            for imo in monkzu :
+                                if int(imo.produite) == int(empa["idpro"]) :
+                                    sfymp = int(imo.dispono) - int(empa["quantite"])
+                                    if sfymp >= int(imo.quantiteto)   :
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "dispobine"
+                                        print(sfymp , ">=" , int(imo.quantiteto))
+                                        print("terlin")
+                                    else : 
+                                        print(sfymp , "<" , int(imo.quantiteto))
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "nondisp"
+                                        print("pas terlin")
+                                    db.session.commit()
+                            continue
+
+
+                        if int(adm.quantit) == 0 :
+                            adm.stat = "faux"
+                            
+                            db.session.commit()
+                            continue
+
+                        adm.tranwitelet = int(adm.tranwitelet) - int(empa["quantite"])
+                        adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                        db.session.commit()
+
+
+
+
+                        monkzu = Panieruser.query.all()
+                        for imo in monkzu :
+                            if int(imo.produite) == int(empa["idpro"]) :
+                                sfymp = int(imo.dispono) - int(empa["quantite"])
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "nondisp"
+                                db.session.commit()
+                        
+                        continue
+
+                    if int(adm.tranwitelet) == 0 :
+                        continue
+
+              
+
+                if taille == "39 ° " :
+                    if int(adm.tranneuflet) > 0 :
+
+                        print("int(adm.tranneuflet)", int(adm.tranneuflet) , ">" , 0)
+
+                        if int(adm.quantit) == int(empa["quantite"]) :
+
+                            adm.stat = "faux"
+                            adm.tranneuflet = int(adm.tranneuflet) - int(empa["quantite"])
+                            adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                            db.session.commit()
+
+                            monkzu = Panieruser.query.all()
+                            print("on a recu")
+                            for imo in monkzu :
+                                if int(imo.produite) == int(empa["idpro"]) :
+                                    sfymp = int(imo.dispono) - int(empa["quantite"])
+                                    if sfymp >= int(imo.quantiteto)   :
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "dispobine"
+                                        print(sfymp , ">=" , int(imo.quantiteto))
+                                        print("terlin")
+                                    else : 
+                                        print(sfymp , "<" , int(imo.quantiteto))
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "nondisp"
+                                        print("pas terlin")
+                                    db.session.commit()
+                            continue
+
+
+                        if int(adm.quantit) == 0 :
+                            adm.stat = "faux"
+                            
+                            db.session.commit()
+                            continue
+
+                        adm.tranneuflet = int(adm.tranneuflet) - int(empa["quantite"])
+                        adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                        db.session.commit()
+
+
+
+
+
+
+                        monkzu = Panieruser.query.all()
+                        for imo in monkzu :
+                            if int(imo.produite) == int(empa["idpro"]) :
+                                sfymp = int(imo.dispono) - int(empa["quantite"])
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "nondisp"
+                                db.session.commit()
+                        
+                        continue
+
+                    if int(adm.tranneuflet) == 0 :
+                        continue
+
+              
+
+                if taille == "40 ° " :
+                    if int(adm.karentelet) > 0 :
+                        print("int(adm.karentelet)", int(adm.karentelet) , ">" , 0)
+
+                        if int(adm.quantit) == int(empa["quantite"]) :
+
+                            adm.stat = "faux"
+                            adm.karentelet = int(adm.karentelet) - int(empa["quantite"])
+                            adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                            db.session.commit()
+
+                            monkzu = Panieruser.query.all()
+                            print("on a recu")
+                            for imo in monkzu :
+                                if int(imo.produite) == int(empa["idpro"]) :
+                                    sfymp = int(imo.dispono) - int(empa["quantite"])
+                                    if sfymp >= int(imo.quantiteto)   :
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "dispobine"
+                                        print(sfymp , ">=" , int(imo.quantiteto))
+                                        print("terlin")
+                                    else : 
+                                        print(sfymp , "<" , int(imo.quantiteto))
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "nondisp"
+                                        print("pas terlin")
+                                    db.session.commit()
+                            continue
+
+
+                        if int(adm.quantit) == 0 :
+                            adm.stat = "faux"
+                            
+                            db.session.commit()
+                            continue
+
+                        adm.karentelet = int(adm.karentelet) - int(empa["quantite"])
+                        adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                        db.session.commit()
+
+
+
+
+                        monkzu = Panieruser.query.all()
+                        for imo in monkzu :
+                            if int(imo.produite) == int(empa["idpro"]) :
+                                sfymp = int(imo.dispono) - int(empa["quantite"])
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "nondisp"
+                                db.session.commit()
+                        
+                        continue
+
+                    if int(adm.karentelet) == 0 :
+                        continue
+
+              
+
+                if taille == "41 ° " :
+                    if int(adm.tranwiteunlet) > 0 :
+                        print("int(adm.tranwiteunlet)", int(adm.tranwiteunlet) , ">" , 0)
+
+                        if int(adm.quantit) == int(empa["quantite"]) :
+
+                            adm.stat = "faux"
+                            adm.tranwiteunlet = int(adm.tranwiteunlet) - int(empa["quantite"])
+                            adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                            db.session.commit()
+
+                            monkzu = Panieruser.query.all()
+                            print("on a recu")
+                            for imo in monkzu :
+                                if int(imo.produite) == int(empa["idpro"]) :
+                                    sfymp = int(imo.dispono) - int(empa["quantite"])
+                                    if sfymp >= int(imo.quantiteto)   :
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "dispobine"
+                                        print(sfymp , ">=" , int(imo.quantiteto))
+                                        print("terlin")
+                                    else : 
+                                        print(sfymp , "<" , int(imo.quantiteto))
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "nondisp"
+                                        print("pas terlin")
+                                    db.session.commit()
+                            continue
+
+
+                        if int(adm.quantit) == 0 :
+                            adm.stat = "faux"
+                            
+                            db.session.commit()
+                            continue
+
+                        adm.tranwiteunlet = int(adm.tranwiteunlet) - int(empa["quantite"])
+                        adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                        db.session.commit()
+
+
+
+
+                        monkzu = Panieruser.query.all()
+                        for imo in monkzu :
+                            if int(imo.produite) == int(empa["idpro"]) :
+                                sfymp = int(imo.dispono) - int(empa["quantite"])
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "nondisp"
+                                db.session.commit()
+                        
+                        continue
+
+                    if int(adm.tranwiteunlet) == 0 :
+                        continue
+
+              
+
+                if taille == "42 ° " :
+                    if int(adm.tranwitedeuxlet) > 0 :
+                        print("int(adm.tranwitedeuxlet)", int(adm.tranwitedeuxlet) , ">" , 0)
+
+                        if int(adm.quantit) == int(empa["quantite"]) :
+
+                            adm.stat = "faux"
+                            adm.tranwitedeuxlet = int(adm.tranwitedeuxlet) - int(empa["quantite"])
+                            adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                            db.session.commit()
+
+                            monkzu = Panieruser.query.all()
+                            print("on a recu")
+                            for imo in monkzu :
+                                if int(imo.produite) == int(empa["idpro"]) :
+                                    sfymp = int(imo.dispono) - int(empa["quantite"])
+                                    if sfymp >= int(imo.quantiteto)   :
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "dispobine"
+                                        print(sfymp , ">=" , int(imo.quantiteto))
+                                        print("terlin")
+                                    else : 
+                                        print(sfymp , "<" , int(imo.quantiteto))
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "nondisp"
+                                        print("pas terlin")
+                                    db.session.commit()
+                            continue
+
+
+                        if int(adm.quantit) == 0 :
+                            adm.stat = "faux"
+                            
+                            db.session.commit()
+                            continue
+
+                        adm.tranwitedeuxlet = int(adm.tranwitedeuxlet) - int(empa["quantite"])
+                        adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                        db.session.commit()
+
+
+
+
+                        monkzu = Panieruser.query.all()
+                        for imo in monkzu :
+                            if int(imo.produite) == int(empa["idpro"]) :
+                                sfymp = int(imo.dispono) - int(empa["quantite"])
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "nondisp"
+                                db.session.commit()
+                        
+                        continue
+
+                    if int(adm.tranwitedeuxlet) == 0 :
+                        continue
+
+              
+
+                if taille == "43 ° " :
+                    if int(adm.tranwitroislet) > 0 :
+                        print("int(adm.tranwitroislet)", int(adm.tranwitroislet) , ">" , 0)
+
+                        if int(adm.quantit) == int(empa["quantite"]) :
+
+                            adm.stat = "faux"
+                            adm.tranwitroislet = int(adm.tranwitroislet) - int(empa["quantite"])
+                            adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                            db.session.commit()
+
+                            monkzu = Panieruser.query.all()
+                            print("on a recu")
+                            for imo in monkzu :
+                                if int(imo.produite) == int(empa["idpro"]) :
+                                    sfymp = int(imo.dispono) - int(empa["quantite"])
+                                    if sfymp >= int(imo.quantiteto)   :
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "dispobine"
+                                        print(sfymp , ">=" , int(imo.quantiteto))
+                                        print("terlin")
+                                    else : 
+                                        print(sfymp , "<" , int(imo.quantiteto))
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "nondisp"
+                                        print("pas terlin")
+                                    db.session.commit()
+                            continue
+
+
+                        if int(adm.quantit) == 0 :
+                            adm.stat = "faux"
+                            
+                            db.session.commit()
+                            continue
+
+                        adm.tranwitroislet = int(adm.tranwitroislet) - int(empa["quantite"])
+                        adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                        db.session.commit()
+
+
+
+
+                        monkzu = Panieruser.query.all()
+                        for imo in monkzu :
+                            if int(imo.produite) == int(empa["idpro"]) :
+                                sfymp = int(imo.dispono) - int(empa["quantite"])
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "nondisp"
+                                db.session.commit()
+                        
+                        continue
+
+                    if int(adm.tranwitroislet) == 0 :
+                        continue
+
+              
+
+                if taille == "44 ° " :
+                    if int(adm.tranwitekatelet) > 0 :
+                        print("int(adm.tranwitekatelet)", int(adm.tranwitekatelet) , ">" , 0)
+
+                        if int(adm.quantit) == int(empa["quantite"]) :
+
+                            adm.stat = "faux"
+                            adm.tranwitekatelet = int(adm.tranwitekatelet) - int(empa["quantite"])
+                            adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                            db.session.commit()
+
+                            monkzu = Panieruser.query.all()
+                            print("on a recu")
+                            for imo in monkzu :
+                                if int(imo.produite) == int(empa["idpro"]) :
+                                    sfymp = int(imo.dispono) - int(empa["quantite"])
+                                    if sfymp >= int(imo.quantiteto)   :
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "dispobine"
+                                        print(sfymp , ">=" , int(imo.quantiteto))
+                                        print("terlin")
+                                    else : 
+                                        print(sfymp , "<" , int(imo.quantiteto))
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "nondisp"
+                                        print("pas terlin")
+                                    db.session.commit()
+                            continue
+
+
+                        if int(adm.quantit) == 0 :
+                            adm.stat = "faux"
+                            
+                            db.session.commit()
+                            continue
+
+                        adm.tranwitekatelet = int(adm.tranwitekatelet) - int(empa["quantite"])
+                        adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                        db.session.commit()
+
+
+
+
+                        monkzu = Panieruser.query.all()
+                        for imo in monkzu :
+                            if int(imo.produite) == int(empa["idpro"]) :
+                                sfymp = int(imo.dispono) - int(empa["quantite"])
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "nondisp"
+                                db.session.commit()
+                        
+                        continue
+
+                    if int(adm.tranwitekatelet) == 0 :
+                        continue
+
+              
+                   
+                   
+
+            else :
+                
+                if empa["categorie"] == "Montre" :
+                    taille = empa["taille"] 
+                
+                    adm = Ajouter.query.get(int(empa["idpro"]))
+                    if int(adm.quantit) > 0 :
+                        print("int(adm.quantit)", int(adm.quantit) , ">" , 0)
+
+                        if int(adm.quantit) == int(empa["quantite"]) :
+
+                            adm.stat = "faux"
+                            
+                            adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                            db.session.commit()
+
+                            monkzu = Panieruser.query.all()
+                            print("on a recu")
+                            for imo in monkzu :
+                                if int(imo.produite) == int(empa["idpro"]) :
+                                    sfymp = int(imo.dispono) - int(empa["quantite"])
+                                    if sfymp >= int(imo.quantiteto)   :
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "dispobine"
+                                        print(sfymp , ">=" , int(imo.quantiteto))
+                                        print("terlin")
+                                    else : 
+                                        print(sfymp , "<" , int(imo.quantiteto))
+                                        imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                        imo.statuse = "nondisp"
+                                        print("pas terlin")
+                                    db.session.commit()
+                            continue
+
+
+                        if int(adm.quantit) == 0 :
+                            adm.stat = "faux"
+                            
+                            db.session.commit()
+                            continue
+
+                        
+                        adm.quantit = int(adm.quantit) - int(empa["quantite"])
+                        db.session.commit()
+
+
+
+
+                        monkzu = Panieruser.query.all()
+                        for imo in monkzu :
+                            if int(imo.produite) == int(empa["idpro"]) :
+                                sfymp = int(imo.dispono) - int(empa["quantite"])
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - int(empa["quantite"])
+                                    imo.statuse = "nondisp"
+                                db.session.commit()
+                        
+                        continue
+
+                    if int(adm.quantit) == 0 :
+                        continue
+                            
+                        
             
-            # Envoyer l'e-mail
-            mail.send(msg)
+            
+
+      
             
             
-        except Exception as e:
-            print(f"Erreur lors de l'envoi de l'e-mail : {str(e)}")
-            return redirect('/mescommandes')
+        
+        return redirect('/mescommandes')
 
     return redirect('/mescommandes')
 
@@ -2182,7 +3154,7 @@ def ssm():
                     
                 return redirect("/monpanier")
 
-        pani = Panieruser(image=image,tailed = "",identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=quantite,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="", prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+        pani = Panieruser(image=image,tailed = "",identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=quantite,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="", prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie ,dispono=int(hfshggf.quantit),statuse="dispobine")
             
         db.session.add(pani)
         db.session.commit()
@@ -2208,7 +3180,7 @@ def ssm():
         if cpo == 0 :
             xs = "xs"
             
-            pani = Panieruser(image=image,tailed =xs,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=xsnum,xs=xs,xsn=xsnum,s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+            pani = Panieruser(image=image,tailed =xs,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=xsnum,xs=xs,xsn=xsnum,s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie,dispono=int(hfshggf.xslet),statuse="dispobine")
             
             db.session.add(pani)
             db.session.commit()
@@ -2241,7 +3213,7 @@ def ssm():
         if cpo == 0 :
             s = "s"
             
-            pani = Panieruser(image=image,tailed =s,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=snum,xs="",xsn="",s=s,sn=snum,l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+            pani = Panieruser(image=image,tailed =s,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=snum,xs="",xsn="",s=s,sn=snum,l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie,dispono=int(hfshggf.slet),statuse="dispobine")
             
             db.session.add(pani)
             db.session.commit()
@@ -2267,7 +3239,7 @@ def ssm():
         if cpo == 0 :
             m = "m"
             
-            pani = Panieruser(image=image,tailed =m,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=mnum,xs="",xsn="",s="",sn="",l="",ln="",m=m,mn=mnum,xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+            pani = Panieruser(image=image,tailed =m,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=mnum,xs="",xsn="",s="",sn="",l="",ln="",m=m,mn=mnum,xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie,dispono=int(hfshggf.mlet),statuse="dispobine")
             
             db.session.add(pani)
             db.session.commit()
@@ -2293,7 +3265,7 @@ def ssm():
         if cpo == 0 :
             l = "l"
             
-            pani = Panieruser(image=image,tailed =l,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=lnum,xs="",xsn="",s="",sn="",l=l,ln=lnum,m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+            pani = Panieruser(image=image,tailed =l,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=lnum,xs="",xsn="",s="",sn="",l=l,ln=lnum,m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie,dispono=int(hfshggf.llet),statuse="dispobine")
             
             db.session.add(pani)
             db.session.commit()
@@ -2319,7 +3291,7 @@ def ssm():
         if cpo == 0 :
             xl = "xl"
             
-            pani = Panieruser(image=image, tailed = xl,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=xlnum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl=xl,xln=xlnum,xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+            pani = Panieruser(image=image, tailed = xl,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=xlnum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl=xl,xln=xlnum,xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie,dispono=int(hfshggf.xllet),statuse="dispobine")
             
             db.session.add(pani)
             db.session.commit()
@@ -2345,7 +3317,7 @@ def ssm():
         if cpo == 0 :
             xxl = "xxl"
             
-            pani = Panieruser(image=image, tailed = xxl,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=xxlnum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl=xxl,xxln=xxlnum,tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+            pani = Panieruser(image=image, tailed = xxl,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=xxlnum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl=xxl,xxln=xxlnum,tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie,dispono=int(hfshggf.xxllet),statuse="dispobine")
             
             db.session.add(pani)
             db.session.commit()
@@ -2385,7 +3357,7 @@ def ssm():
             tranwite = "38 ° "
             tranwitenum = tranwitenum
             
-            pani = Panieruser(image=image,tailed = tranwite,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=tranwitenum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite=tranwite,tranwiten=tranwitenum,tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+            pani = Panieruser(image=image,tailed = tranwite,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=tranwitenum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite=tranwite,tranwiten=tranwitenum,tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie,dispono=int(hfshggf.tranwitelet),statuse="dispobine")
             
             db.session.add(pani)
             db.session.commit()
@@ -2413,7 +3385,7 @@ def ssm():
             tranneuf = "39 ° "
             tranneufnum = tranneufnum
             
-            pani = Panieruser(image=image,tailed = tranneuf,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=tranneufnum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf=tranneuf,tranneufn=tranneufnum,karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+            pani = Panieruser(image=image,tailed = tranneuf,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=tranneufnum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf=tranneuf,tranneufn=tranneufnum,karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie,dispono=int(hfshggf.tranneuflet),statuse="dispobine")
             
             db.session.add(pani)
             db.session.commit()
@@ -2441,7 +3413,7 @@ def ssm():
             karente = "40 ° "
             karentenum = karentenum
             
-            pani = Panieruser(image=image,tailed = karente,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=karentenum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente=karente,karenten=karentenum,tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+            pani = Panieruser(image=image,tailed = karente,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=karentenum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente=karente,karenten=karentenum,tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie,dispono=int(hfshggf.karentelet),statuse="dispobine")
             
             db.session.add(pani)
             db.session.commit()
@@ -2468,7 +3440,7 @@ def ssm():
             tranwiteun = "41 ° "
             tranwiteunnum = tranwiteunnum
             
-            pani = Panieruser(image=image,tailed =tranwiteun ,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=tranwiteunnum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun=tranwiteun,tranwiteunn=tranwiteunnum,tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+            pani = Panieruser(image=image,tailed =tranwiteun ,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=tranwiteunnum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun=tranwiteun,tranwiteunn=tranwiteunnum,tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie,dispono=int(hfshggf.tranwiteunlet),statuse="dispobine")
             
             db.session.add(pani)
             db.session.commit()
@@ -2495,7 +3467,7 @@ def ssm():
             tranwitedeux = "42 ° "
             tranwitedeuxnum = tranwitedeuxnum
             
-            pani = Panieruser(image=image,tailed = tranwitedeux ,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=tranwitedeuxnum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux=tranwitedeux,tranwitedeuxn=tranwitedeuxnum,tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+            pani = Panieruser(image=image,tailed = tranwitedeux ,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=tranwitedeuxnum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux=tranwitedeux,tranwitedeuxn=tranwitedeuxnum,tranwitrois="",tranwitroisn="",tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie,dispono=int(hfshggf.tranwitedeuxlet),statuse="dispobine")
             
             db.session.add(pani)
             db.session.commit()
@@ -2522,7 +3494,7 @@ def ssm():
             tranwitrois = "43 ° "
             tranwitroisnum = tranwitroisnum
             
-            pani = Panieruser(image=image,tailed = tranwitrois,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=tranwitroisnum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois=tranwitrois,tranwitroisn=tranwitroisnum,tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+            pani = Panieruser(image=image,tailed = tranwitrois,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=tranwitroisnum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois=tranwitrois,tranwitroisn=tranwitroisnum,tranwitekate="",tranwitekaten="",prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie,dispono=int(hfshggf.tranwitroislet),statuse="dispobine")
             
             db.session.add(pani)
             db.session.commit()
@@ -2549,7 +3521,7 @@ def ssm():
             tranwitekate = "44 ° "
             tranwitekatenum = tranwitekatenum
             
-            pani = Panieruser(image=image,tailed = tranwitekate,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=tranwitekatenum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate=tranwitekate,tranwitekaten=tranwitekatenum,prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie)
+            pani = Panieruser(image=image,tailed = tranwitekate,identifiant=useru.id,produite=noumeme,prixtottal=prix,quantiteto=tranwitekatenum,xs="",xsn="",s="",sn="",l="",ln="",m="",mn="",xl="",xln="",xxl="",xxln="",tranwite="",tranwiten="",tranneuf="",tranneufn="",karente="",karenten="",tranwiteun="",tranwiteunn="",tranwitedeux="",tranwitedeuxn="",tranwitrois="",tranwitroisn="",tranwitekate=tranwitekate,tranwitekaten=tranwitekatenum,prixdepouce = hfshggf.prix ,nomprodui = hfshggf.nom,descrprosui = hfshggf.description,pourcentage = hfshggf.porce,categorie = hfshggf.categorie,dispono=int(hfshggf.tranwitekatelet),statuse="dispobine")
             
             db.session.add(pani)
             db.session.commit()
@@ -2648,9 +3620,12 @@ def passsm():
                 print("les articles ",i.produite,i.identifiant)
                 dhher = Panieruser.query.get(i.id)
                 zhher = Ajouter.query.get(int(i.produite))
-                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.quantit) :
-                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                    db.session.commit()
+                if zhher :
+                    if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.quantit) :
+                        dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                        db.session.commit()
+
+             
                 return redirect("/monpanier")
         return redirect("/monpanier")
 
@@ -2668,9 +3643,10 @@ def passsm():
                 dhher = Panieruser.query.get(i.id)
 
                 zhher = Ajouter.query.get(int(i.produite))
-                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.xslet) :
-                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                    db.session.commit()
+                if zhher :
+                    if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.xslet) :
+                        dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                        db.session.commit()
 
         
     if int(xsnum) == 0 :
@@ -2690,9 +3666,10 @@ def passsm():
                 
                 dhher = Panieruser.query.get(i.id)
                 zhher = Ajouter.query.get(int(i.produite))
-                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.slet) :
-                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                    db.session.commit()
+                if zhher :
+                    if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.slet) :
+                        dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                        db.session.commit()
 
     if int(snum) == 0 :
         s = ""
@@ -2710,9 +3687,10 @@ def passsm():
                 dhher = Panieruser.query.get(i.id)
 
                 zhher = Ajouter.query.get(int(i.produite))
-                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.mlet) :
-                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                    db.session.commit()
+                if zhher :
+                    if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.mlet) :
+                        dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                        db.session.commit()
 
 
     if int(mnum) == 0 :
@@ -2731,9 +3709,10 @@ def passsm():
                 dhher = Panieruser.query.get(i.id)
 
                 zhher = Ajouter.query.get(int(i.produite))
-                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.llet) :
-                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                    db.session.commit()
+                if zhher :
+                    if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.llet) :
+                        dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                        db.session.commit()
     if int(lnum) == 0 :
         l = ""
         lnum = ""
@@ -2750,9 +3729,10 @@ def passsm():
                 dhher = Panieruser.query.get(i.id)
 
                 zhher = Ajouter.query.get(int(i.produite))
-                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.xllet) :
-                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                    db.session.commit()
+                if zhher :
+                    if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.xllet) :
+                        dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                        db.session.commit()
     if int(xlnum) == 0 :
         xl = ""
         xlnum = ""
@@ -2769,9 +3749,10 @@ def passsm():
                 dhher = Panieruser.query.get(i.id)
 
                 zhher = Ajouter.query.get(int(i.produite))
-                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.xxllet) :
-                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                    db.session.commit()
+                if zhher :
+                    if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.xxllet) :
+                        dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                        db.session.commit()
     if int(xxlnum) == 0 :
         xxl = ""
         xxlnum = ""
@@ -2788,9 +3769,10 @@ def passsm():
                 dhher = Panieruser.query.get(i.id)
 
                 zhher = Ajouter.query.get(int(i.produite))
-                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwitelet) :
-                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                    db.session.commit()
+                if zhher :
+                    if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwitelet) :
+                        dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                        db.session.commit()
     if int(tranwitenum) == 0 :
         tranwite = ""
         tranwitenum = ""
@@ -2808,9 +3790,10 @@ def passsm():
                 dhher = Panieruser.query.get(i.id)
 
                 zhher = Ajouter.query.get(int(i.produite))
-                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranneuflet) :
-                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                    db.session.commit()
+                if zhher :
+                    if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranneuflet) :
+                        dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                        db.session.commit()
     if int(tranneufnum) == 0 :
         tranneuf = ""
         tranneufnum = ""
@@ -2828,9 +3811,10 @@ def passsm():
 
 
                 zhher = Ajouter.query.get(int(i.produite))
-                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.karentelet) :
-                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                    db.session.commit()
+                if zhher :
+                    if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.karentelet) :
+                        dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                        db.session.commit()
     if int(karentenum) == 0 :
         karente = ""
         karentenum = ""
@@ -2848,9 +3832,10 @@ def passsm():
 
 
                 zhher = Ajouter.query.get(int(i.produite))
-                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwiteunlet) :
-                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                    db.session.commit()
+                if zhher :
+                    if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwiteunlet) :
+                        dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                        db.session.commit()
     if int(tranwiteunnum) == 0 :
         tranwiteun = ""
         tranwiteunnum = ""
@@ -2867,9 +3852,10 @@ def passsm():
                 dhher = Panieruser.query.get(i.id)
 
                 zhher = Ajouter.query.get(int(i.produite))
-                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwitedeuxlet) :
-                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                    db.session.commit()
+                if zhher :
+                    if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwitedeuxlet) :
+                        dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                        db.session.commit()
     if int(tranwitedeuxnum) == 0 :
         tranwitedeux = ""
         tranwitedeuxnum = ""
@@ -2887,9 +3873,10 @@ def passsm():
 
                 
                 zhher = Ajouter.query.get(int(i.produite))
-                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwitroislet) :
-                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                    db.session.commit()
+                if zhher :
+                    if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwitroislet) :
+                        dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                        db.session.commit()
     if int(tranwitroisnum) == 0 :
         tranwitrois = ""
         tranwitroisnum = ""
@@ -2907,9 +3894,10 @@ def passsm():
 
 
                 zhher = Ajouter.query.get(int(i.produite))
-                if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwitekatelet) :
-                    dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
-                    db.session.commit()
+                if zhher :
+                    if (int(dhher.quantiteto) + int(quantite) ) <= int(zhher.tranwitekatelet) :
+                        dhher.quantiteto = int(dhher.quantiteto) + int(quantite)
+                        db.session.commit()
     if int(tranwitekatenum) == 0 :
         tranwitekate = ""
         tranwitekatenum = ""
@@ -2955,6 +3943,10 @@ def moinsssm():
                 dhher = Panieruser.query.get(i.id)
                 if int(dhher.quantiteto) > 1 :
                     dhher.quantiteto = int(dhher.quantiteto) - 1
+
+
+                    if int(dhher.quantiteto) <= int(dhher.dispono):
+                        i.statuse = "dispobine"
                     db.session.commit()
                 return redirect("/monpanier")
         return redirect("/monpanier")
@@ -2974,6 +3966,8 @@ def moinsssm():
 
 
                 dhher.quantiteto = int(dhher.quantiteto) - 1
+                if int(dhher.quantiteto) <= int(dhher.dispono):
+                    i.statuse = "dispobine"
                 db.session.commit()
 
         
@@ -2994,6 +3988,8 @@ def moinsssm():
                 
                 dhher = Panieruser.query.get(i.id)
                 dhher.quantiteto = int(dhher.quantiteto) - 1
+                if int(dhher.quantiteto) <= int(dhher.dispono):
+                    i.statuse = "dispobine"
                 db.session.commit()
 
     if int(snum) == 0 :
@@ -3013,7 +4009,18 @@ def moinsssm():
 
 
                 dhher.quantiteto = int(dhher.quantiteto) - 1
+
+
+                 
+                    
+                if int(dhher.quantiteto) <= int(dhher.dispono):
+                    
+                    i.statuse = "dispobine"
+             
+              
                 db.session.commit()
+
+
 
 
     if int(mnum) == 0 :
@@ -3033,6 +4040,8 @@ def moinsssm():
 
 
                 dhher.quantiteto = int(dhher.quantiteto) - 1
+                if int(dhher.quantiteto) <= int(dhher.dispono):
+                    i.statuse = "dispobine"
                 db.session.commit()
     if int(lnum) == 0 :
         l = ""
@@ -3051,6 +4060,8 @@ def moinsssm():
 
 
                 dhher.quantiteto = int(dhher.quantiteto) - 1
+                if int(dhher.quantiteto) <= int(dhher.dispono):
+                    i.statuse = "dispobine"
                 db.session.commit()
     if int(xlnum) == 0 :
         xl = ""
@@ -3069,6 +4080,8 @@ def moinsssm():
 
 
                 dhher.quantiteto = int(dhher.quantiteto) - 1
+                if int(dhher.quantiteto) <= int(dhher.dispono):
+                    i.statuse = "dispobine"
                 db.session.commit()
     if int(xxlnum) == 0 :
         xxl = ""
@@ -3087,6 +4100,8 @@ def moinsssm():
 
 
                 dhher.quantiteto = int(dhher.quantiteto) - 1
+                if int(dhher.quantiteto) <= int(dhher.dispono):
+                    i.statuse = "dispobine"
                 db.session.commit()
     if int(tranwitenum) == 0 :
         tranwite = ""
@@ -3106,6 +4121,8 @@ def moinsssm():
 
 
                 dhher.quantiteto = int(dhher.quantiteto) - 1
+                if int(dhher.quantiteto) <= int(dhher.dispono):
+                    i.statuse = "dispobine"
                 db.session.commit()
     if int(tranneufnum) == 0 :
         tranneuf = ""
@@ -3124,6 +4141,8 @@ def moinsssm():
 
 
                 dhher.quantiteto = int(dhher.quantiteto) - 1
+                if int(dhher.quantiteto) <= int(dhher.dispono):
+                    i.statuse = "dispobine"
                 db.session.commit()
     if int(karentenum) == 0 :
         karente = ""
@@ -3142,6 +4161,8 @@ def moinsssm():
 
 
                 dhher.quantiteto = int(dhher.quantiteto) - 1
+                if int(dhher.quantiteto) <= int(dhher.dispono):
+                    i.statuse = "dispobine"
                 db.session.commit()
     if int(tranwiteunnum) == 0 :
         tranwiteun = ""
@@ -3160,6 +4181,8 @@ def moinsssm():
 
 
                 dhher.quantiteto = int(dhher.quantiteto) - 1
+                if int(dhher.quantiteto) <= int(dhher.dispono):
+                    i.statuse = "dispobine"
                 db.session.commit()
     if int(tranwitedeuxnum) == 0 :
         tranwitedeux = ""
@@ -3178,6 +4201,8 @@ def moinsssm():
 
 
                 dhher.quantiteto = int(dhher.quantiteto) - 1
+                if int(dhher.quantiteto) <= int(dhher.dispono):
+                    i.statuse = "dispobine"
                 db.session.commit()
     if int(tranwitroisnum) == 0 :
         tranwitrois = ""
@@ -3196,6 +4221,8 @@ def moinsssm():
 
 
                 dhher.quantiteto = int(dhher.quantiteto) - 1
+                if int(dhher.quantiteto) <= int(dhher.dispono):
+                    i.statuse = "dispobine"
                 db.session.commit()
     if int(tranwitekatenum) == 0 :
         tranwitekate = ""
@@ -3496,6 +4523,14 @@ def ssme():
 
 @app.route("/commadeadmin")
 def commadeadmin():
+    if 'utilisateur_id' in session:
+        useru = Profil.query.get(session['utilisateur_id'])
+        if useru.satuq == 1 :
+            pass
+        else:
+            return redirect('/')
+    else:
+        return redirect('/pre/administa')
     try :
         administa = Ajouter.query.all()
         pofil = Profil.query.all()
@@ -3565,7 +4600,14 @@ def commadeadmin():
 
 @app.route("/filtrecommande",methods = ["POST"])
 def filtrecommande():
-
+    if 'utilisateur_id' in session:
+        useru = Profil.query.get(session['utilisateur_id'])
+        if useru.satuq == 1 :
+            pass
+        else:
+            return redirect('/')
+    else:
+        return redirect('/pre/administa')
 
 
 
@@ -3640,6 +4682,14 @@ def filtrecommande():
 
 @app.route("/userasmin")
 def userasmin():
+    if 'utilisateur_id' in session:
+        useru = Profil.query.get(session['utilisateur_id'])
+        if useru.satuq == 1 :
+            pass
+        else:
+            return redirect('/')
+    else:
+        return redirect('/pre/administa')
     try :
         pofil = Profil.query.all()
         compt=0
@@ -3696,6 +4746,14 @@ def userasmin():
     
 @app.route("/listederobe")
 def userlistederobe():
+    if 'utilisateur_id' in session:
+        useru = Profil.query.get(session['utilisateur_id'])
+        if useru.satuq == 1 :
+            pass
+        else:
+            return redirect('/')
+    else:
+        return redirect('/pre/administa')
     try :
         pofil = Profil.query.all()
         compt=0
@@ -3780,6 +4838,14 @@ def userlistederobe():
     
 @app.route("/montreadosn")
 def montreadosn():
+    if 'utilisateur_id' in session:
+        useru = Profil.query.get(session['utilisateur_id'])
+        if useru.satuq == 1 :
+            pass
+        else:
+            return redirect('/')
+    else:
+        return redirect('/pre/administa')
     try :
         pofil = Profil.query.all()
         compt=0
@@ -3840,6 +4906,14 @@ def montreadosn():
     
 @app.route("/cahuseadmin")
 def cahuseadmin():
+    if 'utilisateur_id' in session:
+        useru = Profil.query.get(session['utilisateur_id'])
+        if useru.satuq == 1 :
+            pass
+        else:
+            return redirect('/')
+    else:
+        return redirect('/pre/administa')
     try :
         
         compt=0
@@ -3936,6 +5010,15 @@ def cahuseadmin():
 
 @app.route("/administa")
 def administa():
+
+    if 'utilisateur_id' in session:
+        useru = Profil.query.get(session['utilisateur_id'])
+        if useru.satuq == 1 :
+            pass
+        else:
+            return redirect('/')
+    else:
+        return redirect('/pre/administa')
     try :
         pofil = Profil.query.all()
         compt=0
@@ -4052,32 +5135,99 @@ def pree(routeure):
     return render_template("connexion.html",commenta=commenta,catefemme=catefemme,montre=montre,chaussure=chaussure,routeure=routeure)
 
     # return render_template('connexion.html')
-@app.route('/sprome/<routeure>',methods = ["GET","POST"])
-def sprome(routeure) :
-   
-    user = Profil.query.filter_by(last_name = request.form.get("last_name"),age = request.form.get("age")).first()
 
-    if user :
+
+
+
+
+
+
+@app.route('/sprome/<routeure>', methods=["GET", "POST"])
+def sprome(routeure):
+    last_name = request.form.get("last_name")
+    age = request.form.get("age")
+
+    recupetou = Profil.query.all()
+    for i in recupetou:
+        print("lorjf",bcrypt.checkpw(age.encode('utf-8'), i.age))
+        print("gfgshd",last_name ,"==", i.last_name)
+        if bcrypt.checkpw(age.encode('utf-8'), i.age) and last_name == i.last_name :
+        
+
+
+            if i.satuq == 0 :
         
       
         
-        print(f"vous etes connecter{user.first_name}{user.id}")
+                print(f"vous etes connecter{i.first_name}{i.id}")
+                
+
+                session['utilisateur_id'] = i.id
+            
+                return redirect(f"/rediriger/{routeure}")
+            elif i.satuq == 1 :
+
+
+                print(f"vous etes connecter{i.first_name}{i.id}")
+                
+
+                session['utilisateur_id'] = i.id
+                
+                return redirect(f"/administa")
+            elif i.satuq == 2 :
+
+                flash("Compte suspendu")
+                return redirect(f"/pre/{routeure}")
+            else :
+
+                flash("Email ou Mot de passe invalide")
+                return redirect(f"/pre/{routeure}")
+
+    return redirect(f"/pre/{routeure}")
+
+
+
+    # user = Profil.query.filter_by(last_name = request.form.get("last_name"),age = request.form.get("age"),satuq=0).first()
+    # admos = Profil.query.filter_by(last_name = request.form.get("last_name"),age = request.form.get("age"),satuq=1).first()
+    # suspen = Profil.query.filter_by(last_name = request.form.get("last_name"),age = request.form.get("age"),satuq=2).first()
+
+    # if user :
+        
+      
+        
+    #     print(f"vous etes connecter{user.first_name}{user.id}")
         
 
-        session['utilisateur_id'] = user.id
-        # return redirect('/pacceuil')
-        return redirect(f"/rediriger/{routeure}")
+    #     session['utilisateur_id'] = user.id
+    
+    #     return redirect(f"/rediriger/{routeure}")
+    # elif admos :
 
-    else :
 
-        flash("Email ou Mot de passe invalide")
-        return redirect(f"/pre/{routeure}")
+    #     print(f"vous etes connecter{admos.first_name}{admos.id}")
+        
+
+    #     session['utilisateur_id'] = admos.id
+        
+    #     return redirect(f"/administa")
+    # elif suspen :
+
+    #     flash("Compte suspendu")
+    #     return redirect(f"/pre/{routeure}")
+    # else :
+
+    #     flash("Email ou Mot de passe invalide")
+    #     return redirect(f"/pre/{routeure}")
+    
+
+
+
     
     
 @app.route('/dedyiez',methods = ["GET","POST"])
 def dedyiez() :
     routeure = request.form.get("routeure")
-    return redirect(f"{routeure}")
+    return redirect(f"/{routeure}")
     
     
 
@@ -4107,88 +5257,314 @@ def rediriger(routeure):
 def redsete():
     data = request.get_json()['data']
     print("voivi les ",data)
+    
     if 'utilisateur_id' in session:
         useru = Profil.query.get(session['utilisateur_id'])
         print("je suis llllllll")
         for i in data:
             
             b = i["data"]
-            pani = Panieruser(
-                image=b['image'],
-                tailed=b['tailed'],
-                identifiant=useru.id,
-                produite=b['produite'],
-                prixtottal=b['prixtottal'],
-                quantiteto=b['quantiteto'],
-                xs=b['xs'],
-                xsn=b['xsn'],
-                s=b['s'],
-                sn=b['sn'],
-                l=b['l'],
-                ln=b['ln'],
-                m=b['m'],
-                mn=b['mn'],
-                xl=b['xl'],
-                xln=b['xln'],
-                xxl=b['xxl'],
-                xxln=b['xxln'],
-                tranwite=b['tranwite'],
-                tranwiten=b['tranwiten'],
-                tranneuf=b['tranneuf'],
-                tranneufn=b['tranneufn'],
-                karente=b['karente'],
-                karenten=b['karenten'],
-                tranwiteun=b['tranwiteun'],
-                tranwiteunn=b['tranwiteunn'],
-                tranwitedeux=b['tranwitedeux'],
-                tranwitedeuxn=b['tranwitedeuxn'],
-                tranwitrois=b['tranwitrois'],
-                tranwitroisn=b['tranwitroisn'],
-                tranwitekate=b['tranwitekate'],
-                tranwitekaten=b['tranwitekaten'],
+            mskd = Ajouter.query.get(int(b['produite']))
+            if mskd :
+                if b['categorie'] == "Montre" :
+                    mskd = Ajouter.query.get(int(b['produite']))
+                    
+                    mskde = int(mskd.quantit)
+                    if mskde >= int(b['quantiteto']) :
+                        pani = Panieruser(
+                                image=b['image'],
+                                tailed="",
+                                identifiant=useru.id,
+                                produite= int(b['produite']),
+                                prixtottal= int(b['prixtottal']),
+                                quantiteto= int(b['quantiteto']),
+                                xs=b['xs'],
+                                xsn=b['xsn'],
+                                s=b['s'],
+                                sn=b['sn'],
+                                l=b['l'],
+                                ln=b['ln'],
+                                m=b['m'],
+                                mn=b['mn'],
+                                xl=b['xl'],
+                                xln=b['xln'],
+                                xxl=b['xxl'],
+                                xxln=b['xxln'],
+                                tranwite=b['tranwite'],
+                                tranwiten=b['tranwiten'],
+                                tranneuf=b['tranneuf'],
+                                tranneufn=b['tranneufn'],
+                                karente=b['karente'],
+                                karenten=b['karenten'],
+                                tranwiteun=b['tranwiteun'],
+                                tranwiteunn=b['tranwiteunn'],
+                                tranwitedeux=b['tranwitedeux'],
+                                tranwitedeuxn=b['tranwitedeuxn'],
+                                tranwitrois=b['tranwitrois'],
+                                tranwitroisn=b['tranwitroisn'],
+                                tranwitekate=b['tranwitekate'],
+                                tranwitekaten=b['tranwitekaten'],
 
 
-                prixdepouce = b['prixtottal'],
-                nomprodui = b['name'],
-                descrprosui = b['desccopte'],
-                pourcentage = b['porce'],
-                categorie = b['categorie'],
-            )
+                                prixdepouce = int(b['prixtottal']),
+                                nomprodui = b['name'],
+                                descrprosui = b['desccopte'],
+                                pourcentage = b['porce'],
+                                categorie = b['categorie'],
+                                dispono = mskde,
+                                statuse = "dispobine",
 
-            derst = Panieruser.query.all()
-            crte = 0
-            for p in derst :
-               
-                if int(p.produite) == int(b['produite']) and int(p.identifiant)==int(useru.id) and p.tailed == (b['tailed']) and b['tailed'] != "Montre" :
 
-                    print("fghger",int(p.produite),"==",int(b['produite']))
-                    print("hger",int(p.identifiant),"==",int(int(useru.id)))
+                            
+                            )
+                    else :
 
-                    crte +=1
-                    dhher = Panieruser.query.get(p.id)
+                        pani = Panieruser(
+                        image=b['image'],
+                        tailed="",
+                        identifiant=useru.id,
+                        produite= int(b['produite']),
+                        prixtottal= int(b['prixtottal']),
+                        quantiteto= int(b['quantiteto']),
+                        xs=b['xs'],
+                        xsn=b['xsn'],
+                        s=b['s'],
+                        sn=b['sn'],
+                        l=b['l'],
+                        ln=b['ln'],
+                        m=b['m'],
+                        mn=b['mn'],
+                        xl=b['xl'],
+                        xln=b['xln'],
+                        xxl=b['xxl'],
+                        xxln=b['xxln'],
+                        tranwite=b['tranwite'],
+                        tranwiten=b['tranwiten'],
+                        tranneuf=b['tranneuf'],
+                        tranneufn=b['tranneufn'],
+                        karente=b['karente'],
+                        karenten=b['karenten'],
+                        tranwiteun=b['tranwiteun'],
+                        tranwiteunn=b['tranwiteunn'],
+                        tranwitedeux=b['tranwitedeux'],
+                        tranwitedeuxn=b['tranwitedeuxn'],
+                        tranwitrois=b['tranwitrois'],
+                        tranwitroisn=b['tranwitroisn'],
+                        tranwitekate=b['tranwitekate'],
+                        tranwitekaten=b['tranwitekaten'],
+
+
+                        prixdepouce = int(b['prixtottal']),
+                        nomprodui = b['name'],
+                        descrprosui = b['desccopte'],
+                        pourcentage = b['porce'],
+                        categorie = b['categorie'],
+                        dispono = mskde,
+                        statuse = "nondisp",
+
+
+                        
+                        )
+
+                else :
+                    mskd = Ajouter.query.get(int(b['produite']))
+                
+
+                    if b['tailed'] == "m" :
+                        mskde = int(mskd.mlet)
+                        print("m ->",mskde)
+
+                    elif b['tailed'] == "s" :
+                        mskde = int(mskd.slet)
+
+                        print("s ->",mskde)
+
+                    elif b['tailed'] == "l" :
+                        mskde = int(mskd.llet)
+
+                        print("l ->",mskde)
+
+                    elif b['tailed'] == "xl" :
+                        mskde = int(mskd.xllet)
+
+                        print("xl ->",mskde)
+
+                    elif b['tailed'] == "xxl" :
+                        mskde = int(mskd.xxllet)
+
+                        print("xxl ->",mskde)
+
+                    elif b['tailed'] == "xs" :
+                        mskde = int(mskd.xslet)
+
+                        print("xs ->",mskde)
+
+                    elif b['tailed'] == "38 ° " :
+                        mskde = int(mskd.tranwitelet)
+                        print("38 ->",mskde)
+                    elif b['tailed'] == "39 ° " :
+                        mskde = int(mskd.tranneuflet)
+                        print("39 ->",mskde)
+                    elif b['tailed'] == "40 ° " :
+                        mskde = int(mskd.karentelet)
+                        print("40 ->",mskde)
+                    elif b['tailed'] == "41 ° " :
+                        mskde = int(mskd.tranwiteunlet)
+                        print("41 ->",mskde)
+                    elif b['tailed'] == "42 ° " :
+                        mskde = int(mskd.tranwitedeuxlet)
+                        print("42 ->",mskde)
+                    elif b['tailed'] == "43 ° " :
+                        mskde = int(mskd.tranwitroislet)
+                        print("43 ->",mskde)
+                    elif b['tailed'] == "44 ° " :
+                        mskde = int(mskd.tranwitekatelet)
+                        print("44 ->",mskde)
+
+                    else :
+                        print("fin")
+
 
                 
-                    dhher.quantiteto = int(dhher.quantiteto) + int(b['produite'])
-                    db.session.commit()
+                    if mskde >= int(b['quantiteto']) :
+                        pani = Panieruser(
+                            image=b['image'],
+                            tailed=b['tailed'],
+                            identifiant=useru.id,
+                            produite=b['produite'],
+                            prixtottal=b['prixtottal'],
+                            quantiteto=b['quantiteto'],
+                            xs=b['xs'],
+                            xsn=b['xsn'],
+                            s=b['s'],
+                            sn=b['sn'],
+                            l=b['l'],
+                            ln=b['ln'],
+                            m=b['m'],
+                            mn=b['mn'],
+                            xl=b['xl'],
+                            xln=b['xln'],
+                            xxl=b['xxl'],
+                            xxln=b['xxln'],
+                            tranwite=b['tranwite'],
+                            tranwiten=b['tranwiten'],
+                            tranneuf=b['tranneuf'],
+                            tranneufn=b['tranneufn'],
+                            karente=b['karente'],
+                            karenten=b['karenten'],
+                            tranwiteun=b['tranwiteun'],
+                            tranwiteunn=b['tranwiteunn'],
+                            tranwitedeux=b['tranwitedeux'],
+                            tranwitedeuxn=b['tranwitedeuxn'],
+                            tranwitrois=b['tranwitrois'],
+                            tranwitroisn=b['tranwitroisn'],
+                            tranwitekate=b['tranwitekate'],
+                            tranwitekaten=b['tranwitekaten'],
 
-                if b['tailed'] == "Montre" :
 
-                    print("fghger",int(p.produite),"==",int(b['produite']))
-                    print("hger",int(p.identifiant),"==",int(int(useru.id)))
+                            prixdepouce = b['prixtottal'],
+                            nomprodui = b['name'],
+                            descrprosui = b['desccopte'],
+                            pourcentage = b['porce'],
+                            categorie = b['categorie'],
+                            dispono = mskde,
+                            statuse = "dispobine",
 
-                    crte +=1
-                    dhher = Panieruser.query.get(p.id)
 
+                        
+                        )
+                    else :
+                        pani = Panieruser(
+                            image=b['image'],
+                            tailed=b['tailed'],
+                            identifiant=useru.id,
+                            produite=b['produite'],
+                            prixtottal=b['prixtottal'],
+                            quantiteto=b['quantiteto'],
+                            xs=b['xs'],
+                            xsn=b['xsn'],
+                            s=b['s'],
+                            sn=b['sn'],
+                            l=b['l'],
+                            ln=b['ln'],
+                            m=b['m'],
+                            mn=b['mn'],
+                            xl=b['xl'],
+                            xln=b['xln'],
+                            xxl=b['xxl'],
+                            xxln=b['xxln'],
+                            tranwite=b['tranwite'],
+                            tranwiten=b['tranwiten'],
+                            tranneuf=b['tranneuf'],
+                            tranneufn=b['tranneufn'],
+                            karente=b['karente'],
+                            karenten=b['karenten'],
+                            tranwiteun=b['tranwiteun'],
+                            tranwiteunn=b['tranwiteunn'],
+                            tranwitedeux=b['tranwitedeux'],
+                            tranwitedeuxn=b['tranwitedeuxn'],
+                            tranwitrois=b['tranwitrois'],
+                            tranwitroisn=b['tranwitroisn'],
+                            tranwitekate=b['tranwitekate'],
+                            tranwitekaten=b['tranwitekaten'],
+
+
+                            prixdepouce = b['prixtottal'],
+                            nomprodui = b['name'],
+                            descrprosui = b['desccopte'],
+                            pourcentage = b['porce'],
+                            categorie = b['categorie'],
+                            dispono = mskde,
+                            statuse = "nondisp",
+
+
+                        
+                        )
+
+
+
+                derst = Panieruser.query.all()
+                crte = 0
+                for p in derst :
                 
-                    dhher.quantiteto = int(dhher.quantiteto) + int(b['produite'])
+                    if int(p.produite) == int(b['produite']) and int(p.identifiant)==int(useru.id) and p.tailed == b['tailed'] and b['categorie'] != "Montre":
+
+                        print("fghger",int(p.produite),"==",int(b['produite']))
+                        print("hger",int(p.identifiant),"==",int(int(useru.id)))
+
+                        crte +=1
+                        dhher = Panieruser.query.get(int(p.id))
+
+                        if (int(dhher.quantiteto) + int(b['quantiteto']) )<= int(p.dispono):
+                            dhher.quantiteto = int(dhher.quantiteto) + int(b['quantiteto'])
+                            db.session.commit()
+                        continue
+
+                    if b['categorie'] == "Montre" :
+
+                        print("fghger",int(p.produite),"==",int(b['produite']))
+                        print("hger",int(p.identifiant),"==",int(int(useru.id)))
+
+                        crte +=1
+                        dhher = Panieruser.query.get(int(p.id))
+
+                    
+                        if (int(dhher.quantiteto) + int(b['quantiteto']) )<= int(p.dispono):
+                            dhher.quantiteto = int(dhher.quantiteto) + int(b['quantiteto'])
+                            db.session.commit()
+                        continue
+
+
+                if crte == 0 :
+                    print("on passe")
+                    
+                    db.session.add(pani)
                     db.session.commit()
-            if crte == 0 :
-                print("on passe")
-                 
-                db.session.add(pani)
-                db.session.commit()
-        
+                    continue
+            
     return {"message":"enregistrement reussi"}
+
+
 
 
 
@@ -4333,12 +5709,44 @@ def completplus(id):
             adm.stat = "vrai"
             db.session.commit()
 
+
+            monkzu = Panieruser.query.all()
+            for imo in monkzu :
+                if int(imo.produite) == id :
+                    sfymp = int(imo.dispono) + 1
+                    if sfymp < int(imo.quantiteto)   :
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "nondisp"
+                        print(sfymp , ">=" , int(imo.quantiteto))
+
+                    else : 
+                        print(sfymp , "<" , int(imo.quantiteto))
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "dispobine"
+                    db.session.commit()
+
         if taille == "39" :
             adm = Ajouter.query.get(id)
             adm.tranneuflet = int(adm.tranneuflet) + 1
             adm.quantit = int(adm.quantit) + 1
             adm.stat = "vrai"
             db.session.commit()
+
+
+            monkzu = Panieruser.query.all()
+            for imo in monkzu :
+                if int(imo.produite) == id :
+                    sfymp = int(imo.dispono) + 1
+                    if sfymp < int(imo.quantiteto)   :
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "nondisp"
+                        print(sfymp , ">=" , int(imo.quantiteto))
+
+                    else : 
+                        print(sfymp , "<" , int(imo.quantiteto))
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "dispobine"
+                    db.session.commit()
 
         if taille == "40" :
             adm = Ajouter.query.get(id)
@@ -4347,12 +5755,44 @@ def completplus(id):
             adm.stat = "vrai"
             db.session.commit()
 
+
+            monkzu = Panieruser.query.all()
+            for imo in monkzu :
+                if int(imo.produite) == id :
+                    sfymp = int(imo.dispono) + 1
+                    if sfymp < int(imo.quantiteto)   :
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "nondisp"
+                        print(sfymp , ">=" , int(imo.quantiteto))
+
+                    else : 
+                        print(sfymp , "<" , int(imo.quantiteto))
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "dispobine"
+                    db.session.commit()
+
         if taille == "41" :
             adm = Ajouter.query.get(id)
             adm.tranwiteunlet = int(adm.tranwiteunlet) + 1
             adm.quantit = int(adm.quantit) + 1
             adm.stat = "vrai"
             db.session.commit()
+
+
+            monkzu = Panieruser.query.all()
+            for imo in monkzu :
+                if int(imo.produite) == id :
+                    sfymp = int(imo.dispono) + 1
+                    if sfymp < int(imo.quantiteto)   :
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "nondisp"
+                        print(sfymp , ">=" , int(imo.quantiteto))
+
+                    else : 
+                        print(sfymp , "<" , int(imo.quantiteto))
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "dispobine"
+                    db.session.commit()
 
         if taille == "42" :
             adm = Ajouter.query.get(id)
@@ -4361,6 +5801,22 @@ def completplus(id):
             adm.stat = "vrai"
             db.session.commit()
 
+
+            monkzu = Panieruser.query.all()
+            for imo in monkzu :
+                if int(imo.produite) == id :
+                    sfymp = int(imo.dispono) + 1
+                    if sfymp < int(imo.quantiteto)   :
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "nondisp"
+                        print(sfymp , ">=" , int(imo.quantiteto))
+
+                    else : 
+                        print(sfymp , "<" , int(imo.quantiteto))
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "dispobine"
+                    db.session.commit()
+
         if taille == "43" :
             adm = Ajouter.query.get(id)
             adm.tranwitroislet = int(adm.tranwitroislet) + 1
@@ -4368,12 +5824,44 @@ def completplus(id):
             adm.stat = "vrai"
             db.session.commit()
 
+
+            monkzu = Panieruser.query.all()
+            for imo in monkzu :
+                if int(imo.produite) == id :
+                    sfymp = int(imo.dispono) + 1
+                    if sfymp < int(imo.quantiteto)   :
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "nondisp"
+                        print(sfymp , ">=" , int(imo.quantiteto))
+
+                    else : 
+                        print(sfymp , "<" , int(imo.quantiteto))
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "dispobine"
+                    db.session.commit()
+
         if taille == "44" :
             adm = Ajouter.query.get(id)
             adm.tranwitekatelet = int(adm.tranwitekatelet) + 1
             adm.quantit = int(adm.quantit) + 1
             adm.stat = "vrai"
             db.session.commit()
+
+
+            monkzu = Panieruser.query.all()
+            for imo in monkzu :
+                if int(imo.produite) == id :
+                    sfymp = int(imo.dispono) + 1
+                    if sfymp < int(imo.quantiteto)   :
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "nondisp"
+                        print(sfymp , ">=" , int(imo.quantiteto))
+
+                    else : 
+                        print(sfymp , "<" , int(imo.quantiteto))
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "dispobine"
+                    db.session.commit()
 
 
       
@@ -4397,12 +5885,42 @@ def completplus(id):
             adm.stat = "vrai"
             db.session.commit()
 
+            monkzu = Panieruser.query.all()
+            for imo in monkzu :
+                if int(imo.produite) == id :
+                    sfymp = int(imo.dispono) + 1
+                    if sfymp < int(imo.quantiteto)   :
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "nondisp"
+                        print(sfymp , ">=" , int(imo.quantiteto))
+
+                    else : 
+                        print(sfymp , "<" , int(imo.quantiteto))
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "dispobine"
+                    db.session.commit()
+
         if taille == "xl" :
             adm = Ajouter.query.get(id)
             adm.xllet = int(adm.xllet) + 1
             adm.quantit = int(adm.quantit) + 1
             adm.stat = "vrai"
             db.session.commit()
+
+            monkzu = Panieruser.query.all()
+            for imo in monkzu :
+                if int(imo.produite) == id :
+                    sfymp = int(imo.dispono) + 1
+                    if sfymp < int(imo.quantiteto)   :
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "nondisp"
+                        print(sfymp , ">=" , int(imo.quantiteto))
+
+                    else : 
+                        print(sfymp , "<" , int(imo.quantiteto))
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "dispobine"
+                    db.session.commit()
 
         if taille == "xxl" :
             adm = Ajouter.query.get(id)
@@ -4411,12 +5929,44 @@ def completplus(id):
             adm.stat = "vrai"
             db.session.commit()
 
+            monkzu = Panieruser.query.all()
+            for imo in monkzu :
+                if int(imo.produite) == id :
+                    sfymp = int(imo.dispono) + 1
+                    if sfymp < int(imo.quantiteto)   :
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "nondisp"
+                        print(sfymp , ">=" , int(imo.quantiteto))
+
+                    else : 
+                        print(sfymp , "<" , int(imo.quantiteto))
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "dispobine"
+                    db.session.commit()
+
         if taille == "m" :
             adm = Ajouter.query.get(id)
             adm.mlet = int(adm.mlet) + 1
             adm.quantit = int(adm.quantit) + 1
             adm.stat = "vrai"
             db.session.commit()
+
+
+
+            monkzu = Panieruser.query.all()
+            for imo in monkzu :
+                if int(imo.produite) == id :
+                    sfymp = int(imo.dispono) + 1
+                    if sfymp < int(imo.quantiteto)   :
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "nondisp"
+                        print(sfymp , ">=" , int(imo.quantiteto))
+
+                    else : 
+                        print(sfymp , "<" , int(imo.quantiteto))
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "dispobine"
+                    db.session.commit()
 
         if taille == "s" :
             adm = Ajouter.query.get(id)
@@ -4425,12 +5975,42 @@ def completplus(id):
             adm.stat = "vrai"
             db.session.commit()
 
+            monkzu = Panieruser.query.all()
+            for imo in monkzu :
+                if int(imo.produite) == id :
+                    sfymp = int(imo.dispono) + 1
+                    if sfymp < int(imo.quantiteto)   :
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "nondisp"
+                        print(sfymp , ">=" , int(imo.quantiteto))
+
+                    else : 
+                        print(sfymp , "<" , int(imo.quantiteto))
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "dispobine"
+                    db.session.commit()
+
         if taille == "l" :
             adm = Ajouter.query.get(id)
             adm.llet = int(adm.llet) + 1
             adm.quantit = int(adm.quantit) + 1
             adm.stat = "vrai"
             db.session.commit()
+
+            monkzu = Panieruser.query.all()
+            for imo in monkzu :
+                if int(imo.produite) == id :
+                    sfymp = int(imo.dispono) + 1
+                    if sfymp < int(imo.quantiteto)   :
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "nondisp"
+                        print(sfymp , ">=" , int(imo.quantiteto))
+
+                    else : 
+                        print(sfymp , "<" , int(imo.quantiteto))
+                        imo.dispono = int(imo.dispono) + 1
+                        imo.statuse = "dispobine"
+                    db.session.commit()
 
 
 
@@ -4451,8 +6031,25 @@ def completplus(id):
         adm.quantit = int(adm.quantit) + 1
         adm.stat = "vrai"
         db.session.commit()
-        return redirect(f'/{losjjs}')
+        
+    
 
+        monkzu = Panieruser.query.all()
+        for imo in monkzu :
+            if int(imo.produite) == id :
+                sfymp = int(imo.dispono) + 1
+                if sfymp < int(imo.quantiteto)   :
+                    imo.dispono = int(imo.dispono) + 1
+                    imo.statuse = "nondisp"
+                    print(sfymp , ">=" , int(imo.quantiteto))
+
+                else : 
+                    print(sfymp , "<" , int(imo.quantiteto))
+                    imo.dispono = int(imo.dispono) + 1
+                    imo.statuse = "dispobine"
+                db.session.commit()
+
+        return redirect(f'/{losjjs}')
 
     
     # stat
@@ -4479,6 +6076,22 @@ def fairemoins(id):
                         adm.tranwitelet = int(adm.tranwitelet) - 1
                         adm.quantit = int(adm.quantit) - 1
                         db.session.commit()
+                        monkzu = Panieruser.query.all()
+                        print("on a recu")
+                        for imo in monkzu :
+                            if int(imo.produite) == id :
+                                sfymp = int(imo.dispono) - 1
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                    print("terlin")
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "nondisp"
+                                    print("pas terlin")
+                                db.session.commit()
                         return redirect(f'/{losjjs}')
                     if int(adm.quantit) == 0 :
                         adm.stat = "faux"
@@ -4489,6 +6102,26 @@ def fairemoins(id):
                     adm.tranwitelet = int(adm.tranwitelet) - 1
                     adm.quantit = int(adm.quantit) - 1
                     db.session.commit()
+
+
+
+                    monkzu = Panieruser.query.all()
+                    for imo in monkzu :
+                        if int(imo.produite) == id :
+                            sfymp = int(imo.dispono) - 1
+                            if sfymp >= int(imo.quantiteto)   :
+                                imo.dispono = int(imo.dispono) - 1
+                                print(sfymp , ">=" , int(imo.quantiteto))
+                                imo.statuse = "dispobine"
+                            else : 
+                                print(sfymp , "<" , int(imo.quantiteto))
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "nondisp"
+                            db.session.commit()
+                            
+
+
+                            
 
                 if int(adm.tranwitelet) == 0 :
                     pass
@@ -4502,6 +6135,22 @@ def fairemoins(id):
                         adm.tranneuflet = int(adm.tranneuflet) - 1
                         adm.quantit = int(adm.quantit) - 1
                         db.session.commit()
+                        monkzu = Panieruser.query.all()
+                        print("on a recu")
+                        for imo in monkzu :
+                            if int(imo.produite) == id :
+                                sfymp = int(imo.dispono) - 1
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                    print("terlin")
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "nondisp"
+                                    print("pas terlin")
+                                db.session.commit()
                         return redirect(f'/{losjjs}')
                     if int(adm.quantit) == 0 :
                         adm.stat = "faux"
@@ -4512,6 +6161,21 @@ def fairemoins(id):
                     adm.tranneuflet = int(adm.tranneuflet) - 1
                     adm.quantit = int(adm.quantit) - 1
                     db.session.commit()
+
+                    monkzu = Panieruser.query.all()
+                    for imo in monkzu :
+                        if int(imo.produite) == id :
+                            sfymp = int(imo.dispono) - 1
+                            if sfymp >= int(imo.quantiteto)   :
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "dispobine"
+                                print(sfymp , ">=" , int(imo.quantiteto))
+                            else : 
+                                print(sfymp , "<" , int(imo.quantiteto))
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "nondisp"
+                            db.session.commit()
+                            
 
                 if int(adm.tranneuflet) == 0 :
                     pass
@@ -4525,6 +6189,22 @@ def fairemoins(id):
                         adm.karentelet = int(adm.karentelet) - 1
                         adm.quantit = int(adm.quantit) - 1
                         db.session.commit()
+                        monkzu = Panieruser.query.all()
+                        print("on a recu")
+                        for imo in monkzu :
+                            if int(imo.produite) == id :
+                                sfymp = int(imo.dispono) - 1
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                    print("terlin")
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "nondisp"
+                                    print("pas terlin")
+                                db.session.commit()
                         return redirect(f'/{losjjs}')
                     if int(adm.quantit) == 0 :
                         adm.stat = "faux"
@@ -4535,6 +6215,24 @@ def fairemoins(id):
                     adm.karentelet = int(adm.karentelet) - 1
                     adm.quantit = int(adm.quantit) - 1
                     db.session.commit()
+
+
+
+                    monkzu = Panieruser.query.all()
+                    for imo in monkzu :
+                        if int(imo.produite) == id :
+                            sfymp = int(imo.dispono) - 1
+                            if sfymp >= int(imo.quantiteto)   :
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "dispobine"
+                                print(sfymp , ">=" , int(imo.quantiteto))
+
+                            else : 
+                                print(sfymp , "<" , int(imo.quantiteto))
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "nondisp"
+                            db.session.commit()
+                            
 
                 if int(adm.karentelet) == 0 :
                     pass
@@ -4548,6 +6246,22 @@ def fairemoins(id):
                         adm.tranwiteunlet = int(adm.tranwiteunlet) - 1
                         adm.quantit = int(adm.quantit) - 1
                         db.session.commit()
+                        monkzu = Panieruser.query.all()
+                        print("on a recu")
+                        for imo in monkzu :
+                            if int(imo.produite) == id :
+                                sfymp = int(imo.dispono) - 1
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                    print("terlin")
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "nondisp"
+                                    print("pas terlin")
+                                db.session.commit()
                         return redirect(f'/{losjjs}')
                     if int(adm.quantit) == 0 :
                         adm.stat = "faux"
@@ -4558,6 +6272,23 @@ def fairemoins(id):
                     adm.tranwiteunlet = int(adm.tranwiteunlet) - 1
                     adm.quantit = int(adm.quantit) - 1
                     db.session.commit()
+
+
+
+                    monkzu = Panieruser.query.all()
+                    for imo in monkzu :
+                        if int(imo.produite) == id :
+                            sfymp = int(imo.dispono) - 1
+                            if sfymp >= int(imo.quantiteto)   :
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "dispobine"
+                                print(sfymp , ">=" , int(imo.quantiteto))
+                            else : 
+                                print(sfymp , "<" , int(imo.quantiteto))
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "nondisp"
+                            db.session.commit()
+                            
 
                 if int(adm.tranwiteunlet) == 0 :
                     pass
@@ -4571,6 +6302,22 @@ def fairemoins(id):
                         adm.tranwitedeuxlet = int(adm.tranwitedeuxlet) - 1
                         adm.quantit = int(adm.quantit) - 1
                         db.session.commit()
+                        monkzu = Panieruser.query.all()
+                        print("on a recu")
+                        for imo in monkzu :
+                            if int(imo.produite) == id :
+                                sfymp = int(imo.dispono) - 1
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                    print("terlin")
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "nondisp"
+                                    print("pas terlin")
+                                db.session.commit()
                         return redirect(f'/{losjjs}')
                     if int(adm.quantit) == 0 :
                         adm.stat = "faux"
@@ -4581,6 +6328,24 @@ def fairemoins(id):
                     adm.tranwitedeuxlet = int(adm.tranwitedeuxlet) - 1
                     adm.quantit = int(adm.quantit) - 1
                     db.session.commit()
+
+
+
+
+                    monkzu = Panieruser.query.all()
+                    for imo in monkzu :
+                        if int(imo.produite) == id :
+                            sfymp = int(imo.dispono) - 1
+                            if sfymp >= int(imo.quantiteto)   :
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "dispobine"
+                                print(sfymp , ">=" , int(imo.quantiteto))
+                            else : 
+                                print(sfymp , "<" , int(imo.quantiteto))
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "nondisp"
+                            db.session.commit()
+                            
 
                 if int(adm.tranwitedeuxlet) == 0 :
                     pass
@@ -4594,6 +6359,22 @@ def fairemoins(id):
                         adm.tranwitroislet = int(adm.tranwitroislet) - 1
                         adm.quantit = int(adm.quantit) - 1
                         db.session.commit()
+                        monkzu = Panieruser.query.all()
+                        print("on a recu")
+                        for imo in monkzu :
+                            if int(imo.produite) == id :
+                                sfymp = int(imo.dispono) - 1
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                    print("terlin")
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "nondisp"
+                                    print("pas terlin")
+                                db.session.commit()
                         return redirect(f'/{losjjs}')
                     if int(adm.quantit) == 0 :
                         adm.stat = "faux"
@@ -4604,6 +6385,24 @@ def fairemoins(id):
                     adm.tranwitroislet = int(adm.tranwitroislet) - 1
                     adm.quantit = int(adm.quantit) - 1
                     db.session.commit()
+
+
+
+
+                    monkzu = Panieruser.query.all()
+                    for imo in monkzu :
+                        if int(imo.produite) == id :
+                            sfymp = int(imo.dispono) - 1
+                            if sfymp >= int(imo.quantiteto)   :
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "dispobine"
+                                print(sfymp , ">=" , int(imo.quantiteto))
+                            else : 
+                                print(sfymp , "<" , int(imo.quantiteto))
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "nondisp"
+                            db.session.commit()
+                            
 
                 if int(adm.tranwitroislet) == 0 :
                     pass
@@ -4618,6 +6417,22 @@ def fairemoins(id):
                         adm.tranwitekatelet = int(adm.tranwitekatelet) - 1
                         adm.quantit = int(adm.quantit) - 1
                         db.session.commit()
+                        monkzu = Panieruser.query.all()
+                        print("on a recu")
+                        for imo in monkzu :
+                            if int(imo.produite) == id :
+                                sfymp = int(imo.dispono) - 1
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                    print("terlin")
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "nondisp"
+                                    print("pas terlin")
+                                db.session.commit()
                         return redirect(f'/{losjjs}')
                     if int(adm.quantit) == 0 :
                         adm.stat = "faux"
@@ -4628,6 +6443,23 @@ def fairemoins(id):
                     adm.tranwitekatelet = int(adm.tranwitekatelet) - 1
                     adm.quantit = int(adm.quantit) - 1
                     db.session.commit()
+
+
+
+                    monkzu = Panieruser.query.all()
+                    for imo in monkzu :
+                        if int(imo.produite) == id :
+                            sfymp = int(imo.dispono) - 1
+                            if sfymp >= int(imo.quantiteto)   :
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "dispobine"
+                                print(sfymp , ">=" , int(imo.quantiteto))
+                            else : 
+                                print(sfymp , "<" , int(imo.quantiteto))
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "nondisp"
+                            db.session.commit()
+                            
 
                 if int(adm.tranwitekatelet) == 0 :
                     pass
@@ -4659,6 +6491,23 @@ def fairemoins(id):
                     adm.quantit = int(adm.quantit) - 1
                     db.session.commit()
 
+
+
+                    monkzu = Panieruser.query.all()
+                    for imo in monkzu :
+                        if int(imo.produite) == id :
+                            sfymp = int(imo.dispono) - 1
+                            if sfymp >= int(imo.quantiteto)   :
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "dispobine"
+                                print(sfymp , ">=" , int(imo.quantiteto))
+                            else : 
+                                print(sfymp , "<" , int(imo.quantiteto))
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "nondisp"
+                            db.session.commit()
+                            
+
                 if int(adm.xslet) == 0 :
                     pass
 
@@ -4682,6 +6531,24 @@ def fairemoins(id):
                     adm.xllet = int(adm.xllet) - 1
                     adm.quantit = int(adm.quantit) - 1
                     db.session.commit()
+
+
+
+
+                    monkzu = Panieruser.query.all()
+                    for imo in monkzu :
+                        if int(imo.produite) == id :
+                            sfymp = int(imo.dispono) - 1
+                            if sfymp >= int(imo.quantiteto)   :
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "dispobine"
+                                print(sfymp , ">=" , int(imo.quantiteto))
+                            else : 
+                                print(sfymp , "<" , int(imo.quantiteto))
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "nondisp"
+                            db.session.commit()
+                            
 
                 if int(adm.xllet) == 0 :
                     pass
@@ -4718,6 +6585,23 @@ def fairemoins(id):
                         adm.mlet = int(adm.mlet) - 1
                         adm.quantit = int(adm.quantit) - 1
                         db.session.commit()
+
+                        monkzu = Panieruser.query.all()
+                        print("on a recu")
+                        for imo in monkzu :
+                            if int(imo.produite) == id :
+                                sfymp = int(imo.dispono) - 1
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                    print("terlin")
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "nondisp"
+                                    print("pas terlin")
+                                db.session.commit()
                         return redirect(f'/{losjjs}')
                     if int(adm.quantit) == 0 :
                         adm.stat = "faux"
@@ -4728,6 +6612,24 @@ def fairemoins(id):
                     adm.mlet = int(adm.mlet) - 1
                     adm.quantit = int(adm.quantit) - 1
                     db.session.commit()
+
+
+
+
+                    monkzu = Panieruser.query.all()
+                    for imo in monkzu :
+                        if int(imo.produite) == id :
+                            sfymp = int(imo.dispono) - 1
+                            if sfymp >= int(imo.quantiteto)   :
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "dispobine"
+                                print(sfymp , ">=" , int(imo.quantiteto))
+                            else : 
+                                print(sfymp , "<" , int(imo.quantiteto))
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "nondisp"
+                            db.session.commit()
+                            
 
                 if int(adm.mlet) == 0 :
                     pass
@@ -4741,6 +6643,22 @@ def fairemoins(id):
                         adm.slet = int(adm.slet) - 1
                         adm.quantit = int(adm.quantit) - 1
                         db.session.commit()
+                        monkzu = Panieruser.query.all()
+                        print("on a recu")
+                        for imo in monkzu :
+                            if int(imo.produite) == id :
+                                sfymp = int(imo.dispono) - 1
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                    print("terlin")
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "nondisp"
+                                    print("pas terlin")
+                                db.session.commit()
                         return redirect(f'/{losjjs}')
                     if int(adm.quantit) == 0 :
                         adm.stat = "faux"
@@ -4751,6 +6669,23 @@ def fairemoins(id):
                     adm.slet = int(adm.slet) - 1
                     adm.quantit = int(adm.quantit) - 1
                     db.session.commit()
+
+
+
+                    monkzu = Panieruser.query.all()
+                    for imo in monkzu :
+                        if int(imo.produite) == id :
+                            sfymp = int(imo.dispono) - 1
+                            if sfymp >= int(imo.quantiteto)   :
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "dispobine"
+                                print(sfymp , ">=" , int(imo.quantiteto))
+                            else : 
+                                print(sfymp , "<" , int(imo.quantiteto))
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "nondisp"
+                            db.session.commit()
+                            
 
                 if int(adm.slet) == 0 :
                     pass
@@ -4764,6 +6699,22 @@ def fairemoins(id):
                         adm.llet = int(adm.llet) - 1
                         adm.quantit = int(adm.quantit) - 1
                         db.session.commit()
+                        monkzu = Panieruser.query.all()
+                        print("on a recu")
+                        for imo in monkzu :
+                            if int(imo.produite) == id :
+                                sfymp = int(imo.dispono) - 1
+                                if sfymp >= int(imo.quantiteto)   :
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "dispobine"
+                                    print(sfymp , ">=" , int(imo.quantiteto))
+                                    print("terlin")
+                                else : 
+                                    print(sfymp , "<" , int(imo.quantiteto))
+                                    imo.dispono = int(imo.dispono) - 1
+                                    imo.statuse = "nondisp"
+                                    print("pas terlin")
+                                db.session.commit()
                         return redirect(f'/{losjjs}')
                     if int(adm.quantit) == 0 :
                         adm.stat = "faux"
@@ -4774,6 +6725,24 @@ def fairemoins(id):
                     adm.llet = int(adm.llet) - 1
                     adm.quantit = int(adm.quantit) - 1
                     db.session.commit()
+
+
+
+
+                    monkzu = Panieruser.query.all()
+                    for imo in monkzu :
+                        if int(imo.produite) == id :
+                            sfymp = int(imo.dispono) - 1
+                            if sfymp >= int(imo.quantiteto)   :
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "dispobine"
+                                print(sfymp , ">=" , int(imo.quantiteto))
+                            else : 
+                                print(sfymp , "<" , int(imo.quantiteto))
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "nondisp"
+                            db.session.commit()
+                            
 
                 if int(adm.llet) == 0 :
                     pass
@@ -4787,7 +6756,23 @@ def fairemoins(id):
                     adm.stat = "faux"
                     adm.quantit = int(adm.quantit) - 1
                     db.session.commit()
-                    return redirect("/commadeadmin")
+                    monkzu = Panieruser.query.all()
+                    print("on a recu")
+                    for imo in monkzu :
+                        if int(imo.produite) == id :
+                            sfymp = int(imo.dispono) - 1
+                            if sfymp >= int(imo.quantiteto)   :
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "dispobine"
+                                print(sfymp , ">=" , int(imo.quantiteto))
+                                print("terlin")
+                            else : 
+                                print(sfymp , "<" , int(imo.quantiteto))
+                                imo.dispono = int(imo.dispono) - 1
+                                imo.statuse = "nondisp"
+                                print("pas terlin")
+                            db.session.commit()
+                    return redirect(f'/{losjjs}')
                 if int(adm.quantit) == 0 :
                     adm.stat = "faux"
                     
@@ -4796,6 +6781,24 @@ def fairemoins(id):
                 
                 adm.quantit = int(adm.quantit) - 1
                 db.session.commit()
+
+
+
+
+                monkzu = Panieruser.query.all()
+                for imo in monkzu :
+                    if int(imo.produite) == id :
+                        sfymp = int(imo.dispono) - 1
+                        if sfymp >= int(imo.quantiteto)   :
+                            imo.dispono = int(imo.dispono) - 1
+                            imo.statuse = "dispobine"
+                            print(sfymp , ">=" , int(imo.quantiteto))
+                        else : 
+                            print(sfymp , "<" , int(imo.quantiteto))
+                            imo.dispono = int(imo.dispono) - 1
+                            imo.statuse = "nondisp"
+                        db.session.commit()
+                        
 
 
     
@@ -4859,7 +6862,7 @@ def onsupprime(id):
     prenom = adm.prenom
     nom =adm.nom
 
-    lenhsfd = 1
+    lenhsfd = adm.quantite
     lsjhd = adm.mail
     
     mail = Mail(app)
@@ -4935,7 +6938,7 @@ def onvalide(id):
         prenom = adm.prenom
         nom =adm.nom
 
-        lenhsfd = 1
+        lenhsfd = adm.quantite
         lsjhd = adm.mail
         
         mail = Mail(app)
@@ -4964,6 +6967,26 @@ def onvalide(id):
         return redirect("/commadeadmin")
     
     
+@app.route("/attendre/<int:id>" , methods=['POST'])
+def attendre(id):
+    redirhd1 = request.form.get("redirhd1")
+    try :
+        adm= Profil.query.get(id)
+        if adm.satuq == 2 : 
+            adm.satuq = 0
+            db.session.commit()
+        elif adm.satuq == 0 : 
+            adm.satuq = 2
+            db.session.commit()
+        else :
+            pass
+       
+
+        return redirect(f"/{redirhd1}")
+    
+    except :
+
+        return redirect(f"/{redirhd1}")
 @app.route("/Suppesss/<int:id>" , methods=['POST'])
 def Suppesss(id):
     redirhd1 = request.form.get("redirhd1")
@@ -4981,6 +7004,18 @@ def Suppesss(id):
 def Suppesz(id):
     redirhd1 = request.form.get("redirhd1")
     try :
+        recy = Panieruser.query.all()
+        for i in recy :
+            if int(i.produite) == id :
+                i.statuse = "nondisp"
+                i.dispono = 0
+                db.session.commit()
+
+        recye = Commande.query.all()
+        for i in recye :
+            if int(i.idpro) == id :
+                i.status = "Annulé"
+                db.session.commit()
         
         
         adm= Ajouter.query.get(id)
@@ -5009,6 +7044,12 @@ def Suppesz(id):
 
         adm= Ajouter.query.get(id)
         db.session.delete(adm)
+
+
+
+       
+
+       
         return redirect(f"/{redirhd1}")
     
     except :
@@ -5097,14 +7138,27 @@ def panierus():
         if int(i.identifiant) == useruo.id :
             print('prevdg', i.identifiant , 'prevdg' , useruo.id)
             hdhdud = Ajouter.query.get(i.produite)
-            gdhsuud.append({"id":i.id,"element":i.produite,"prix":i.prixdepouce,"image":i.image,"quantite":i.quantiteto,"taille":i.tailed,"nom":i.nomprodui,"description":i.descrprosui,"pource":i.prixtottal,"porce":i.pourcentage ,"tailed":i.tailed,"categorie":i.categorie})
+            if hdhdud :
+                lien = hdhdud.liens
+
+
+                gdhsuud.append({"id":i.id,"element":i.produite,"prix":i.prixdepouce,"image":i.image,"quantite":i.quantiteto,"taille":i.tailed,"nom":i.nomprodui,"description":i.descrprosui,"pource":i.prixtottal,"porce":i.pourcentage ,"tailed":i.tailed,"categorie":i.categorie,"statuse": i.statuse,"liens":lien})
+            else :
+                lien = "y'a pas lien"
+                i.statuse = "nondisp"
+                i.quantite = 0
+                db.session.commit()
+                gdhsuud.append({"id":i.id,"element":i.produite,"prix":i.prixdepouce,"image":i.image,"quantite":i.quantiteto,"taille":i.tailed,"nom":i.nomprodui,"description":i.descrprosui,"pource":i.prixtottal,"porce":i.pourcentage ,"tailed":i.tailed,"categorie":i.categorie,"statuse": i.statuse ,"liens":lien})
+            
         # prixdepouce,nomprodui,descrprosui,pourcentage,categorie
 
     conueww = 0    
     somme = 0     
     for i in gdhsuud :
-        somme += int(i["pource"])*int(i["quantite"])
-        conueww += int(i["quantite"])
+        if i["statuse"] == "dispobine" :
+            
+            somme += int(i["pource"])*int(i["quantite"])
+            conueww += int(i["quantite"])
     for i in tout:
         if i.categorie == "VetementFemme" :
             catefemme.append(i)
@@ -5124,7 +7178,7 @@ def panierus():
     if len(commenta) > 1:
         print(commenta[0].mail)
     
-    return render_template("panierus.html",gdhsuud=gdhsuud,commenta=commenta,catefemme=catefemme,montre=montre,id=id,chaussure=chaussure,somme=somme,conueww=conueww,useruo=useruo.id,pmpl=useruo)
+    return render_template("panierus.html",gdhsuud=gdhsuud,commenta=commenta,catefemme=catefemme,montre=montre,id=useru.id,chaussure=chaussure,somme=somme,conueww=conueww,useruo=useruo.id,pmpl=useruo)
 
 @app.route('/validecommande', methods=['POST'])
 def validecommande():
@@ -5166,18 +7220,21 @@ def validecommande():
     
     for i in tableaus : 
         
-        if int(i.identifiant) == useruo.id :
+        if int(i.identifiant) == useruo.id and i.statuse == "dispobine":
             print('prevdg', i.identifiant , 'prevdg' , useruo.id)
-            hdhdud = Ajouter.query.get(i.produite)
-            gdhsuud.append({"id":i.id,"element":i.produite,"prix":i.prixdepouce,"image":i.image,"quantite":int(i.quantiteto),"taille":i.tailed,"nom":i.nomprodui,"description":i.descrprosui,"pource":int(i.prixtottal),"porce":i.pourcentage ,"tailed":i.tailed,"categorie":i.categorie})
+            hdhdud = Ajouter.query.get(int(i.produite))
+            if hdhdud :
+                gdhsuud.append({"id":i.id,"element":i.produite,"prix":i.prixdepouce,"image":i.image,"quantite":int(i.quantiteto),"taille":i.tailed,"nom":i.nomprodui,"description":i.descrprosui,"pource":int(i.prixtottal),"porce":i.pourcentage ,"tailed":i.tailed,"categorie":i.categorie,"statuse":i.statuse})
 
     # prixdepouce,nomprodui,descrprosui,pourcentage,categorie,prixtottal
 
     conueww = 0       
     somme = 0     
     for i in gdhsuud :
-        somme += int(i["pource"])*int(i["quantite"])
-        conueww += int(i["quantite"])
+       
+        if i["statuse"] == "dispobine" :
+            somme += int(i["pource"])*int(i["quantite"])
+            conueww += int(i["quantite"])
     
     # conueww = 0    
     # conueww += int(i["quantite"])
@@ -5187,7 +7244,11 @@ def validecommande():
     livraison = request.form.get("livraison",useruo.livraison)
     description = request.form.get("description",useruo.deslivraion)
     numero = request.form.get("numero",useruo.numero)
-    return render_template("validecommande.html",gdhsuud=gdhsuud,commenta=commenta,id=id,somme=somme,conueww=conueww,clientr = useruo,apres_demain=apres_demain,livraison=livraison,description=description,numero=numero,dataer=data)
+
+    if len(gdhsuud) != 0 :
+        return render_template("validecommande.html",gdhsuud=gdhsuud,commenta=commenta,id=id,somme=somme,conueww=conueww,clientr = useruo,apres_demain=apres_demain,livraison=livraison,description=description,numero=numero,dataer=data)
+    else :
+        return redirect("/monpanier")
 @app.route('/monpanierls')
 def monpanierls():
     
@@ -5303,6 +7364,110 @@ def mofie(id):
                 print("dfghjk",tablepmd,"fin",tablepmd[i])
 
 
+
+        "je mets a jour le nombres des articles modifier dans le panier "
+        monkzu = Panieruser.query.all()
+        for imo in monkzu :
+            if imo.categorie == "chaussure" :
+                
+                if imo.tailed == "38 ° " :
+                    imo.dispono = int(tablepmd[0]) 
+                    db.session.commit()
+                    if int(imo.dispono) < int(imo.quantiteto)   :
+                       
+                        imo.statuse = "nondisp"
+                        db.session.commit()
+                      
+
+                    else : 
+                     
+                        imo.statuse = "dispobine" 
+                        db.session.commit()
+                elif imo.tailed == "39 ° " :
+                    imo.dispono = int(tablepmd[1]) 
+                    db.session.commit()
+                    if int(imo.dispono) < int(imo.quantiteto)   :
+                       
+                        imo.statuse = "nondisp"
+                        db.session.commit()
+                      
+
+                    else : 
+                     
+                        imo.statuse = "dispobine" 
+                        db.session.commit()
+                elif imo.tailed == "40 ° " :
+                    imo.dispono = int(tablepmd[2]) 
+                    db.session.commit()
+                    if int(imo.dispono) < int(imo.quantiteto)   :
+                       
+                        imo.statuse = "nondisp"
+                        db.session.commit()
+                      
+
+                    else : 
+                     
+                        imo.statuse = "dispobine" 
+                        db.session.commit()
+                elif imo.tailed == "41 ° " :
+                    imo.dispono = int(tablepmd[3]) 
+                    db.session.commit()
+                    if int(imo.dispono) < int(imo.quantiteto)   :
+                       
+                        imo.statuse = "nondisp"
+                        db.session.commit()
+                      
+
+                    else : 
+                     
+                        imo.statuse = "dispobine" 
+                        db.session.commit()
+                elif imo.tailed == "42 ° " :
+                    imo.dispono = int(tablepmd[4]) 
+                    db.session.commit()
+                    if int(imo.dispono) < int(imo.quantiteto)   :
+                       
+                        imo.statuse = "nondisp"
+                        db.session.commit()
+                      
+
+                    else : 
+                     
+                        imo.statuse = "dispobine" 
+                        db.session.commit()
+                elif imo.tailed == "43 ° " :
+                    imo.dispono = int(tablepmd[5]) 
+                    db.session.commit()
+                    if int(imo.dispono) < int(imo.quantiteto)   :
+                       
+                        imo.statuse = "nondisp"
+                        db.session.commit()
+                      
+
+                    else : 
+                     
+                        imo.statuse = "dispobine" 
+                        db.session.commit()
+                elif imo.tailed == "44 ° " :
+                    imo.dispono = int(tablepmd[6]) 
+                    db.session.commit()
+                    if int(imo.dispono) < int(imo.quantiteto)   :
+                       
+                        imo.statuse = "nondisp"
+                        db.session.commit()
+                      
+
+                    else : 
+                     
+                        imo.statuse = "dispobine" 
+                        db.session.commit()
+
+                else :
+
+                    db.session.commit()
+           
+
+
         reu.nom = nom
         reu.description = description
         reu.prix = prix
@@ -5337,7 +7502,16 @@ def mofie(id):
         reu.xllet = xllet
         reu.xxllet = xxllet
 
+
+
+
+
         db.session.commit()
+        return redirect("/cahuseadmin")
+
+
+
+
 
 
     if categorie == "VetementFemme" :
@@ -5356,6 +7530,101 @@ def mofie(id):
                     print('ya rien tchai')
 
                 print("dfghjk",tablepmd,"fin",tablepmd[i])
+
+
+
+        "je mets a jour le nombres des articles modifier dans le panier "
+        monkzu = Panieruser.query.all()
+        for imo in monkzu :
+          
+   
+            if imo.categorie == "VetementFemme" :
+                
+                if imo.tailed == "m" :
+                    imo.dispono = int(tablepmd[9]) 
+                    db.session.commit()
+                    if int(imo.dispono) < int(imo.quantiteto)   :
+                       
+                        imo.statuse = "nondisp"
+                        db.session.commit()
+                      
+
+                    else : 
+                     
+                        imo.statuse = "dispobine" 
+                        db.session.commit()
+                elif imo.tailed == "xxl" :
+                    imo.dispono = int(tablepmd[12]) 
+                    db.session.commit()
+                    if int(imo.dispono) < int(imo.quantiteto)   :
+                       
+                        imo.statuse = "nondisp"
+                        db.session.commit()
+                      
+
+                    else : 
+                     
+                        imo.statuse = "dispobine" 
+                        db.session.commit()
+                elif imo.tailed == "xs" :
+                    imo.dispono = int(tablepmd[7]) 
+                    db.session.commit()
+                    if int(imo.dispono) < int(imo.quantiteto)   :
+                       
+                        imo.statuse = "nondisp"
+                        db.session.commit()
+                      
+
+                    else : 
+                     
+                        imo.statuse = "dispobine" 
+                        db.session.commit()
+                elif imo.tailed == "l" :
+                    imo.dispono = int(tablepmd[10]) 
+                    db.session.commit()
+                    if int(imo.dispono) < int(imo.quantiteto)   :
+                       
+                        imo.statuse = "nondisp"
+                        db.session.commit()
+                      
+
+                    else : 
+                     
+                        imo.statuse = "dispobine" 
+                        db.session.commit()
+                elif imo.tailed == "xl" :
+                    imo.dispono = int(tablepmd[11]) 
+                    db.session.commit()
+                    if int(imo.dispono) < int(imo.quantiteto)   :
+                       
+                        imo.statuse = "nondisp"
+                        db.session.commit()
+                      
+
+                    else : 
+                     
+                        imo.statuse = "dispobine" 
+                        db.session.commit()
+                elif imo.tailed == "s" :
+                    imo.dispono = int(tablepmd[8]) 
+                    db.session.commit()
+                    if int(imo.dispono) < int(imo.quantiteto)   :
+                       
+                        imo.statuse = "nondisp"
+                        db.session.commit()
+                      
+
+                    else : 
+                     
+                        imo.statuse = "dispobine" 
+                        db.session.commit()
+                
+
+                else :
+
+                    db.session.commit()
+           
+
 
         
 
@@ -5394,8 +7663,34 @@ def mofie(id):
         reu.xxllet = int(tablepmd[12])
 
         db.session.commit()
+        return redirect("/listederobe")
 
     if categorie == "Montre" :
+
+        "je mets a jour le nombres des articles modifier dans le panier "
+        monkzu = Panieruser.query.all()
+        for imo in monkzu :
+          
+   
+            if imo.categorie == "Montre" :
+                
+               
+                imo.dispono = int(quantit)
+                db.session.commit()
+                if int(imo.dispono) < int(imo.quantiteto)   :
+                    
+                    imo.statuse = "nondisp"
+                    db.session.commit()
+                    
+
+                else : 
+                    
+                    imo.statuse = "dispobine" 
+                    db.session.commit()
+               
+
+           
+
       
         reu.nom = nom
         reu.description = description
@@ -5432,6 +7727,8 @@ def mofie(id):
         reu.xxllet = xxllet
 
         db.session.commit()
+
+        return redirect("/montreadosn")
     return redirect("/")
     # reu.xs = request.form.get("xs",'')
     # reu.porce = request.form.get("porce",'')
@@ -5494,8 +7791,8 @@ def mofie(id):
     # reu.llet = request.form.get("llet","0")
     # reu.xllet = request.form.get("xllet","0")
     # reu.xxllet = request.form.get("xxllet","0")
-    db.session.commit()
-    return redirect('/administa')
+    # db.session.commit()
+    # return redirect('/administa')
 
 
 
@@ -5536,17 +7833,31 @@ def add_data():
    
 
 
+
+import bcrypt
+
+
+
+
+
+
+
 @app.route('/add',methods = ["POST"])
 def profile() :
     
     
     first_name = request.form.get("first_name")
     last_name = request.form.get("last_name")
-    age = request.form.get("age")
-    conf = request.form.get("conf")
+    hashed_password = request.form.get("age")
+    confe = request.form.get("conf")
     
+    salt = bcrypt.gensalt()
+    # Hasher le mot de passe avec le sel
+    age = bcrypt.hashpw(hashed_password.encode('utf-8'), salt)
+   
+  
 
-    if conf != age :
+    if confe != hashed_password :
         flash("Email ou Mot de passe invalide")
         return redirect("/add_data")
     
@@ -5568,8 +7879,8 @@ def profile() :
         flash("Impossible de crée un compte") 
         return redirect(url_for("add_data"))
     else :
-        if first_name != " " and last_name != " " and age is not None and len(age)== 8 :
-            p = Profil(first_name = first_name, last_name = last_name , age = age , prenom="",residence="",livraison="",numero="",deslivraion="",infoplus="")
+        if first_name != " " and last_name != " " and hashed_password is not None and len(hashed_password)== 8 :
+            p = Profil(first_name = first_name, last_name = last_name , age = age , prenom="",residence="",livraison="",numero="",deslivraion="",infoplus="",satuq=0)
 
             db.session.add(p)
             db.session.commit()
@@ -5708,6 +8019,10 @@ def designmail(id):
     
 
     return render_template("maiql.html",lenhsfd=lenhsfd,pmse=pmse,prenom=prenom,commen=commen,nom=nom,datez=datez)
+
+
+
+
 @app.route('/validedesignmail/<int:id>')
 def validedesignmail(id):
     
@@ -5772,6 +8087,7 @@ def validedesignmail(id):
 #     if int(i.quantit) == 0 :
 #         i.stat = "faux" 
 #         db.session.commit()
+
 
 
 if __name__ == '__main__' :

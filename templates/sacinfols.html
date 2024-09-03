@@ -838,6 +838,7 @@
                                     <input type="text" name="image" id="taillepoe{{user.tranwite}}"
                                         class="taillepoetranwite" placeholder="numero" value="{{user.tranwite}}"
                                         style="visibility: hidden;height: 0;width: 0;">
+                                    <input type="text" class="tranwitelet" value="{{user.tranwitelet}}" style="visibility: hidden;height: 0;width: 0;">
                                 </div>
                                 <div class="nombredexlquant">
                                     <div class="mmoiie" onclick="moinsp('tranwitenumq')">
@@ -868,6 +869,7 @@
                                     <input type="text" name="image" id="taillepoe{{user.tranneuf}}"
                                         class="taillepoetranneuf" placeholder="numero" value="{{user.tranneuf}}"
                                         style="visibility: hidden;height: 0;width: 0;">
+                                        <input type="text" class="tranneuflet" value="{{user.tranneuflet}}" style="visibility: hidden;height: 0;width: 0;">
                                 </div>
                                 <div class="nombredexlquant">
                                     <div class="mmoiie" onclick="moinsp('tranneufnumq')">
@@ -898,6 +900,8 @@
                                     <input type="text" name="image" id="taillepoe{{user.karente}}"
                                         class="taillepoekarente" placeholder="numero" value="{{user.karente}}"
                                         style="visibility: hidden;height: 0;width: 0;">
+
+                                        <input type="text" class="karentelet" value="{{user.karentelet}}" style="visibility: hidden;height: 0;width: 0;">
                                 </div>
 
                                 <div class="nombredexlquant">
@@ -932,6 +936,7 @@
                                     <input type="text" name="image" id="taillepoe{{user.tranwiteun}}"
                                         class="taillepoetranwiteun" placeholder="numero" value="{{user.tranwiteun}}"
                                         style="visibility: hidden;height: 0;width: 0;">
+                                        <input type="text" class="tranwiteunlet" value="{{user.tranwiteunlet}}" style="visibility: hidden;height: 0;width: 0;">
                                 </div>
                                 <div class="nombredexlquant">
                                     <div class="mmoiie" onclick="moinsp('tranwiteunnumq')">
@@ -963,6 +968,7 @@
                                     <input type="text" name="image" id="taillepoe{{user.tranwitedeux}}"
                                         class="taillepoetranwitedeux" placeholder="numero" value="{{user.tranwitedeux}}"
                                         style="visibility: hidden;height: 0;width: 0;">
+                                        <input type="text" class="tranwitedeuxlet" value="{{user.tranwitedeuxlet}}" style="visibility: hidden;height: 0;width: 0;">
                                 </div>
                                 <div class="nombredexlquant">
                                     <div class="mmoiie" onclick="moinsp('tranwitedeuxnumq')">
@@ -994,6 +1000,7 @@
                                     <input type="text" name="image" id="taillepoe{{user.tranwitrois}}"
                                         class="taillepoetranwitrois" placeholder="numero" value="{{user.tranwitrois}}"
                                         style="visibility: hidden;height: 0;width: 0;">
+                                        <input type="text" class="tranwitroislet" value="{{user.tranwitroislet}}" style="visibility: hidden;height: 0;width: 0;">
                                 </div>
                                 <div class="nombredexlquant">
                                     <div class="mmoiie" onclick="moinsp('tranwitroisnumq')">
@@ -1013,7 +1020,7 @@
                             </div>
                             {% endif %}
 
-                            {% if user.tranwitekate == '44'and user.tranwitekatelet != "0" %}
+                            {% if user.tranwitekate == '44' and user.tranwitekatelet != "0" %}
                             <div class="nombredexl">
                                 <div class="nombredexltaille">
                                     <h1
@@ -1025,6 +1032,7 @@
                                     <input type="text" name="image" id="taillepoe" class="taillepoetranwitekate"
                                         placeholder="numero" value="{{user.tranwitekate}}"
                                         style="visibility: hidden;height: 0;width: 0;">
+                                        <input type="text" class="tranwitekatelet" value="{{user.tranwitekatelet}}" style="visibility: hidden;height: 0;width: 0;">
                                 </div>
                                 <div class="nombredexlquant">
                                     <div class="mmoiie" onclick="moinsp('tranwitekatenumq')">
@@ -1037,7 +1045,7 @@
                                             id="tranwitekatenumq" name="tranwitekatenum">
                                     </div>
 
-                                    <div class="mmoiie" onclick="plusp('tranwitekatenumq','{{user.tranwitekate}}')">
+                                    <div class="mmoiie" onclick="plusp('tranwitekatenumq','{{user.tranwitekatelet}}')">
                                         <p style="color: black;font-size: 2rem;">+</p>
                                     </div>
                                 </div>

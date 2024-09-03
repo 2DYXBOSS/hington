@@ -30,5 +30,7 @@ tabUsere.forEach((i) => {
     
     taer+=1
     console.log(taer,"dfsjhklds");
-    etdrdvhe.innerHTML = taer 
+    if (etdrdvhe){
+        etdrdvhe.innerHTML = taer 
+    }
 })

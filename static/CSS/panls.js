@@ -1,4 +1,5 @@
 
+
 const aee = document.querySelector('#hdhdj')
 const hdhdj2 = document.querySelector('#hdhdj2')
 const menu = document.querySelector('.menu')
@@ -161,6 +162,7 @@ function verif(ide,quantep) {
 
 
 
+
 let tabUsere = JSON.parse(localStorage.getItem("inscpce"))
 
 
@@ -175,13 +177,16 @@ let etdrdvhe = document.querySelector(".etdrdvhe");
 // let caeekr = 0
 let taer = 0
 
-
 let somme = 0
 tabUsere.forEach((i) => {
+   
+
     
+
     
     let user = i["data"]
-    taer+=1
+    taer+=parseInt(user.quantiteto)
+    
     console.log(taer,"dfsjhklds");
     etdrdvhe.innerHTML = taer
     
@@ -192,6 +197,9 @@ tabUsere.forEach((i) => {
     console.log(user.image);
     console.log(user.porceprix);
     console.log(user.position);
+    
+    
+
     if (user.categorie == "VetementFemme") {
         
    
@@ -214,7 +222,7 @@ tabUsere.forEach((i) => {
                             
                             <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-top: 5px;color: black;" id="sadtdyayuda" >${user.porceprix} FCFA</p>
                             <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);"><s>${user.prixtottal} FCFA</s></p>
-                            <div class="uufw" style="background-color: rgba(170, 170, 170, 0.289);width: 50px;border-radius: 5px;margin-top: 10px;">
+                            <div class="uufw" style="background-color: rgba(255, 171, 75, 0.175);width: 50px;border-radius: 5px;margin-top: 10px;">
                                 <p style="color: rgba(255, 102, 0, 0.865);font-size: 0.7rem;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">- ${user.porce} %</p>
                             </div>
                             
@@ -226,20 +234,25 @@ tabUsere.forEach((i) => {
                             <form >
                                 
                                 <button classe="sereghfjf" onclick="zqszds(${user.position})" type="submit" > <img src="static/IMAGE/pouebd.png"  width="15px"  height="15px" alt="" ></button>
+
                             </form>
                         </div>
-                        <div class="jujdcuudwucd1">
+                        <div class="jujdcuudwucd1" >
+
                             <input type="text" name="" id="couterw" style="width: 0;height: 0;border: none;"  value="${user.porce}">
                             <input type="text" name="" id="gdhsuuzed" style="width: 0;height: 0;border: none;"  value="{{gdhsuud}}">
-                            <div class="ududdw2" onclick="moinsp('${user.position}','${user.porceprix}','mnumq_${user.position}')">
-                                <p style="color: black;font-size: 2rem;">-</p>
+                            <div class="ududdw2" onclick="connecter() style="border: 1px solid gainsboro;">
+                                <p style="color: rgb(207, 207, 207);font-size: 2rem;">-</p>
                             </div>
-                            <div class="ududdw1">
+                            <div class="ududdw19">
                                 <input type="text" name="quantity" id="mnumq_${user.position}" style="width: 100%; height: 100%; padding-left: 10px; border: none; outline: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;" value="${user.quantiteto}">
                             </div>
-                            <div class="ududdw" onclick="plusp('${user.position}','${user.porceprix}','mnumq_${user.position}')">
-                                <p style="color: black;font-size: 2rem;">+</p>
+                            <div class="ududdw32" onclick="connecter() style="border: 1px solid gainsboro;">
+
+                                <p style="color: rgb(207, 207, 207);font-size: 2rem;"> + </p>
+
                             </div>
+
                         </div>
                     </div>
                 </div> `
@@ -269,7 +282,7 @@ tabUsere.forEach((i) => {
                             
                             <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-top: 5px;color: black;" id="sadtdyayuda" >${user.porceprix} FCFA</p>
                             <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);"><s>${user.prixtottal} FCFA</s></p>
-                            <div class="uufw" style="background-color: rgba(170, 170, 170, 0.289);width: 50px;border-radius: 5px;margin-top: 10px;">
+                            <div class="uufw" style="background-color: rgba(255, 171, 75, 0.175);width: 50px;border-radius: 5px;margin-top: 10px;">
                                 <p style="color: rgba(255, 102, 0, 0.865);font-size: 0.7rem;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">- ${user.porce} %</p>
                             </div>
                             
@@ -283,17 +296,19 @@ tabUsere.forEach((i) => {
                                 <button classe="sereghfjf" onclick="zqszds(${user.position})" type="submit" > <img src="static/IMAGE/pouebd.png"  width="15px"  height="15px" alt="" ></button>
                             </form>
                         </div>
-                        <div class="jujdcuudwucd1">
+                        <div class="jujdcuudwucd1" >
                             <input type="text" name="" id="couterw" style="width: 0;height: 0;border: none;"  value="${user.porce}">
                             <input type="text" name="" id="gdhsuuzed" style="width: 0;height: 0;border: none;"  value="{{gdhsuud}}">
-                            <div class="ududdw2" onclick="moinsp('${user.position}','${user.porceprix}','chaumq_${user.position}')">
-                                <p style="color: black;font-size: 2rem;">-</p>
+                            <div class="ududdw2" onclick="connecter()" style="border: 1px solid gainsboro;">
+                                <p style="color: rgb(207, 207, 207);font-size: 2rem;">-</p>
                             </div>
-                            <div class="ududdw1">
+                            <div class="ududdw19">
                                 <input type="text" name="quantity" id="chaumq_${user.position}" style="width: 100%; height: 100%; padding-left: 10px; border: none; outline: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;" value="${user.quantiteto}">
                             </div>
-                            <div class="ududdw" onclick="plusp('${user.position}','${user.porceprix}','chaumq_${user.position}')">
-                                <p style="color: black;font-size: 2rem;">+</p>
+                            <div class="ududdw32" onclick="connecter()" style="border: 1px solid gainsboro;">
+
+                                <p style="color: rgb(207, 207, 207);font-size: 2rem;"> + </p>
+
                             </div>
                         </div>
                     </div>
@@ -323,7 +338,7 @@ tabUsere.forEach((i) => {
                             
                             <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-top: 5px;color: black;" id="sadtdyayuda" >${user.porceprix} FCFA</p>
                             <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 0.7rem;padding-top: 5px;color: rgb(53, 53, 53);"><s>${user.prixtottal} FCFA</s></p>
-                            <div class="uufw" style="background-color: rgba(170, 170, 170, 0.289);width: 50px;border-radius: 5px;margin-top: 10px;">
+                            <div class="uufw" style="background-color: rgba(255, 171, 75, 0.175);width: 50px;border-radius: 5px;margin-top: 10px;">
                                 <p style="color: rgba(255, 102, 0, 0.865);font-size: 0.7rem;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;">- ${user.porce} %</p>
                             </div>
                             
@@ -337,17 +352,19 @@ tabUsere.forEach((i) => {
                                 <button classe="sereghfjf" onclick="zqszds(${user.position})" type="submit" > <img src="static/IMAGE/pouebd.png"  width="15px"  height="15px" alt="" ></button>
                             </form>
                         </div>
-                        <div class="jujdcuudwucd1">
+                        <div class="jujdcuudwucd1" >
                             <input type="text" name="" id="couterw" style="width: 0;height: 0;border: none;"  value="${user.porce}">
                             <input type="text" name="" id="gdhsuuzed" style="width: 0;height: 0;border: none;"  value="{{gdhsuud}}">
-                            <div class="ududdw2" onclick="moinsp('${user.position}','${user.porceprix}','montaumq_${user.position}')">
-                                <p style="color: black;font-size: 2rem;">-</p>
+                            <div class="ududdw2" onclick="connecter()" style="border: 1px solid gainsboro;">
+                                <p style="color: rgb(207, 207, 207);font-size: 2rem;">-</p>
                             </div>
-                            <div class="ududdw1">
+                            <div class="ududdw19">
                                 <input type="text" name="quantity" id="montaumq_${user.position}" style="width: 100%; height: 100%; padding-left: 10px; border: none; outline: none;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;font-size: 1rem;" value="${user.quantiteto}">
                             </div>
-                            <div class="ududdw" onclick="plusp('${user.position}','${user.porceprix}','montaumq_${user.position}')">
-                                <p style="color: black;font-size: 2rem;">+</p>
+                            <div class="ududdw32" onclick="connecter()" style="border: 1px solid gainsboro;">
+
+                                <p style="color: rgb(207, 207, 207);font-size: 2rem;"> + </p>
+
                             </div>
                         </div>
                     </div>
@@ -453,6 +470,36 @@ function zqszds(sereghfjfzd) {
 }
 
 
+
+
+
+function connecter() {
+    let montecsh = document.querySelector('#montecsh');
+    montecsh.innerHTML = "Access restreint connectez-vous , merci ..."
+    montecsh.style.padding = "5px"
+    montecsh.style.paddingLeft = "15px"
+
+    // Créer un nouvel objet Date
+    var currentDate = new Date();
+
+    // Récupérer les secondes actuelles et ajouter 2
+    var seconds = currentDate.getSeconds() + 2;
+
+    // Calculer le délai en millisecondes jusqu'à l'exécution (2 secondes)
+    var delay = 2000;
+
+    // Définir l'action à exécuter après le délai
+    setTimeout(function() {
+        // Action à exécuter après 2 secondes
+        window.location.href = "/pre/monpanier"
+    }, delay);
+
+    console.log('En attente pour exécuter l\'action...');
+
+
+    
+
+}
 
 // [
 //     "[{'id': 1, 'element': '3', 'prix': '4850', 'image': 'mon1.jpeg', 'quantite': '3', 'taille': '', 'nom': 'montre homme', 'description': \"Sur notre site web, vous trouverez une variété d'articles informatifs, captivants et pertinents qui couvrent un large éventail de sujets passionnants. Que vous soyez intéressé par la technologie, la santé, le bien-être, les voyages, la cuisine ou tout autre domaine, nous avons quelque chose pour vous. Nos articles sont rédigés par des experts dans leur domaine, garantissant ainsi des contenus de haute qualité et fiables. Que vous cherchiez des conseils pratiques, des analyses approfondies ou des informations de pointe, vous trouverez tout cela dans nos articles. Explorez notre site web dès maintenant pour découvrir des articles qui vous informeront, vous divertiront et vous inspireront.\", 'pource': '3443', 'porce': '29', 'tailed': '', 'categorie': 'Montre'",

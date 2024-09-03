@@ -46,9 +46,9 @@ let tabUsere = JSON.parse(localStorage.getItem("inscpce"))
 let etdrdvhe = document.querySelector(".etdrdvheza");
 let taer = 0
 
-tabUsere.forEach((i) => {
-    
-    taer+=1
+tabUsere.forEach((ip) => {
+    i = ip["data"]
+    taer+= parseInt(i["quantiteto"])
     etdrdvhe.innerHTML = taer
 
 })
