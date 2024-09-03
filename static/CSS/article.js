@@ -7,7 +7,10 @@ if (tabUsere) {
     tabUsere.forEach((i) => {
         let user = i["data"]
         taer+=parseInt(user.quantiteto)
-        etdrdvhe.innerHTML = taer
+        if (etdrdvhe) {
+            etdrdvhe.innerHTML = taer
+        } 
+        
     
     })
 }

@@ -2,6 +2,7 @@ bcrypt
 blinker
 click
 colorama
+dnspython
 Flask
 Flask-Login
 Flask-Mail
@@ -15,4 +16,7 @@ packaging
 pywhatkit
 SQLAlchemy
 typing_extensions
+validate_email_address
 Werkzeug
+
+

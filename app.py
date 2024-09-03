@@ -7839,9 +7839,6 @@ import bcrypt
 
 
 
-
-
-
 @app.route('/add',methods = ["POST"])
 def profile() :
     
