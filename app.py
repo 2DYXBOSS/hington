@@ -5194,7 +5194,7 @@ def sprome(routeure):
 
                 session['utilisateur_id'] = i.id
                 
-                
+                print("bien acd")
                 return redirect(f"/rediriger/administa")
             elif i.satuq == 2 :
 
