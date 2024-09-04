@@ -206,8 +206,17 @@ tabUsere.forEach((i) => {
         rettr =  `<div class="lesvrai">
                     <div class="geujdjd">
                         <div class="imahdjd1">
-                            <a href="/habidetls/${user.produite}">
-                            <img src="static/uploads/${user.image}"  width="100%" height="90%" alt="" >
+                            
+                             <a href="/habidetls/${user.produite}">
+                                <img id="image" src="static/uploads/${user.image}" width="100%"
+                                    height="90%" alt="Image principale"
+                                    onerror="this.onerror=null;this.src='static/IMAGE/nnssd.jpg';">
+
+                                <script>
+                                    document.getElementById('image').onerror = function () {
+                                        this.src = 'static/IMAGE/nnssd.jpg';
+                                    };
+                                </script>
                             </a>
                         </div>
                         <div class="imahdjd2">
@@ -266,9 +275,19 @@ tabUsere.forEach((i) => {
         rettr =  `<div class="lesvrai">
                     <div class="geujdjd">
                         <div class="imahdjd1">
+                           
                             <a href="/chasuss/${user.produite}">
-                            <img src="static/uploads/${user.image}"  width="100%" height="90%" alt="" >
+                                <img id="image" src="static/uploads/${user.image}" width="100%"
+                                    height="90%" alt="Image principale"
+                                    onerror="this.onerror=null;this.src='static/IMAGE/nnssd.jpg';">
+
+                                <script>
+                                    document.getElementById('image').onerror = function () {
+                                        this.src = 'static/IMAGE/nnssd.jpg';
+                                    };
+                                </script>
                             </a>
+
                         </div>
                         <div class="imahdjd2">
                             <p class="gradfs" style="font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-top: 5px;color: black;font-size: 1rem;">${user.name}</p>
@@ -322,8 +341,19 @@ tabUsere.forEach((i) => {
         rettr =  `<div class="lesvrai">
                     <div class="geujdjd">
                         <div class="imahdjd1">
+                           
+
+
                             <a href="/montredetls/${user.produite}">
-                            <img src="static/uploads/${user.image}"  width="100%" height="90%" alt="" >
+                                <img id="image" src="static/uploads/${user.image}" width="100%"
+                                    height="90%" alt="Image principale"
+                                    onerror="this.onerror=null;this.src='static/IMAGE/nnssd.jpg';">
+
+                                <script>
+                                    document.getElementById('image').onerror = function () {
+                                        this.src = 'static/IMAGE/nnssd.jpg';
+                                    };
+                                </script>
                             </a>
                         </div>
                         <div class="imahdjd2">

@@ -5194,7 +5194,8 @@ def sprome(routeure):
 
                 session['utilisateur_id'] = i.id
                 
-                return redirect(f"/administa")
+                
+                return redirect(f"/rediriger/administa")
             elif i.satuq == 2 :
 
                 flash("Compte suspendu")
@@ -5558,6 +5559,7 @@ def redsete():
                         dhher = Panieruser.query.get(int(p.id))
 
                         if (int(dhher.quantiteto) + int(b['quantiteto']) )<= int(p.dispono):
+                           
                             dhher.quantiteto = int(dhher.quantiteto) + int(b['quantiteto'])
                             db.session.commit()
                         continue

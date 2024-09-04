@@ -207,6 +207,8 @@ if (boutonshd){
         let noumeme = document.querySelector(".noumeme").value
         let prix = document.querySelector(".prix").value
         let quantite = document.querySelector("#quantiteplos").value
+        console.log("poiuygfds",quantite);
+        
         let porce = document.querySelector(".porce").value
         let porceprix = document.querySelector(".porceprix").value
         let categorie = document.querySelector(".categorie").value
@@ -274,12 +276,75 @@ if (boutonshd){
         if (categorie=="VetementFemme"){
             
           
-            let snume = document.querySelector("#snumq");
+            
             let xsnumq = document.querySelector("#xsnumq")
             let xlnumq = document.querySelector("#xlnumq")
             let xxlnumq = document.querySelector("#xxlnumq")
             let lnumq = document.querySelector("#lnumq")
             let mnumq = document.querySelector("#mnumq")
+            let snume = document.querySelector("#snumq")
+
+
+            if (xsnumq)  {
+                console.log("AAAAAAA");
+                let cometrh = 0
+                tabUsere && tabUsere.forEach((user) =>{
+                    console.log("MMMM");
+                    let taillepoe = document.querySelector(".taillepoexs").value
+                    let i = user["data"]
+                    if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
+                        cometrh+=1
+                        let xslet = document.querySelector(".xslet")
+                        console.log("TTTTT",parseInt(xslet.value));
+                        if (xslet){
+                            console.log("OOOOO");
+                            
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(xsnumq.value) ) <= parseInt(xslet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(xsnumq.value)) , "<=" , parseInt(xslet.value));
+                            
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(xsnumq.value);
+                                i.xsn = parseInt(i.quantiteto || 0) + parseInt(xsnumq.value);
+                                
+                                localStorage.setItem("inscpce", JSON.stringify(tabUsere));
+                                console.log("les articles", i);
+                            }
+
+
+
+                            
+                        }
+                        // window.location.href = "/monpanier";
+                        
+                    }
+                })
+
+
+
+
+                if (cometrh<1) {
+                let xsnumq1 = parseInt(xsnumq.value)
+                if (xsnumq1 > 0){
+                    // let tabUsere = []
+                    let taillepoe = document.querySelector(".taillepoexs").value
+                    let ideler = 0
+                    tabUsere && tabUsere.forEach(i => {
+                        let user = i["data"]
+                        if ( parseInt( user["position"] )>= ideler) {
+                            ideler = parseInt(user["position"]) + 1
+                        }
+                        
+                    });
+                    let data = {"desccopte":desccopte,"name":nom,"position":ideler,"image":image,"tailed" : taillepoe,"produite":noumeme,"categorie":categorie,"porce":porce,"porceprix":porceprix,"prixtottal":prix,"quantiteto":xsnumq1,"xs":"xs","xsn":xsnumq1,"s":"","sn":"","l":"","ln":"","m":"","mn":"","xl":"","xln":"","xxl":"","xxln":"","tranwite":"","tranwiten":"","tranneuf":"","tranneufn":"","karente":"","karenten":"","tranwiteun":"","tranwiteunn":"","tranwitedeux":"","tranwitedeuxn":"","tranwitrois":"","tranwitroisn":"","tranwitekate":"","tranwitekaten":""}  
+                    let usere = {
+                        data : data ,
+                    }
+                    tabUsere.push(usere)
+                    localStorage.setItem('inscpce',JSON.stringify(tabUsere))
+                    console.log('Data successfullyz sent to Python:', data);
+                    // window.location.href = "/monpanierls"
+                }
+                }
+            }
 
             if (snume)  {
                 console.log("AAAAAAA");
@@ -295,10 +360,10 @@ if (boutonshd){
                         if (slet){
                             console.log("OOOOO");
                             
-                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(slet.value)) {
-                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(slet.value));
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(snume.value) ) <= parseInt(slet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(snume.value)) , "<=" , parseInt(slet.value));
                             
-                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(snume.value);
                                 
                                 localStorage.setItem("inscpce", JSON.stringify(tabUsere));
                                 console.log("les articles", i);
@@ -343,67 +408,6 @@ if (boutonshd){
 
 
 
-            if (xsnumq)  {
-                console.log("AAAAAAA");
-                let cometrh = 0
-                tabUsere && tabUsere.forEach((user) =>{
-                    console.log("MMMM");
-                    let taillepoe = document.querySelector(".taillepoexs").value
-                    let i = user["data"]
-                    if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
-                        cometrh+=1
-                        let xslet = document.querySelector(".xslet")
-                        console.log("TTTTT",parseInt(xslet.value));
-                        if (xslet){
-                            console.log("OOOOO");
-                            
-                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(xslet.value)) {
-                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(xslet.value));
-                            
-                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
-                                
-                                localStorage.setItem("inscpce", JSON.stringify(tabUsere));
-                                console.log("les articles", i);
-                            }
-
-
-
-                            
-                        }
-                        // window.location.href = "/monpanier";
-                        
-                    }
-                })
-
-
-
-
-                if (cometrh<1) {
-                let xsnumq1 = parseInt(xsnumq.value)
-                if (xsnumq1 > 0){
-                    // let tabUsere = []
-                    let taillepoe = document.querySelector(".taillepoexs").value
-                    let ideler = 0
-                    tabUsere && tabUsere.forEach(i => {
-                        let user = i["data"]
-                        if ( parseInt( user["position"] )>= ideler) {
-                            ideler = parseInt(user["position"]) + 1
-                        }
-                        
-                    });
-                    let data = {"desccopte":desccopte,"name":nom,"position":ideler,"image":image,"tailed" : taillepoe,"produite":noumeme,"categorie":categorie,"porce":porce,"porceprix":porceprix,"prixtottal":prix,"quantiteto":xsnumq1,"xs":"xs","xsn":xsnumq1,"s":"s","sn":"","l":"","ln":"","m":"","mn":"","xl":"","xln":"","xxl":"","xxln":"","tranwite":"","tranwiten":"","tranneuf":"","tranneufn":"","karente":"","karenten":"","tranwiteun":"","tranwiteunn":"","tranwitedeux":"","tranwitedeuxn":"","tranwitrois":"","tranwitroisn":"","tranwitekate":"","tranwitekaten":""}  
-                    let usere = {
-                        data : data ,
-                    }
-                    tabUsere.push(usere)
-                    localStorage.setItem('inscpce',JSON.stringify(tabUsere))
-                    console.log('Data successfullyz sent to Python:', data);
-                    // window.location.href = "/monpanierls"
-                }
-                }
-            }
-
-
             if (xlnumq)  {
                 console.log("AAAAAAA");
                 let cometrh = 0
@@ -418,10 +422,10 @@ if (boutonshd){
                         if (xllet){
                             console.log("OOOOO");
                             
-                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(xllet.value)) {
-                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(xllet.value));
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(xlnumq.value) ) <= parseInt(xllet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(xlnumq.value)) , "<=" , parseInt(xllet.value));
                             
-                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(xlnumq.value);
                                 
                                 localStorage.setItem("inscpce", JSON.stringify(tabUsere));
                                 console.log("les articles", i);
@@ -448,7 +452,7 @@ if (boutonshd){
                         }
                         
                     });
-                    let data = {"desccopte":desccopte,"name":nom,"position":ideler,"image":image,"tailed" : taillepoe,"produite":noumeme,"categorie":categorie,"porce":porce,"porceprix":porceprix,"prixtottal":prix,"quantiteto":xlnumq1,"xs":"xs","xsn":"","s":"s","sn":"","l":"","ln":"","m":"","mn":"","xl":"xl","xln":xlnumq1,"xxl":"","xxln":"","tranwite":"","tranwiten":"","tranneuf":"","tranneufn":"","karente":"","karenten":"","tranwiteun":"","tranwiteunn":"","tranwitedeux":"","tranwitedeuxn":"","tranwitrois":"","tranwitroisn":"","tranwitekate":"","tranwitekaten":""}  
+                    let data = {"desccopte":desccopte,"name":nom,"position":ideler,"image":image,"tailed" : taillepoe,"produite":noumeme,"categorie":categorie,"porce":porce,"porceprix":porceprix,"prixtottal":prix,"quantiteto":xlnumq1,"xs":"","xsn":"","s":"","sn":"","l":"","ln":"","m":"","mn":"","xl":"xl","xln":xlnumq1,"xxl":"","xxln":"","tranwite":"","tranwiten":"","tranneuf":"","tranneufn":"","karente":"","karenten":"","tranwiteun":"","tranwiteunn":"","tranwitedeux":"","tranwitedeuxn":"","tranwitrois":"","tranwitroisn":"","tranwitekate":"","tranwitekaten":""}  
                     let usere = {
                         data : data ,
                     }
@@ -467,7 +471,7 @@ if (boutonshd){
                 let cometrh = 0
                 tabUsere && tabUsere.forEach((user) =>{
                     console.log("MMMM");
-                    let taillepoe = document.querySelector(".taillepoes").value
+                    let taillepoe = document.querySelector(".taillepoexxl").value
                     let i = user["data"]
                     if (parseInt(i.produite) === parseInt(noumeme) && i.tailed === taillepoe) {
                         cometrh+=1
@@ -476,10 +480,10 @@ if (boutonshd){
                         if (xxllet){
                             console.log("OOOOO");
                             
-                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(xxllet.value)) {
-                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(xxllet.value));
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(xxlnumq.value) ) <= parseInt(xxllet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(xxlnumq.value)) , "<=" , parseInt(xxllet.value));
                             
-                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(xxlnumq.value);
                                 
                                 localStorage.setItem("inscpce", JSON.stringify(tabUsere));
                                 console.log("les articles", i);
@@ -506,7 +510,7 @@ if (boutonshd){
                         }
                         
                     });
-                    let data = {"desccopte":desccopte,"name":nom,"position":ideler,"image":image,"tailed" : taillepoe,"produite":noumeme,"categorie":categorie,"porce":porce,"porceprix":porceprix,"prixtottal":prix,"quantiteto":xxlnumq1,"xs":"xs","xsn":"","s":"s","sn":"","l":"","ln":"","m":"","mn":"","xl":"xl","xln":"","xxl":"xxl","xxln":xxlnumq1,"tranwite":"","tranwiten":"","tranneuf":"","tranneufn":"","karente":"","karenten":"","tranwiteun":"","tranwiteunn":"","tranwitedeux":"","tranwitedeuxn":"","tranwitrois":"","tranwitroisn":"","tranwitekate":"","tranwitekaten":""}  
+                    let data = {"desccopte":desccopte,"name":nom,"position":ideler,"image":image,"tailed" : taillepoe,"produite":noumeme,"categorie":categorie,"porce":porce,"porceprix":porceprix,"prixtottal":prix,"quantiteto":xxlnumq1,"xs":"","xsn":"","s":"","sn":"","l":"","ln":"","m":"","mn":"","xl":"","xln":"","xxl":"xxl","xxln":xxlnumq1,"tranwite":"","tranwiten":"","tranneuf":"","tranneufn":"","karente":"","karenten":"","tranwiteun":"","tranwiteunn":"","tranwitedeux":"","tranwitedeuxn":"","tranwitrois":"","tranwitroisn":"","tranwitekate":"","tranwitekaten":""}  
                     let usere = {
                         data : data ,
                     }
@@ -534,10 +538,10 @@ if (boutonshd){
                         if (llet){
                             console.log("OOOOO");
                             
-                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(llet.value)) {
-                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(llet.value));
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(lnumq.value) ) <= parseInt(llet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(lnumq.value)) , "<=" , parseInt(llet.value));
                             
-                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(lnumq.value);
                                 
                                 localStorage.setItem("inscpce", JSON.stringify(tabUsere));
                                 console.log("les articles", i);
@@ -564,7 +568,7 @@ if (boutonshd){
                         }
                         
                     });
-                    let data = {"desccopte":desccopte,"name":nom,"position":ideler,"image":image,"tailed" : taillepoe,"produite":noumeme,"categorie":categorie,"porce":porce,"porceprix":porceprix,"prixtottal":prix,"quantiteto":lnumq1,"xs":"xs","xsn":"","s":"s","sn":"","l":"l","ln":lnumq1,"m":"","mn":"","xl":"xl","xln":"","xxl":"xxl","xxln":"","tranwite":"","tranwiten":"","tranneuf":"","tranneufn":"","karente":"","karenten":"","tranwiteun":"","tranwiteunn":"","tranwitedeux":"","tranwitedeuxn":"","tranwitrois":"","tranwitroisn":"","tranwitekate":"","tranwitekaten":""}  
+                    let data = {"desccopte":desccopte,"name":nom,"position":ideler,"image":image,"tailed" : taillepoe,"produite":noumeme,"categorie":categorie,"porce":porce,"porceprix":porceprix,"prixtottal":prix,"quantiteto":lnumq1,"xs":"","xsn":"","s":"","sn":"","l":"l","ln":lnumq1,"m":"","mn":"","xl":"","xln":"","xxl":"","xxln":"","tranwite":"","tranwiten":"","tranneuf":"","tranneufn":"","karente":"","karenten":"","tranwiteun":"","tranwiteunn":"","tranwitedeux":"","tranwitedeuxn":"","tranwitrois":"","tranwitroisn":"","tranwitekate":"","tranwitekaten":""}  
                     let usere = {
                         data : data ,
                     }
@@ -590,10 +594,10 @@ if (boutonshd){
                         if (mlet){
                             console.log("OOOOO");
                             
-                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(mlet.value)) {
-                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(mlet.value));
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(mnumq.value) ) <= parseInt(mlet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(mnumq.value)) , "<=" , parseInt(mlet.value));
                             
-                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(mnumq.value);
                                 
                                 localStorage.setItem("inscpce", JSON.stringify(tabUsere));
                                 console.log("les articles", i);
@@ -622,7 +626,7 @@ if (boutonshd){
                         }
                         
                     });
-                    let data = {"desccopte":desccopte,"name":nom,"position":ideler,"image":image,"tailed" : taillepoe,"produite":noumeme,"categorie":categorie,"porce":porce,"porceprix":porceprix,"prixtottal":prix,"quantiteto":mnumq1,"xs":"xs","xsn":"","s":"s","sn":"","l":"l","ln":"","m":"m","mn":mnumq1,"xl":"xl","xln":"","xxl":"xxl","xxln":"","tranwite":"","tranwiten":"","tranneuf":"","tranneufn":"","karente":"","karenten":"","tranwiteun":"","tranwiteunn":"","tranwitedeux":"","tranwitedeuxn":"","tranwitrois":"","tranwitroisn":"","tranwitekate":"","tranwitekaten":""}  
+                    let data = {"desccopte":desccopte,"name":nom,"position":ideler,"image":image,"tailed" : taillepoe,"produite":noumeme,"categorie":categorie,"porce":porce,"porceprix":porceprix,"prixtottal":prix,"quantiteto":mnumq1,"xs":"","xsn":"","s":"","sn":"","l":"","ln":"","m":"m","mn":mnumq1,"xl":"","xln":"","xxl":"","xxln":"","tranwite":"","tranwiten":"","tranneuf":"","tranneufn":"","karente":"","karenten":"","tranwiteun":"","tranwiteunn":"","tranwitedeux":"","tranwitedeuxn":"","tranwitrois":"","tranwitroisn":"","tranwitekate":"","tranwitekaten":""}  
                     let usere = {
                         data : data ,
                     }
@@ -664,10 +668,10 @@ if (boutonshd){
                             if (tranwitelet){
                                 console.log("OOOOO");
                                 
-                                if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(tranwitelet.value)) {
-                                    console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(tranwitelet.value));
+                                if ( ( parseInt(i.quantiteto || 0) + parseInt(tranwitenumq.value) ) <= parseInt(tranwitelet.value)) {
+                                    console.log((parseInt(i.quantiteto || 0) + parseInt(tranwitenumq.value)) , "<=" , parseInt(tranwitelet.value));
                                 
-                                    i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                    i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(tranwitenumq.value);
                                     
                                     localStorage.setItem("inscpce", JSON.stringify(tabUsere));
                                     console.log("les articles", i);
@@ -725,10 +729,10 @@ if (boutonshd){
                         if (tranneuflet){
                             console.log("OOOOO");
                             
-                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(tranneuflet.value)) {
-                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(tranneuflet.value));
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(tranneufnumq.value) ) <= parseInt(tranneuflet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(tranneufnumq.value)) , "<=" , parseInt(tranneuflet.value));
                             
-                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(tranneufnumq.value);
                                 
                                 localStorage.setItem("inscpce", JSON.stringify(tabUsere));
                                 console.log("les articles", i);
@@ -787,10 +791,10 @@ if (boutonshd){
                         if (karentelet){
                             console.log("OOOOO");
                             
-                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(karentelet.value)) {
-                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(karentelet.value));
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(karentenumq.value) ) <= parseInt(karentelet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(karentenumq.value)) , "<=" , parseInt(karentelet.value));
                             
-                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(karentenumq.value);
                                 
                                 localStorage.setItem("inscpce", JSON.stringify(tabUsere));
                                 console.log("les articles", i);
@@ -848,10 +852,10 @@ if (boutonshd){
                         if (tranwiteunlet){
                             console.log("OOOOO");
                             
-                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(tranwiteunlet.value)) {
-                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(tranwiteunlet.value));
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(tranwiteunnumq.value) ) <= parseInt(tranwiteunlet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(tranwiteunnumq.value)) , "<=" , parseInt(tranwiteunlet.value));
                             
-                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(tranwiteunnumq.value);
                                 
                                 localStorage.setItem("inscpce", JSON.stringify(tabUsere));
                                 console.log("les articles", i);
@@ -909,10 +913,10 @@ if (boutonshd){
                         if (tranwitedeuxlet){
                             console.log("OOOOO");
                             
-                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(tranwitedeuxlet.value)) {
-                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(tranwitedeuxlet.value));
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(tranwitedeuxnumq.value) ) <= parseInt(tranwitedeuxlet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(tranwitedeuxnumq.value)) , "<=" , parseInt(tranwitedeuxlet.value));
                             
-                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(tranwitedeuxnumq.value);
                                 
                                 localStorage.setItem("inscpce", JSON.stringify(tabUsere));
                                 console.log("les articles", i);
@@ -971,10 +975,10 @@ if (boutonshd){
                         if (tranwitroislet){
                             console.log("OOOOO");
                             
-                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(tranwitroislet.value)) {
-                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(tranwitroislet.value));
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(tranwitroisnumq.value) ) <= parseInt(tranwitroislet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(tranwitroisnumq.value)) , "<=" , parseInt(tranwitroislet.value));
                             
-                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(tranwitroisnumq.value);
                                 
                                 localStorage.setItem("inscpce", JSON.stringify(tabUsere));
                                 console.log("les articles", i);
@@ -1037,10 +1041,10 @@ if (boutonshd){
                         if (tranwitekatelet){
                             console.log("OOOOO");
                             
-                            if ( ( parseInt(i.quantiteto || 0) + parseInt(quantite) ) <= parseInt(tranwitekatelet.value)) {
-                                console.log((parseInt(i.quantiteto || 0) + parseInt(quantite)) , "<=" , parseInt(tranwitekatelet.value));
+                            if ( ( parseInt(i.quantiteto || 0) + parseInt(tranwitekatenumq.value) ) <= parseInt(tranwitekatelet.value)) {
+                                console.log((parseInt(i.quantiteto || 0) + parseInt(tranwitekatenumq.value)) , "<=" , parseInt(tranwitekatelet.value));
                             
-                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(quantite);
+                                i.quantiteto = parseInt(i.quantiteto || 0) + parseInt(tranwitekatenumq.value);
                                 
                                 localStorage.setItem("inscpce", JSON.stringify(tabUsere));
                                 console.log("les articles", i);
