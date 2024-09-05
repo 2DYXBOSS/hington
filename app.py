@@ -8,10 +8,12 @@ from flask_mail import Mail, Message
 import os
 import datetime
 
+
 import io
 
 
 app = Flask(__name__)
+
 
 data = datetime.date.today()
 dataheure = datetime.datetime.now()
@@ -30,7 +32,9 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 
+
 # import pywhatkit
+
 
 # Configurations pour le serveur SMTP
 
@@ -38,6 +42,7 @@ from email.mime.image import MIMEImage
 app = Flask(__name__)
 UPLOAD_FOLDER = 'static/uploads/'
 app.debug = True
+
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
@@ -1631,10 +1636,7 @@ def montres(id):
             hdhdud = Ajouter.query.get(i.produite)
             gdhsuud.append({"element":i.produite,"prix":i.prixdepouce,"image":i.image,"quantite":i.quantiteto,"taille":i.tailed,"nom":i.nomprodui,"description":i.descrprosui,"pource":i.prixtottal,"porce":i.pourcentage ,"tailed":i.tailed,"categorie":i.categorie})
 
-            # prixdepouce,nomprodui,descrprosui,pourcentage,categorie
-    # conueww = len(gdhsuud)   
-
-
+  
 
     commenta = []
     recupe = Ajouter.query.all()
@@ -1672,10 +1674,7 @@ def montres(id):
     user = Ajouter.query.filter_by(id=id).first()
     if user :
         data = [user.image,user.twoimage,user.threeimage,user.forimage]
-        # a = Ajouter.query.all()
-        # for i in a:
-        #     if i.categorie == 'VetementFemme':
-        #         data.append(i)
+        
         return render_template('montrederail.html',user = user,data=data,commenta=commenta,commenta1=commenta1,commenta2=commenta2,useru=useru,conueww=conueww,tableauserz=tableauserz)
     print("MO")
 
@@ -3111,9 +3110,7 @@ def commandeznow():
 def Supprimer(id):
     if 'utilisateur_id' in session:
         useru = Profil.query.get(session['utilisateur_id'])
-    # else:
-    #     return redirect(f'/pre/Supprimer/{id}')
-    
+   
     useruo = Profil.query.get(useru.id)
     tableaus = Panieruser.query.all()
     
@@ -3127,7 +3124,7 @@ def Supprimer(id):
             db.session.delete(zerre)
             db.session.commit()
             return redirect('/monpanier')
-            print('produit supprimer')
+        
 
     print('NON supprimer')  
     return redirect('/monpanier')
@@ -4765,6 +4762,8 @@ def userasmin():
     except :
         return render_template("listeuseradmin.html",administa=administa,VetementHomme=VetementHomme,VetementFemme=VetementFemme,Montre=Montre,sac=sac,nombdre=nombdre,compt=compt)
     
+
+
 @app.route("/listederobe")
 def userlistederobe():
     if 'utilisateur_id' in session:
@@ -5151,7 +5150,7 @@ def pree(routeure):
         chaussure = chaussure[:10]
 
 
-    # print(commenta[0].mail)
+
     
     return render_template("connexion.html",commenta=commenta,catefemme=catefemme,montre=montre,chaussure=chaussure,routeure=routeure)
 

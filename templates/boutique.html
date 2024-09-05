@@ -392,7 +392,7 @@
 
 
     <div class="elemsms">
-        <p>°Ajout d'un nouveau produit sur le site</p>
+        <p>°Ajout d'un nouveau produit vetement femme sur le site</p>
     </div>
     <div class="statte">
         <!-- <div class="statte0">
@@ -402,57 +402,96 @@
 
             <form action="/objet" method="POST" class="formulaire" id="section">
                 <div class="fghjklsl1">
+                    <div class="imaprinc">
+                        {% if 'p' in filename %}
+                            <img src="{{url_for('static', filename='uploads/' + filename)}}" style="width: 100%;height: 100%;border-radius: 10px;" alt="" onerror="this.onerror=null;this.src='static/IMAGE/nnssd.jpg';" id="image">
+                            {% endif %}
+                            
+
+                            <script>
+                                document.getElementById('image').onerror = function () {
+                                    this.src = 'static/IMAGE/nnssd.jpg';
+                                };
+                            </script>
+                    </div>
+                    <div class="omaseconde">
+                        <div class="omaseconde1">
+                            {% if 'p' in filename1 %}
+                            <img src="{{url_for('static', filename='uploads/' + filename1)}}" style="width: 200px;height: 200px;border-radius: 10px;" alt="" onerror="this.onerror=null;this.src='static/IMAGE/nnssd.jpg';" id="image">
+                            {% endif %}
+                            
+
+                            <script>
+                                document.getElementById('image').onerror = function () {
+                                    this.src = 'static/IMAGE/nnssd.jpg';
+                                };
+                            </script>
+                        </div>
+                        <div class="omaseconde1">
+                            {% if 'p' in filename2 %}
+                            <img src="{{url_for('static', filename='uploads/' + filename2)}}" style="width: 200px;height: 200px;border-radius: 10px;" alt="" onerror="this.onerror=null;this.src='static/IMAGE/nnssd.jpg';" id="image">
+                            {% endif %}
+                            
+
+                            <script>
+                                document.getElementById('image').onerror = function () {
+                                    this.src = 'static/IMAGE/nnssd.jpg';
+                                };
+                            </script>
+                        </div>
+                        <div class="omaseconde1">
+                            {% if 'p' in filename3 %}
+                            <img src="{{url_for('static', filename='uploads/' + filename3)}}" style="width: 200px;height: 200px;border-radius: 10px;" alt="" onerror="this.onerror=null;this.src='static/IMAGE/nnssd.jpg';" id="image">
+                            {% endif %}
+                            
+
+                            <script>
+                                document.getElementById('image').onerror = function () {
+                                    this.src = 'static/IMAGE/nnssd.jpg';
+                                };
+                            </script>
+                        </div>
+                    </div>
                     <div class="formu">
-                        <p
-                            style="font-size: 1rem;font-family: sans-serif;color: black;text-align: center;padding-top: 20px;">
-                            Ajouter un vetement femme</p>
+
+                        
                         <div class="lesimpur">
                             <input type="text" name="image" id="" value="{{filename}}">
                             <input type="text" name="twoimage" id="" value="{{filename1}}">
                             <input type="text" name="threeimage" id="" value="{{filename2}}">
                             <input type="text" name="forimage" id="" value="{{filename3}}">
                         </div>
-                        <p
-                            style="text-align: center;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;">
-                            - Les images selctionnées de l'article !</p>
+                      
                     </div>
-                    <div class="lesimadewe">
-                        <div class="lesimahes">
-                            {% if 'p' in filename %}
-                            <img src="{{url_for('static', filename='uploads/' + filename)}}" width=" 100%" height="100%"
-                                alt="">
-                            {% endif %}
-                        </div>
+                   
 
+                    
+                </div>
+                <div class="fghjklsl">
 
-                        <div class="lesimahes">
-                            {% if 'p' in filename1 %}
-                            <img src="{{url_for('static', filename='uploads/' + filename1)}}" width=" 100%"
-                                height="100%" alt="">
-                            {% endif %}
-                        </div>
-
-
-                        <div class="lesimahes">
-                            {% if 'p' in filename2 %}
-                            <img src="{{url_for('static', filename='uploads/' + filename2)}}" width=" 100%"
-                                height="100%" alt="">
-                            {% endif %}
-                        </div>
-
-
-                        <div class="lesimahes">
-                            {% if 'p' in filename3 %}
-                            <img src="{{url_for('static', filename='uploads/' + filename3)}}" width=" 100%"
-                                height="100%" alt="">
-                            {% endif %}
-                        </div>
-
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Lien JUMIA du produit !</p>
+                    <div class="formuwpiie">
+                        <input type="text" name="liens" id="" placeholder="Nom du produit">
+                    </div>
+                    <p
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Nom du produit !</p>
+                    <div class="formuwpiie">
+                        <input type="text" name="nom" id="" placeholder="Nom du produit">
                     </div>
 
                     <p
-                        style="text-align: center;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;">
-                        - Quelles sont les couleurs des articles ?</p>
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Prix du produit !</p>
+                    <div class="formuwpiie">
+                        <input type="text" name="prix" id="" placeholder="Prix du produit">
+                    </div>
+
+                    <p
+                    style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Quelles sont les couleurs des articles ?</p>
                     <div class="inputcouleu">
                         <input type="checkbox" name="rouge" id="rouge" value="rouge">
                         <input type="checkbox" name="jaune" id="jaune" value="jaune">
@@ -570,9 +609,21 @@
 
                     </div>
 
+                    
+                    <div class="formuwpiie" style="display: flex;justify-content: start;visibility: hidden;">
+                        <input type="text" name="categorie"  value="VetementFemme">
+                     
+                        
+                    </div>
                     <p
-                        style="text-align: center;color: white;font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;">
-                        - Quelles sont les tailles des articles ?</p>
+                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Reduction du prix du produit en % !</p>
+                    <div class="formuwpiie">
+                        <input type="text" name="porce" id="" placeholder="Prix du produit">
+                    </div>
+                    <p
+                    style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
+                        Selectionner les tailles et quanntités des tailes de l'article</p>
                    
                     <div class="rangerpre" style="height: auto;">
 
@@ -637,40 +688,6 @@
                         <input type="number" style="width: 50px;padding-right: 0;" name="slet" >
                         </div>
                     </div>
-                    <div class="formuwpiie" style="display: flex;justify-content: start;visibility: hidden;">
-                        <input type="text" name="categorie"  value="VetementFemme">
-                     
-                        
-                    </div>
-                </div>
-                <div class="fghjklsl">
-
-                    <p
-                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
-                        Lien JUMIA du produit !</p>
-                    <div class="formuwpiie">
-                        <input type="text" name="liens" id="" placeholder="Nom du produit">
-                    </div>
-                    <p
-                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
-                        Nom du produit !</p>
-                    <div class="formuwpiie">
-                        <input type="text" name="nom" id="" placeholder="Nom du produit">
-                    </div>
-
-                    <p
-                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
-                        Prix du produit !</p>
-                    <div class="formuwpiie">
-                        <input type="text" name="prix" id="" placeholder="Prix du produit">
-                    </div>
-                    <p
-                        style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
-                        Reduction du prix du produit en % !</p>
-                    <div class="formuwpiie">
-                        <input type="text" name="porce" id="" placeholder="Prix du produit">
-                    </div>
-                    
                     <p
                         style="text-align: start;color: rgb(36, 36, 116);font-size: 0.8rem;padding-top: 20px;font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;padding-bottom: 10px;padding-left: 20px;">
                         Description complete du produit !</p>
@@ -679,7 +696,7 @@
 
 
                         <textarea type="text"
-                            style="resize: none;field-sizing: content;line-height: 1.5;min-height: 3lh;width: 100%;border-radius: 0;outline: none;border: 1px solid rgba(183, 183, 183, 0.501) ;margin-bottom: 20px;padding: 10px;font-size: 0.8rem;"
+                            style="resize: none;field-sizing: content;line-height: 1.5;min-height: 15lh;width: 100%;border-radius: 0;outline: none;border: 1px solid rgba(183, 183, 183, 0.501) ;margin-bottom: 20px;padding: 10px;font-size: 0.8rem;"
                             name="description" placeholder="Description du produit"></textarea>
                     </div>
                     <div class="boutin">
